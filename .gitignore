@@ -1,0 +1,16 @@
+# .gitignore — Arbeitsordner mikrogruen
+# Angelegt 22.08.2026 (Audit-Vorschläge 4 + 20); Erläuterung in werkzeuge/git-einrichtung.md
+
+# FreeCAD-Sicherungskopien — nie versionieren (P-32)
+*.FCBak
+*.FCStd1
+
+# Überholte Vorversionen — Verfallsdatum: erster Git-Commit
+_alt_2026-08-19/
+
+# Konto-Export mit privaten Daten aller Projekte — gehört ganz gelöscht (Audit-Vorschlag 26)
+manifest/
+
+# Betriebssystem-Reste
+Thumbs.db
+Desktop.ini

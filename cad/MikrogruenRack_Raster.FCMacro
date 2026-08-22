@@ -1,0 +1,247 @@
+
+# MikrogruenRack_Raster.FCMacro
+# Baut Staenderwerk, Versorgungsstrang und Modulinstanzen aus dem Raster
+# n_rack_x  x  n_rack_y  x  n_etagen  der Parametertabelle neu auf.
+# Aufruf:  in FreeCAD ausfuehren, oder  exec(open(pfad).read())  gefolgt von  rebuild()
+import FreeCAD as App
+
+STAHL=(0.549,0.5686,0.60,1.0); FUSS=(0.451,0.4588,0.502,1.0)
+VERBAND=(0.78,0.62,0.36,1.0)
+ROLLE=(0.25,0.30,0.35,1.0)
+ROHR_V=(0.7216,0.7412,0.7804,1.0); ROHR_F=(0.6784,0.7020,0.7412,1.0)
+KANAL=(0.400,0.4118,0.4510,1.0); KUPP=(0.502,0.5098,0.5490,1.0)
+STECK=(0.200,0.200,0.2196,1.0); ABL=(0.600,0.6118,0.6510,1.0)
+
+PX="(Parameter.mod_a_b + 2 * Parameter.fuehrungsspiel + Parameter.profil)"
+SPALTE="(Parameter.mod_a_b + 2 * Parameter.fuehrungsspiel)"
+REIHE="(Parameter.fuehrungsspiel + Parameter.mod_a_t + Parameter.schnittstelle_t)"
+
+def rebuild(doc=None, verbose=True):
+    doc = doc or App.ActiveDocument
+    sh  = doc.getObject("Parameter")
+    nx  = int(sh.get("n_rack_x")); ny = int(sh.get("n_rack_y")); nz = int(sh.get("n_etagen"))
+    if ny > 2:
+        raise ValueError("n_rack_y > 2: eine dritte Reihe ist ohne Bediengang nicht erreichbar")
+    nmod = int(sh.get("n_module"))
+    bauart = int(sh.get("bauart"))
+
+    def xp(i): return "0 mm" if i==0 else "%d * %s" % (i, PX)
+    def yp(j):
+        if j==0: return "0 mm"
+        if j==ny: return "Parameter.rack_t - Parameter.profil"
+        return "Parameter.profil + %d * %s + %d * Parameter.strang_t" % (j, REIHE, j-1)
+    def zr(k):
+        if k=="B": return "Parameter.fuss_h"
+        if k=="O": return "Parameter.rack_h - Parameter.profil"
+        return "Parameter.z_basis - Parameter.profil" + (" + %d * Parameter.teilung" % (k-1) if k>1 else "")
+    def zmod(k): return "Parameter.z_basis + %d * Parameter.teilung + Parameter.fuehrungsspiel" % (k-1)
+
+    grp_s = doc.getObject("Staenderwerk"); grp_v = doc.getObject("Versorgungsstrang")
+    if grp_s is None or grp_v is None:
+        raise ValueError("Dieses Makro gehoert zu MikrogruenRack.FCStd — das aktive Dokument "
+                         "'%s' hat keine Gruppen Staenderwerk/Versorgungsstrang. "
+                         "Erst das Rackdokument aktivieren." % doc.Name)
+    alt = [o.Name for o in grp_s.Group] + [o.Name for o in grp_v.Group]
+    alt += [o.Name for o in doc.Objects if o.TypeId=="App::Link" and o.Name.startswith("Modul_")]
+    doc.RecomputesFrozen = True
+    for n in alt:
+        if doc.getObject(n): doc.removeObject(n)
+
+    def obj(typ, name, grp, farbe, **expr):
+        o = doc.addObject(typ, name)
+        for p, e in expr.items(): o.setExpression(p.replace("_P_",".Placement.Base."), e)
+        if hasattr(o.ViewObject,"ShapeColor"): o.ViewObject.ShapeColor = farbe
+        if grp is not None: grp.addObject(o)
+        return o
+
+    n_neu = 0
+    # ---- Staender und Stellfuesse ----
+    for i in range(nx+1):
+        for j in range(ny+1):
+            obj("Part::Box","Staender_X%d_Y%d"%(i,j),grp_s,STAHL,
+                Length="Parameter.profil", Width="Parameter.profil",
+                Height="Parameter.rack_h - Parameter.fuss_h",
+                _P_x=xp(i), _P_y=yp(j), _P_z="Parameter.fuss_h"); n_neu+=1
+            obj("Part::Cylinder","Stellfuss_X%d_Y%d"%(i,j),grp_s,FUSS,
+                Radius="12 mm", Height="Parameter.fuss_h + 15 mm",
+                _P_x="(%s) + Parameter.profil / 2"%xp(i),
+                _P_y="(%s) + Parameter.profil / 2"%yp(j), _P_z="0 mm"); n_neu+=1
+    # ---- Traversenringe ----
+    ringe = ["B", "O"] if bauart == 2 else (["B"] + list(range(1, nz+1)) + ["O"])
+    for k in ringe:
+        tag = k if isinstance(k,str) else "E%d"%k
+        for j in range(ny+1):
+            for i in range(nx):
+                obj("Part::Box","Trav_X_%s_Y%d_S%d"%(tag,j,i),grp_s,STAHL,
+                    Length=SPALTE, Width="Parameter.profil", Height="Parameter.profil",
+                    _P_x="Parameter.profil + %d * %s"%(i,PX) if i else "Parameter.profil",
+                    _P_y=yp(j), _P_z=zr(k)); n_neu+=1
+        for i in range(nx+1):
+            for j in range(ny):
+                obj("Part::Box","Trav_Y_%s_X%d_R%d"%(tag,i,j),grp_s,STAHL,
+                    Length="Parameter.profil",
+                    Width="(%s) - (%s) - Parameter.profil"%(yp(j+1),yp(j)),
+                    Height="Parameter.profil",
+                    _P_x=xp(i), _P_y="(%s) + Parameter.profil"%yp(j), _P_z=zr(k)); n_neu+=1
+    # ---- Wandlaschen nur beim einreihigen Rack ----
+    if ny == 1:
+        for lbl, xe in (("links","0 mm"),("rechts","Parameter.rack_b - Parameter.profil")):
+            obj("Part::Box","Wandlasche_%s_v"%lbl,grp_s,STAHL,
+                Length="Parameter.profil", Width="60 mm", Height="3 mm",
+                _P_x=xe, _P_y="Parameter.rack_t", _P_z="Parameter.rack_h - 80 mm"); n_neu+=1
+            obj("Part::Box","Wandlasche_%s_h"%lbl,grp_s,STAHL,
+                Length="Parameter.profil", Width="3 mm", Height="80 mm",
+                _P_x=xe, _P_y="Parameter.rack_t + 60 mm", _P_z="Parameter.rack_h - 80 mm"); n_neu+=1
+
+    # ---- Bauart 2: Auflageschienen statt Zwischenringe ----
+    SPALTE_L = "(Parameter.mod_a_b + 2 * Parameter.fuehrungsspiel)"
+    if bauart == 2:
+        for k in range(1, nz+1):
+            zf = "%s - Parameter.lauf_t - Parameter.rolle_d - Parameter.schiene_t" % zmod(k)
+            for j in range(ny):
+                yr = "(%s) + Parameter.profil" % yp(j)
+                wr = "(%s) - (%s) - Parameter.profil" % (yp(j+1), yp(j))
+                for i in range(nx):
+                    xl = "Parameter.profil + %d * %s" % (i, PX) if i else "Parameter.profil"
+                    xr = "%s + %s - Parameter.schiene_b" % (xl, SPALTE_L)
+                    for lbl, xb, xw in (("L", xl, xl),
+                                        ("R", xr, "%s + Parameter.schiene_b - Parameter.schiene_t" % xr)):
+                        obj("Part::Box", "Schiene_%s_S%d_R%d_E%d" % (lbl, i, j, k), grp_s, STAHL,
+                            Length="Parameter.schiene_b", Width=wr, Height="Parameter.schiene_t",
+                            _P_x=xb, _P_y=yr, _P_z=zf); n_neu += 1
+                        obj("Part::Box", "Aufkantung_%s_S%d_R%d_E%d" % (lbl, i, j, k), grp_s, STAHL,
+                            Length="Parameter.schiene_t", Width=wr, Height="Parameter.schiene_b",
+                            _P_x=xw, _P_y=yr, _P_z=zf); n_neu += 1
+                    # Laufrollen: das Modul rollt, es schleift nicht
+                    nr = int(sh.get("n_rollen"))
+                    rand = 30.0
+                    for t in range(nr):
+                        f = 0.0 if nr < 2 else float(t) / (nr - 1)
+                        ry = "(%s) + %g mm + %g * ((%s) - %g mm)" % (yr, rand, f, wr, 2 * rand)
+                        for rl, rx in (("L", "%s + Parameter.lauf_t" % xl),
+                                       ("R", "%s + Parameter.mod_a_b - Parameter.lauf_b + Parameter.lauf_t" % xl)):
+                            o = obj("Part::Cylinder", "Rolle_%s%d_S%d_R%d_E%d" % (rl, t, i, j, k), grp_s, ROLLE,
+                                    Radius="Parameter.rolle_d / 2", Height="Parameter.rolle_b",
+                                    _P_x=rx, _P_y=ry,
+                                    _P_z="%s - Parameter.lauf_t - Parameter.rolle_d / 2" % zmod(k))
+                            o.Placement.Rotation = App.Rotation(App.Vector(0, 1, 0), 90)
+                            o.setExpression(".Placement.Rotation.Angle", "90 deg")
+                            n_neu += 1
+
+    # ---- Diagonalverband ----
+    rw = int(sh.get("rueckwand")) if sh.getAlias("B103") == "rueckwand" else 3
+    HOEHE = "(Parameter.rack_h - Parameter.fuss_h - 2 * Parameter.profil)"
+    BREITE_Y = "(Parameter.rack_t - 2 * Parameter.profil)"
+    BREITE_X = "(Parameter.rack_b - 2 * Parameter.profil)"
+    Z0 = "Parameter.fuss_h + Parameter.profil"
+    if bauart == 2:
+        LD = "sqrt(%s ^ 2 + %s ^ 2)" % (BREITE_Y, HOEHE)
+        AL = "atan(%s / %s)" % (BREITE_Y, HOEHE)
+        for lbl, xb in (("links", "-Parameter.diag_t"),
+                        ("rechts", "Parameter.rack_b")):
+            for suf, ya, vz in (("a", "Parameter.profil", "-"),
+                                ("b", "Parameter.rack_t - Parameter.profil", "+")):
+                o = obj("Part::Box", "Diagonale_%s_%s" % (lbl, suf), grp_s, VERBAND,
+                        Length="Parameter.diag_t", Width="Parameter.diag_b", Height=LD,
+                        _P_x=xb, _P_y=ya, _P_z=Z0)
+                o.Placement.Rotation = App.Rotation(App.Vector(1, 0, 0), 1)
+                o.setExpression(".Placement.Rotation.Angle", vz + AL)
+                n_neu += 1
+    if rw > 1:
+        LB = "sqrt(%s ^ 2 + %s ^ 2)" % (BREITE_X, HOEHE)
+        BE = "atan(%s / %s)" % (BREITE_X, HOEHE)
+        for suf, xa, vz in (("a", "Parameter.profil", "+"),
+                            ("b", "Parameter.rack_b - Parameter.profil", "-")):
+            o = obj("Part::Box", "Diagonale_hinten_%s" % suf, grp_s, VERBAND,
+                    Length="Parameter.diag_b", Width="Parameter.diag_t", Height=LB,
+                    _P_x=xa, _P_y="Parameter.rack_t", _P_z=Z0)
+            o.Placement.Rotation = App.Rotation(App.Vector(0, 1, 0), 1)
+            o.setExpression(".Placement.Rotation.Angle", vz + BE)
+            n_neu += 1
+
+    # ---- Versorgungsstrang: ein Steigsatz je Modulspalte ----
+    Y_STRANG = "Parameter.profil + %s + Parameter.strang_t / 2"%REIHE
+    Y_FLANSCH= "Parameter.profil + %s"%REIHE
+    for i in range(nx):
+        dx = "Parameter.profil + Parameter.fuehrungsspiel + %d * %s"%(i,PX) if i else "Parameter.profil + Parameter.fuehrungsspiel"
+        obj("Part::Cylinder","Vorlaufrohr_S%d"%i,grp_v,ROHR_V, Radius="8 mm",
+            Height="Parameter.rack_h - Parameter.profil - Parameter.sockel_h",
+            _P_x="%s + 112 mm"%dx, _P_y=Y_STRANG, _P_z="Parameter.sockel_h"); n_neu+=1
+        obj("Part::Cylinder","Fallrohr_S%d"%i,grp_v,ROHR_F,
+            Radius="Parameter.ablauf_d / 2 + 2.5 mm",
+            Height="Parameter.rack_h - Parameter.profil - Parameter.sockel_h",
+            _P_x="%s + Parameter.ablauf_x"%dx,
+            _P_y=Y_STRANG, _P_z="Parameter.sockel_h"); n_neu+=1
+        obj("Part::Box","Kabelkanal_S%d"%i,grp_v,KANAL, Length="45 mm", Width="Parameter.strang_t",
+            Height="Parameter.rack_h - Parameter.profil - Parameter.sockel_h",
+            _P_x="%s + 336 mm - 22 mm"%dx, _P_y=Y_FLANSCH, _P_z="Parameter.sockel_h"); n_neu+=1
+
+    # ---- Modulplaetze: Gegenstuecke und Instanzen ----
+    modul = doc.getObject("Modul") or doc.getObject("Modul_Huelle")
+    platz = 0
+    for k in range(1, nz+1):
+        for j in range(ny):
+            for i in range(nx):
+                platz += 1
+                dx = "Parameter.profil + Parameter.fuehrungsspiel + %d * %s"%(i,PX) if i else "Parameter.profil + Parameter.fuehrungsspiel"
+                if j == 0:
+                    yf, ym, rot = Y_FLANSCH, "Parameter.profil + Parameter.fuehrungsspiel", 0
+                else:
+                    yf = "Parameter.profil + %s + Parameter.strang_t"%REIHE
+                    ym = "%s + Parameter.schnittstelle_t + Parameter.mod_a_t"%yf
+                    rot = 180
+                sfx = "S%d_R%d_E%d"%(i,j,k)
+                for nm, farbe, r, h, dz in (
+                    ("Gegen_Kupplung_"+sfx, KUPP, "9 mm","12 mm",
+                     "%s + Parameter.mod_a_h / 2"%zmod(k)),
+                    ("Gegen_Stecker_"+sfx, STECK, "10 mm","12 mm",
+                     "%s + Parameter.mod_a_h / 2"%zmod(k)),
+                    ("Gegen_Ablauf_"+sfx, ABL, "Parameter.ablauf_d / 2 + 1 mm","12 mm",
+                     "%s + Parameter.ablauf_z"%zmod(k))):
+                    ox = {"Gegen_Kupplung_":"%s + 112 mm"%dx,
+                          "Gegen_Stecker_" :"%s + 336 mm"%dx,
+                          "Gegen_Ablauf_"  :"%s + Parameter.ablauf_x"%dx}[nm[:nm.rfind("S%d_"%i)]]
+                    o = obj("Part::Cylinder", nm, grp_v, farbe, Radius=r, Height=h,
+                            _P_x=ox, _P_y=yf, _P_z=dz)
+                    o.Placement.Rotation = App.Rotation(App.Vector(1,0,0), -90 if j==0 else 90)
+                    o.setExpression(".Placement.Rotation.Angle", "-90 deg" if j==0 else "90 deg")
+                    n_neu += 1
+                if platz <= nmod:
+                    lk = doc.addObject("App::Link","Modul_S%d_R%d_E%d"%(i,j,k))
+                    lk.LinkedObject = modul
+                    lk.Label = "Modul Spalte %d Reihe %d Etage %d"%(i+1,j+1,k)
+                    lk.setExpression(".Placement.Base.x", dx if j==0 else "(%s) + Parameter.mod_a_b"%dx)
+                    lk.setExpression(".Placement.Base.y", ym)
+                    lk.setExpression(".Placement.Base.z", zmod(k))
+                    if rot:
+                        lk.Placement.Rotation = App.Rotation(App.Vector(0,0,1), 180)
+                        lk.setExpression(".Placement.Rotation.Angle", "180 deg")
+                    n_neu += 1
+
+    doc.RecomputesFrozen = False
+    doc.recompute()
+    bad = [o.Name for o in doc.Objects if "Invalid" in (o.State or [])]
+    if verbose:
+        App.Console.PrintMessage("Raster %dx%dx%d: %d geloescht, %d neu, %d Modulplaetze, %d bestueckt, ungueltig: %s\n"
+                                 % (nx,ny,nz,len(alt),n_neu,nx*ny*nz,min(nmod,nx*ny*nz),bad or "keine"))
+    return dict(nx=nx,ny=ny,nz=nz,plaetze=nx*ny*nz,neu=n_neu,ungueltig=bad)
+
+# Beim Ausfuehren als Makro sofort neu aufbauen und das Ergebnis melden.
+def _melde():
+    d = App.getDocument("MikrogruenRack") if "MikrogruenRack" in App.listDocuments() else App.ActiveDocument
+    r = rebuild(d)
+    sh = d.getObject("Parameter")
+    App.Console.PrintMessage(
+        "Rack %s x %s x %s  ->  %s x %s x %s   |  %d Modulplaetze, %s bestueckt  |  %s\n"
+        % (sh.get("n_rack_x"), sh.get("n_rack_y"), sh.get("n_etagen"),
+           sh.get("rack_b"), sh.get("rack_t"), sh.get("rack_h"),
+           r["plaetze"], sh.get("n_module"),
+           "alle Objekte gueltig" if not r["ungueltig"] else "UNGUELTIG: %s" % r["ungueltig"]))
+    try:
+        import FreeCADGui as Gui
+        Gui.SendMsgToActiveView("ViewFit")
+    except Exception:
+        pass
+    return r
+
+_melde()

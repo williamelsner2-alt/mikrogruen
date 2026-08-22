@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 820" width="1120" height="820" role="img"
+     aria-labelledby="titel beschreibung" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif">
+  <title id="titel">Modulares Rack mit austauschbaren Klimamodulen</title>
+  <desc id="beschreibung">Seitenansicht eines Ständerwerks mit vier Etagenplätzen, davon einer
+  bestückt. Die Technik sitzt nicht im Rack, sondern in zwei externen Schränken: Elektronik oben,
+  Hydraulik unten. An der Rackrückseite läuft der Versorgungsstrang aus Vorlaufrohr, Fallrohr und
+  Kabelkanal. Rechts die drei Bestandteile der Modulschnittstelle und die Rasterform X mal Y mal Z.</desc>
+
+  <defs>
+    <marker id="pfeil" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8a8f98"/>
+    </marker>
+    <marker id="pfeilklein" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3f7a8c"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="820" fill="#ffffff"/>
+
+  <text x="40" y="46" font-size="23" font-weight="600" fill="#1c2024">Modulares Rack mit austauschbaren Klimamodulen</text>
+  <text x="40" y="70" font-size="14" fill="#6b7280">Gleiche Schnittstelle, freier Inhalt — Technik extern, Rack skaliert als Raster X × Y × Z</text>
+  <line x1="40" y1="86" x2="1080" y2="86" stroke="#e3e5e8" stroke-width="1"/>
+
+  <!-- ============ Panel A: Rack in Seitenansicht ============ -->
+  <text x="40" y="122" font-size="13" font-weight="600" fill="#3f7a8c" letter-spacing="0.8">SEITENANSICHT · BLICK VON RECHTS</text>
+
+  <!-- Stellfuesse -->
+  <rect x="70" y="700" width="14" height="14" fill="#9aa0a6"/>
+  <rect x="236" y="700" width="14" height="14" fill="#9aa0a6"/>
+  <!-- Staender vorn/hinten (Seitenansicht: links = vorn) -->
+  <rect x="66" y="152" width="22" height="548" fill="#c7ccd1" stroke="#8a8f98"/>
+  <rect x="232" y="152" width="22" height="548" fill="#c7ccd1" stroke="#8a8f98"/>
+  <!-- Traversenringe: Boden, 4 Etagen, oben -->
+  <rect x="66" y="686" width="188" height="14" fill="#b3b9bf" stroke="#8a8f98"/>
+  <rect x="66" y="152" width="188" height="14" fill="#b3b9bf" stroke="#8a8f98"/>
+  <g fill="#b3b9bf" stroke="#8a8f98">
+    <rect x="66" y="660" width="188" height="14"/>
+    <rect x="66" y="534" width="188" height="14"/>
+    <rect x="66" y="408" width="188" height="14"/>
+    <rect x="66" y="282" width="188" height="14"/>
+  </g>
+  <text x="270" y="670" font-size="11" fill="#8a8f98">Traverse je Etage — trägt das Modul</text>
+
+  <!-- Modul 1 bestueckt -->
+  <rect x="72" y="546" width="150" height="114" fill="#eef4f2" stroke="#4a8f7b" stroke-width="1.6"/>
+  <rect x="72" y="546" width="150" height="9" fill="#f5d98a" stroke="#c9a94e"/>
+  <text x="147" y="600" font-size="12" font-weight="600" fill="#2f6355" text-anchor="middle">Modul 1</text>
+  <text x="147" y="617" font-size="10" fill="#5d7a72" text-anchor="middle">Klimazone A</text>
+  <text x="147" y="631" font-size="9" fill="#8aa39b" text-anchor="middle">Licht · Temperatur · Bewässerung frei</text>
+  <!-- Bodengefaelle im Modul -->
+  <path d="M78 654 L216 650" stroke="#7fa8c4" stroke-width="2" fill="none"/>
+  <circle cx="216" cy="650" r="3.4" fill="#3f7a8c"/>
+  <text x="118" y="648" font-size="9" fill="#7fa8c4">2° + 1° → ein Tiefpunkt</text>
+
+  <!-- freie Plaetze -->
+  <g fill="none" stroke="#d2d6da" stroke-dasharray="5 4">
+    <rect x="72" y="420" width="150" height="114"/>
+    <rect x="72" y="294" width="150" height="114"/>
+    <rect x="72" y="168" width="150" height="114"/>
+  </g>
+  <g font-size="10.5" fill="#adb3b9" text-anchor="middle">
+    <text x="147" y="482">Platz 2 — frei</text>
+    <text x="147" y="356">Platz 3 — frei</text>
+    <text x="147" y="230">Platz 4 — frei</text>
+  </g>
+  <text x="270" y="356" font-size="11" fill="#8a8f98">nachrüstbar, ohne das Rack zu ändern</text>
+
+  <!-- Versorgungsstrang hinten -->
+  <rect x="222" y="166" width="10" height="520" fill="#cfe0e8" stroke="#7fa8c4"/>
+  <text x="270" y="200" font-size="11.5" font-weight="600" fill="#3f7a8c">Versorgungsstrang</text>
+  <text x="270" y="216" font-size="10.5" fill="#6b7280">Vorlaufrohr · Fallrohr · Kabelkanal</text>
+  <text x="270" y="231" font-size="10.5" fill="#6b7280">bei zwei Reihen sitzt er mittig</text>
+
+  <!-- Schnittstelle am Modul -->
+  <circle cx="222" cy="588" r="4" fill="#3f7a8c"/>
+  <circle cx="222" cy="604" r="4" fill="#2f3437"/>
+  <circle cx="222" cy="650" r="4" fill="#7fa8c4"/>
+  <line x1="228" y1="612" x2="266" y2="560" stroke="#c7ccd1" marker-end="url(#pfeilklein)"/>
+  <text x="270" y="556" font-size="10.5" fill="#6b7280">drei Anschlüsse an derselben Wand</text>
+
+  <!-- Masse -->
+  <line x1="52" y1="152" x2="52" y2="714" stroke="#8a8f98" marker-start="url(#pfeil)" marker-end="url(#pfeil)"/>
+  <text x="46" y="440" font-size="11" fill="#6b7280" text-anchor="middle" transform="rotate(-90 46 440)">1720 mm</text>
+  <line x1="66" y1="730" x2="254" y2="730" stroke="#8a8f98" marker-start="url(#pfeil)" marker-end="url(#pfeil)"/>
+  <text x="160" y="748" font-size="11" fill="#6b7280" text-anchor="middle">550 mm Tiefe</text>
+  <text x="160" y="768" font-size="10.5" fill="#adb3b9" text-anchor="middle">Module werden nach links (vorn) herausgezogen</text>
+
+  <!-- ============ Externe Schraenke ============ -->
+  <text x="452" y="122" font-size="13" font-weight="600" fill="#3f7a8c" letter-spacing="0.8">TECHNIK — AUSSERHALB DES RACKS</text>
+
+  <rect x="452" y="150" width="176" height="118" fill="#f4f6f7" stroke="#8a8f98" stroke-width="1.4"/>
+  <text x="466" y="174" font-size="12.5" font-weight="600" fill="#2f3437">Elektronikschrank</text>
+  <text x="466" y="192" font-size="10.5" fill="#6b7280">300 × 300 × 150 mm · hängt oben</text>
+  <text x="466" y="212" font-size="10.5" fill="#6b7280">Netzteile · Steuerung · Relais</text>
+  <text x="466" y="230" font-size="10.5" fill="#6b7280">Kabelabgang nach unten —</text>
+  <text x="466" y="245" font-size="10.5" fill="#6b7280">Wasser kann nicht hineinlaufen</text>
+  <text x="466" y="261" font-size="10" fill="#b06a3b">Signalleitung begrenzt den Abstand: 3,7 m</text>
+
+  <rect x="452" y="300" width="176" height="112" fill="#f4f6f7" stroke="#8a8f98" stroke-width="1.4"/>
+  <text x="466" y="324" font-size="12.5" font-weight="600" fill="#2f3437">Hydraulikschrank</text>
+  <text x="466" y="342" font-size="10.5" fill="#6b7280">300 × 300 × 200 mm · steht unten</text>
+  <text x="466" y="362" font-size="10.5" fill="#6b7280">Reservoir 10,8 l · Zentralpumpe</text>
+  <text x="466" y="380" font-size="10.5" fill="#6b7280">Vorlauf hin, Fallrohr zurück</text>
+  <text x="466" y="399" font-size="10" fill="#b06a3b">Förderhöhe begrenzt die Rackhöhe</text>
+
+  <path d="M448 210 C 400 210, 330 300, 246 330" fill="none" stroke="#3f7a8c" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#pfeilklein)"/>
+  <path d="M448 356 C 400 380, 330 470, 246 470" fill="none" stroke="#7fa8c4" stroke-width="1.3" marker-end="url(#pfeilklein)"/>
+  <text x="452" y="436" font-size="10.5" fill="#8a8f98">Ein Schrankpaar versorgt mehrere Racks —</text>
+  <text x="452" y="451" font-size="10.5" fill="#8a8f98">deshalb sind die Kosten einmalig.</text>
+
+  <!-- ============ Panel B: Modulschnittstelle ============ -->
+  <text x="676" y="122" font-size="13" font-weight="600" fill="#3f7a8c" letter-spacing="0.8">DIE MODULSCHNITTSTELLE</text>
+  <text x="676" y="144" font-size="11.5" fill="#6b7280">Bleibt fix, während alles dahinter frei ist.</text>
+
+  <g>
+    <rect x="676" y="160" width="404" height="94" fill="#fbfcfc" stroke="#e3e5e8"/>
+    <circle cx="702" cy="188" r="7" fill="#c7ccd1" stroke="#8a8f98"/>
+    <text x="722" y="185" font-size="12.5" font-weight="600" fill="#2f3437">1 · Mechanisch</text>
+    <text x="722" y="205" font-size="11" fill="#6b7280">Modulaußenmaß 448 × 422 × 384 mm und die</text>
+    <text x="722" y="221" font-size="11" fill="#6b7280">Lochrasterteilung von 25 mm im Ständer.</text>
+    <text x="722" y="237" font-size="11" fill="#6b7280">Module rasten in Vielfachen der Teilung ein.</text>
+  </g>
+  <g>
+    <rect x="676" y="266" width="404" height="94" fill="#fbfcfc" stroke="#e3e5e8"/>
+    <circle cx="702" cy="294" r="7" fill="#2f3437"/>
+    <text x="722" y="291" font-size="12.5" font-weight="600" fill="#2f3437">2 · Elektrisch</text>
+    <text x="722" y="311" font-size="11" fill="#6b7280">Ein M12-Steckverbinder je Modul:</text>
+    <text x="722" y="327" font-size="11" fill="#6b7280">Versorgung, Masse, Bus. Alles Weitere</text>
+    <text x="722" y="343" font-size="11" fill="#6b7280">bleibt Sache des Moduls.</text>
+  </g>
+  <g>
+    <rect x="676" y="372" width="404" height="94" fill="#fbfcfc" stroke="#e3e5e8"/>
+    <circle cx="702" cy="400" r="7" fill="#7fa8c4"/>
+    <text x="722" y="397" font-size="12.5" font-weight="600" fill="#2f3437">3 · Hydraulisch</text>
+    <text x="722" y="417" font-size="11" fill="#6b7280">Eine Schnellkupplung im Vorlauf und ein Ablauf</text>
+    <text x="722" y="433" font-size="11" fill="#6b7280">durch die Rückwand ins Fallrohr — der Modulboden</text>
+    <text x="722" y="449" font-size="11" fill="#6b7280">führt zu genau einem Tiefpunkt, keine Sammelrinne.</text>
+  </g>
+  <g>
+    <rect x="676" y="478" width="404" height="72" fill="#f2f7f5" stroke="#bcd8ce"/>
+    <text x="700" y="503" font-size="12.5" font-weight="600" fill="#2f6355">Konsequenz</text>
+    <text x="700" y="523" font-size="11" fill="#4a6f64">Anderes Trayformat, eigenes Reservoir oder eigener Controller</text>
+    <text x="700" y="539" font-size="11" fill="#4a6f64">im Modul — das Rack bleibt unverändert.</text>
+  </g>
+
+  <!-- ============ Panel C: Rasterform ============ -->
+  <text x="676" y="592" font-size="13" font-weight="600" fill="#3f7a8c" letter-spacing="0.8">RASTERFORM X × Y × Z</text>
+  <text x="676" y="614" font-size="11.5" fill="#6b7280">Erst die Höhe ausreizen, dann in die Breite, dann zweireihig.</text>
+
+  <g>
+    <rect x="676" y="630" width="104" height="128" fill="#fbfcfc" stroke="#e3e5e8"/>
+    <g fill="#eef4f2" stroke="#8fb8aa"><rect x="700" y="654" width="26" height="20"/><rect x="700" y="676" width="26" height="20"/><rect x="700" y="698" width="26" height="20"/><rect x="700" y="720" width="26" height="20"/></g>
+    <text x="728" y="648" font-size="11.5" font-weight="600" fill="#2f3437">1 × 1 × 4</text>
+    <text x="686" y="754" font-size="9.5" fill="#8a8f98">4 Plätze · 226 €</text>
+  </g>
+  <g>
+    <rect x="792" y="630" width="130" height="128" fill="#fbfcfc" stroke="#e3e5e8"/>
+    <g fill="#eef4f2" stroke="#8fb8aa">
+      <rect x="812" y="654" width="26" height="20"/><rect x="840" y="654" width="26" height="20"/>
+      <rect x="812" y="676" width="26" height="20"/><rect x="840" y="676" width="26" height="20"/>
+      <rect x="812" y="698" width="26" height="20"/><rect x="840" y="698" width="26" height="20"/>
+      <rect x="812" y="720" width="26" height="20"/><rect x="840" y="720" width="26" height="20"/>
+    </g>
+    <text x="870" y="648" font-size="11.5" font-weight="600" fill="#2f3437">2 × 1 × 4</text>
+    <text x="802" y="754" font-size="9.5" fill="#8a8f98">8 Plätze · 406 € · an der Wand</text>
+  </g>
+  <g>
+    <rect x="934" y="630" width="146" height="128" fill="#f2f7f5" stroke="#bcd8ce"/>
+    <g fill="#dcebe4" stroke="#6fa593">
+      <rect x="954" y="654" width="24" height="20"/><rect x="980" y="654" width="24" height="20"/><rect x="1010" y="654" width="24" height="20"/><rect x="1036" y="654" width="24" height="20"/>
+      <rect x="954" y="676" width="24" height="20"/><rect x="980" y="676" width="24" height="20"/><rect x="1010" y="676" width="24" height="20"/><rect x="1036" y="676" width="24" height="20"/>
+      <rect x="954" y="698" width="24" height="20"/><rect x="980" y="698" width="24" height="20"/><rect x="1010" y="698" width="24" height="20"/><rect x="1036" y="698" width="24" height="20"/>
+      <rect x="954" y="720" width="24" height="20"/><rect x="980" y="720" width="24" height="20"/><rect x="1010" y="720" width="24" height="20"/><rect x="1036" y="720" width="24" height="20"/>
+    </g>
+    <line x1="1002" y1="648" x2="1002" y2="746" stroke="#6fa593" stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="944" y="648" font-size="11.5" font-weight="600" fill="#2f6355">2 × 2 × 4</text>
+    <text x="944" y="754" font-size="9.5" fill="#5d7a72">16 Plätze · 552 € · frei im Raum</text>
+  </g>
+  <text x="676" y="784" font-size="10.5" fill="#8a8f98">Je Modulplatz: 56 € → 51 € → 35 €. Bei zwei Reihen teilen sich beide denselben Versorgungsstrang (gestrichelt).</text>
+
+  <text x="40" y="800" font-size="10" fill="#adb3b9">Prinzipskizze · Stand 21.08.2026 · Zahlen aus mikrogruen-rack-modell.xlsx · nicht maßstäblich</text>
+</svg>

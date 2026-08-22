@@ -1,0 +1,129 @@
+
+# MikrogruenParameter_Sync.FCMacro
+# Liest die Arbeitsmappe mikrogruen-rack-modell.xlsx DIREKT (Blatt "16-CAD-Parameter")
+# und schreibt die Eingangsgroessen in jedes offene Dokument mit einem Tabellenobjekt "Parameter".
+# Abgeleitete Masse bleiben unberuehrt, weil sie im CAD Ausdruecke sind und nicht im Blatt stehen.
+#
+#   mikrogruen-rack-modell.xlsx  ->  MikrogruenRack.FCStd  und  MikrogruenModul.FCStd
+#
+# Braucht keine Zusatzbibliothek: die .xlsx wird als ZIP mit XML gelesen.
+import FreeCAD as App
+import os, zipfile, re
+import xml.etree.ElementTree as ET
+
+NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+NSR = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
+BLATT = "16-CAD-Parameter"
+
+def finde_mappe(doc):
+    kand = []
+    if doc and doc.FileName:
+        d = os.path.dirname(doc.FileName)
+        kand += [os.path.join(d, "mikrogruen-rack-modell.xlsx"),
+                 os.path.join(os.path.dirname(d), "mikrogruen-rack-modell.xlsx")]
+    kand.append(os.path.join(os.path.expanduser("~"), "Desktop", "Claude", "mikrogruen",
+                             "mikrogruen-rack-modell.xlsx"))
+    for k in kand:
+        if os.path.exists(k):
+            return k
+    raise IOError("mikrogruen-rack-modell.xlsx nicht gefunden. Gesucht in:\n  " + "\n  ".join(kand))
+
+def lies_blatt(pfad, blattname):
+    with zipfile.ZipFile(pfad) as z:
+        sst = []
+        if "xl/sharedStrings.xml" in z.namelist():
+            for si in ET.fromstring(z.read("xl/sharedStrings.xml")):
+                sst.append("".join(t.text or "" for t in si.iter(NS + "t")))
+        wbx = ET.fromstring(z.read("xl/workbook.xml"))
+        rels = ET.fromstring(z.read("xl/_rels/workbook.xml.rels"))
+        ziel = {r.get("Id"): r.get("Target") for r in rels}
+        pfad_im_zip = None
+        for sh in wbx.iter(NS + "sheet"):
+            if sh.get("name") == blattname:
+                t = ziel[sh.get(NSR + "id")]
+                pfad_im_zip = "xl/" + t.lstrip("/").replace("xl/", "", 1)
+        if pfad_im_zip is None:
+            raise KeyError("Blatt '%s' fehlt in der Mappe" % blattname)
+        wsx = ET.fromstring(z.read(pfad_im_zip))
+    zellen = {}
+    for c in wsx.iter(NS + "c"):
+        v = c.find(NS + "v")
+        if v is None or v.text is None:
+            continue
+        if c.get("t") == "s":
+            zellen[c.get("r")] = sst[int(v.text)]
+        else:
+            try:
+                zellen[c.get("r")] = float(v.text)
+            except ValueError:
+                zellen[c.get("r")] = v.text
+    return zellen
+
+def parameter(pfad):
+    z = lies_blatt(pfad, BLATT)
+    werte = []
+    r = 6
+    while True:
+        alias = z.get("A%d" % r)
+        if not isinstance(alias, str) or not alias.strip():
+            break
+        wert = z.get("D%d" % r)
+        einheit = z.get("E%d" % r) or ""
+        if wert is None:
+            App.Console.PrintWarning("  Zeile %d (%s) hat keinen Wert — uebersprungen\n" % (r, alias))
+        else:
+            if abs(wert - round(wert)) < 1e-9:
+                wert = round(wert)
+            werte.append((alias.strip(), wert, str(einheit).strip()))
+        r += 1
+    return werte
+
+def sync(nur_pruefen=False):
+    mappe = finde_mappe(App.ActiveDocument)
+    werte = parameter(mappe)
+    App.Console.PrintMessage("Parametersync aus %s (%d Werte)\n" % (os.path.basename(mappe), len(werte)))
+    gesamt = {}
+    for doc in App.listDocuments().values():
+        sh = doc.getObject("Parameter")
+        if sh is None:
+            continue
+        alias2zelle = {}
+        for c in ("A", "B", "C"):
+            for i in range(1, 200):
+                a = sh.getAlias("%s%d" % (c, i))
+                if a:
+                    alias2zelle[a] = "%s%d" % (c, i)
+        geaendert, gleich, fehlt = [], 0, []
+        for alias, wert, einheit in werte:
+            zelle = alias2zelle.get(alias)
+            if zelle is None:
+                fehlt.append(alias)
+                continue
+            text = ("%g" % wert) + (einheit if einheit in ("mm", "m", "kg", "deg") else "")
+            try:
+                a = sh.get(alias)
+                alt = a.Value if hasattr(a, "Value") else float(a)
+            except Exception:
+                alt = None
+            if alt is not None and abs(alt - float(wert)) < 1e-9:
+                gleich += 1
+                continue
+            geaendert.append((alias, alt, text))
+            if not nur_pruefen:
+                sh.set(zelle, text)
+        if not nur_pruefen and geaendert:
+            doc.recompute()
+        ungueltig = [o.Name for o in doc.Objects if "Invalid" in (o.State or [])]
+        gesamt[doc.Name] = (geaendert, gleich, fehlt, ungueltig)
+        App.Console.PrintMessage("  %s: %d geaendert, %d unveraendert, %d Aliasse fehlen im CAD%s\n"
+                                 % (doc.Name, len(geaendert), gleich, len(fehlt),
+                                    "" if not ungueltig else "   ACHTUNG ungueltig: %s" % ungueltig))
+        for a, alt, neu in geaendert:
+            App.Console.PrintMessage("      %-18s %s  ->  %s\n" % (a, alt, neu))
+        if fehlt:
+            App.Console.PrintMessage("      im CAD nicht vorhanden: %s\n" % ", ".join(fehlt))
+    if not gesamt:
+        App.Console.PrintWarning("Kein offenes Dokument mit einem Tabellenobjekt 'Parameter'.\n")
+    return gesamt
+
+sync()

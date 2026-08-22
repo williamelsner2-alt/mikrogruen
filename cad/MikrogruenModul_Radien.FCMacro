@@ -1,0 +1,33 @@
+
+# MikrogruenModul_Radien.FCMacro
+# Setzt alle Verrundungsradien im Moduldokument aus der Parametertabelle neu.
+# Grund: Part::Fillet nimmt keine Ausdruecke — der Radius steckt in einer Liste.
+# Deshalb gilt er hier wie Topologie: Wert im Blatt aendern, dann dieses Makro laufen lassen.
+import FreeCAD as App
+
+# Fillet-Objekt -> (Alias fuer den Radius, Aufschlag in mm)
+ZUORDNUNG = {
+    "Schale_innen_r": ("schale_r", 0.0),
+    "Schale_aussen_r": ("schale_r", None),   # None = Alias + Blechstaerke (Aussenradius)
+    "Innenwanne":     ("wanne_r", 0.0),
+}
+
+def radien(doc=None):
+    doc = doc or App.getDocument("MikrogruenModul")
+    sh = doc.getObject("Parameter")
+    bl = sh.get("blech").Value
+    bericht = []
+    for name, (alias, auf) in ZUORDNUNG.items():
+        o = doc.getObject(name)
+        if o is None or o.TypeId != "Part::Fillet":
+            continue
+        r = sh.get(alias).Value + (bl if auf is None else auf)
+        o.Edges = [(e[0], r, r) for e in o.Edges]
+        bericht.append("%s = %.2f mm (%d Kanten)" % (name, r, len(o.Edges)))
+    doc.recompute()
+    schlecht = [o.Name for o in doc.Objects if "Invalid" in (o.State or [])]
+    App.Console.PrintMessage("Radien gesetzt: " + " | ".join(bericht) +
+                             ("  — alles gueltig\n" if not schlecht else "  UNGUELTIG: %s\n" % schlecht))
+    return bericht, schlecht
+
+radien()

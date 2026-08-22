@@ -1,0 +1,21 @@
+
+# MikrogruenWachhalten.FCMacro
+# Haelt Windows wach, solange FreeCAD laeuft — ohne Adminrechte, ohne Zusatzskript.
+# Wirkt nur auf Standby und Bildschirm. Das Zuklappen des Deckels ueberstimmt es NICHT:
+# dafuer in den Energieoptionen "Beim Schliessen des Deckels: Nichts unternehmen" setzen.
+import ctypes, FreeCAD as App
+ES_CONTINUOUS = 0x80000000
+ES_SYSTEM_REQUIRED = 0x00000001
+ES_DISPLAY_REQUIRED = 0x00000002
+
+def wach(an=True):
+    if an:
+        r = ctypes.windll.kernel32.SetThreadExecutionState(
+            ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED)
+        App.Console.PrintMessage("Wachhalten AKTIV (%s)\n" % ("ok" if r else "FEHLGESCHLAGEN"))
+    else:
+        ctypes.windll.kernel32.SetThreadExecutionState(ES_CONTINUOUS)
+        App.Console.PrintMessage("Wachhalten aus — normales Energieverhalten\n")
+    return bool(r) if an else True
+
+wach(True)
