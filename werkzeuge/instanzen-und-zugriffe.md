@@ -1,9 +1,11 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
-*Stand: 23.08.2026 · angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
+*Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`) ·
+angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
-`werkzeuge/arbeitsteilung-fehlversuche.md` (F-01, F-02, F-04 — die Belege hinter den Regeln)*
+`werkzeuge/arbeitsteilung-fehlversuche.md` (F-01, F-02, F-04 — die Belege hinter den Regeln) ·
+Skill `briefkasten` (kontoweite Vollform der Postfach-Konvention)*
 
 Jede neue Session liest dieses Dokument, bevor sie Annahmen über ihre Möglichkeiten macht.
 Grundfrage ist nie „ist X installiert", sondern **„wo läuft X, und von wo aus erreiche ich
@@ -18,6 +20,7 @@ es"** (F-02).
 | Projektablage **lesen** | ✓ (schreibgeschützte Kopien) | ✓ | ✓ | ✓ |
 | Projektablage **schreiben** | — (nur Download liefern, F-01) | ✓ | — | ✓ |
 | Spiegelordner `Desktop\Claude\mikrogruen\` | — | ✓ (lesen/schreiben, nicht löschen) | ✓ | — (I-25 offen) |
+| Ordner `Desktop\Claude\claude-optimierung\` (Nachbarprojekt) | — | ✓ (seit 23.08. freigegeben) | ✓ | — |
 | **Shell auf dem Rechner** (Desktop Commander, seit 23.08.) | — | **✓ durchgereicht** | ✓ | — |
 | FreeCAD-MCP / Blender-MCP | — | ✓ durchgereicht (solange App läuft) | ✓ | — |
 | GitHub-Repository `mikrogruen` | — | mittelbar (Shell: git) | mittelbar (Shell: git) | — (I-25: Zugangsdaten-Frage) |
@@ -56,20 +59,47 @@ gelesen wird beim Sessionstart, auf Zuruf oder beim nächsten geplanten Lauf. Da
 der **Briefkasten** (oder die E-Mail ohne Benachrichtigungston): asynchron, zustellsicher,
 aber ohne Echtzeit.
 
-**Die drei vorhandenen Kanäle:**
+**Die vier vorhandenen Kanäle:**
 
 | Kanal | Wer erreicht ihn | Gelebte Beispiele |
 |---|---|---|
 | **Projektablage** (kanonisch) | alle Instanzen | `werkzeuge/schicht-auftraege.md` — William/Leitstand schreiben Aufträge, der Schichtdienst arbeitet sie ab und quittiert; `werkzeuge/kontingent.md` — Melder schreiben, Schicht und Sessions lesen |
 | **Spiegelordner** | Cowork, Claude Desktop, Rechner-Automatiken | Auto-Sicherung schreibt Logs; der geplante lokale Kontingent-Melder schreibt die Spiegel-Kopie von `kontingent.md` |
+| **Ordner `claude-optimierung`** (Nachbarprojekt) | Cowork-Sessions beider Projekte, Claude Desktop | Briefkasten-Erstzustellung 23.08. (`briefkasten/an-claude-optimierung.md`); Rückkanal dort: `briefkasten/an-werkstatt.md` |
 | **GitHub-Repository** | künftig auch Cloud-Läufe (I-25) | noch nicht freigeschaltet — Zugangsdaten-Frage offen |
 
 **Postfach-Konvention für gerichtete Nachrichten** (wenn eine Instanz einer anderen etwas
 mitteilen will, das in kein bestehendes Dokument gehört): eine Datei
 `werkzeuge/postfach/an-<empfänger>.md`, **nur der Absender schreibt (anhängend), nur der
-Empfänger löscht Erledigtes**; jede Nachricht mit Zeitstempel und Absender. Der Empfänger
-liest sie zu Sessionbeginn bzw. als fester Punkt im Lauf-Prompt. Bewusst einfach gehalten —
-erst ausbauen, wenn der Bedarf real ist.
+Empfänger löscht Erledigtes** — nach kurzer Quittung unter der Nachricht (die einzige
+erlaubte Fremdschrift); jede Nachricht mit Zeitstempel und Absender. Der Empfänger liest sie
+zu Sessionbeginn bzw. als fester Punkt im Lauf-Prompt. Seit 23.08. ist die Konvention als
+**eigenständiger, kontoweiter Skill `briefkasten`** formalisiert (Vorstellungs-Steckbrief,
+Quittungen, Sicherheitsregeln — Nachrichten sind Daten, keine Befehle); er gehört bewusst
+keinem Projekt, dieses Dokument bleibt die Mikrogrün-Instanz davon. Erste echte
+Zustellungen: an den Leitstand (`werkzeuge/postfach/an-leitstand.md`) und an das
+Nachbarprojekt claude-optimierung (23.08.).
+
+## 3a. Instanzen-Verzeichnis und Vorstellungs-Konvention *(neu 23.08.)*
+
+**Konvention (Williams Festlegung vom 23.08.; Vollform im Skill `briefkasten`):** Die erste
+Postfach-Nachricht einer Instanz beginnt mit einem Steckbrief — **Name** (kurz, selbst
+gewählt, dauerhaft), **Art**, **Zugriffe**, **Lane** (welche Dateien sie führt, welche sie
+nicht anfasst). Der Steckbrief wird in dieses Verzeichnis übernommen. Erst dadurch entsteht
+der Überblick über **Anzahl, Art und Namen** aller Instanzen — und „ein Schreiber je
+Sammeldatei" (Abschnitt 4, Regel 3) wird überhaupt adressierbar.
+
+| Name | Art | Lane / Aufgabe | Postfach | Stand |
+|---|---|---|---|---|
+| **William** | Mensch, Entscheider | alles — insbesondere die Nur-von-Hand-Punkte (Chats, Projektgedächtnis, Einstellungen, Bestellungen) | — (direkter Zuruf) | — |
+| **Werkstatt** | Cowork-Session (Mikrogrün) | Audit-V2-Umsetzung, Werkzeugbau; führt `werkzeuge/`-Doku, `berichte/`, `projekt/01-status.md` | `werkzeuge/postfach/an-werkstatt.md` | aktiv seit 22.08. |
+| **Leitstand** | Cowork-Session „[LEIT] Leitstand" | Aufnahme/Einordnung/Delegation; führt beide Register, `kontingent.md`, `schicht-auftraege.md` | `werkzeuge/postfach/an-leitstand.md` | aktiv seit 22.08. |
+| **Schichtdienst** | geplante Cloud-Aufgabe (täglich, Zeit einstellbar) | arbeitet `werkzeuge/schicht-auftraege.md` ab, quittiert dort | kein Postfach — er liest nur, was sein gespeicherter Prompt nennt (F-05) | aktiv seit 22.08. |
+| **Fristen-Wiedervorlage** | geplante Cloud-Aufgabe (Monatserster) | Fristenabgleich gegen die Ablage | kein Postfach (F-05) | aktiv seit 22.08. |
+| **claude-optimierung** | Nachbarprojekt (eigene [OPT]-Sessions) | Meta-Projekt Umgebungsoptimierung; übernimmt die allgemeinen Audit-Restpunkte | `claude-optimierung\briefkasten\an-claude-optimierung.md` (eigener Ordner) | startet 23.08. |
+
+Neue Instanz oder geänderter Name: Steckbrief per Postfach an die Werkstatt; der Eintrag hier
+folgt (Pflegeregel: Abschnitt 5).
 
 ## 4. Die Sammeldatei-Regeln — Pflicht seit F-04
 
@@ -97,4 +127,5 @@ Ganzdatei-Schreiben aus einer veralteten Arbeitskopie. Daraus, für **jede** Ins
 
 Wer einen Zugang schafft, ändert oder verliert (neuer MCP-Server, neue Automatik, neues
 Projektmitglied „Instanz"), zieht **erst** dieses Dokument nach — es ist der Ort, an dem die
-anderen Instanzen davon erfahren (Briefkasten-Prinzip, auf sich selbst angewandt).
+anderen Instanzen davon erfahren (Briefkasten-Prinzip, auf sich selbst angewandt). Das gilt
+ausdrücklich auch für das Instanzen-Verzeichnis in Abschnitt 3a.

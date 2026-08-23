@@ -2,6 +2,7 @@
 
 *Stand: 22.08.2026 · ersetzt die Fassung vom 21.08. · Entscheidungsgrundlage, keine Anleitung*
 *Neu in V2: Tiefenanalyse aller exportierten Chats, des Projektgedächtnisses und der Design-Sitzung (Abschnitt „Befunde", inkl. Nachtrag B9 zur vollständig gelesenen CAD-Session), Vorschläge 24–28 (Claude Design, Leitstand/CEO, Aufräumaktion, Grafana, Übergabe-Skill). Die Nummern 1–23 sind unverändert — du kannst dich weiter auf sie beziehen.*
+*Nachtrag 23.08. am Dokumentende: Audit abgeschlossen, offene Nummern aufgeteilt und übergeben.*
 
 ---
 
@@ -256,3 +257,39 @@ Eine tägliche geplante Aufgabe (~03:00, Cloud, Push-Meldung morgens) arbeitet d
 Was jetzt noch offen ist: **26-Rest** (Chats löschen/umbenennen, Gedächtnis korrigieren — inkl. des bestätigt falschen uv-Eintrags —, `manifest/` und Stubs weg; `manifest/` fliegt dank `.gitignore` nie ins Repository) und **6** (Cowork-Projekt anlegen). Bewusst später: 8 (nur mit M365), 11, 15, 19, 22, 23, 27. *(Erledigt: 1, 2, 3, 4, 5, 7, 9, 10, 12, 13, 14, 17, 18, 20, 24, 25, 28, 29 — vorbereitet: 16, 26.)*
 
 *Rückmeldung weiter einfach per Nummer — für die gewählten Punkte gibt es je nach Wunsch eine Anleitung, oder ich richte sie direkt ein, soweit das aus Cowork heraus geht. Die CAD-Session ist über den Ordner `uebergabe/` inzwischen vollständig gegengelesen (Befund B9).*
+
+---
+
+## Nachtrag 23.08.2026 — Audit V2 abgeschlossen; offene Nummern aufgeteilt und übergeben
+
+Williams Auftrag vom 23.08.: die verbliebenen Nummern nach Zuständigkeit teilen — **(1)
+allgemeine Claude-Einrichtung** gegen **(2) speziell Mikrogrün** — und (1) an das neue
+Meta-Projekt `claude-optimierung` übergeben. Ergebnis:
+
+**(1) Allgemein — übergeben an `claude-optimierung`** (Briefkasten-Erstzustellung
+`claude-optimierung\briefkasten\an-claude-optimierung.md`; dort mit eigenen IDs zu
+registrieren): **26a** — Konto-Hygiene: die 7 leeren, titellosen Chats und den nie
+fortgesetzten Chat „Skill creator tool" löschen (kontoweite Karteileichen, kein
+Mikrogrün-Inhalt) · **8** — Claude für Excel bewerten · **15** — Google-Kalender-Connector ·
+**19** — Obsidian als Lese-/Suchoberfläche über Ordner-Ablagen. Ebenfalls übergeben: die
+Werkzeug-Ideen **I-24, I-26, I-27, I-32** (Register-Einträge bleiben hier stehen und
+bekommen einen Übergabe-Vermerk — beim Leitstand angefragt, `werkzeuge/postfach/an-leitstand.md`)
+sowie **sechs Umgebungs-Probleme**, die bisher nur in Fehlversuchen und Nachträgen lebten
+(Modell-/Kontingent-Sichtbarkeit, fehlendes Sperren der Ablage, Prompt-Treue geplanter
+Aufgaben, fehlender Cloud-Sync von Cowork-Projekten, Zugangsdaten für unbeaufsichtigte
+Cloud-Läufe, „geliefert ≠ gespeichert" bei Skills).
+
+**(2) Speziell Mikrogrün — bleibt hier:** **6** — Cowork-Projekt fürs Vorhaben anlegen
+(Hand) · **26b** — Projektgedächtnis korrigieren (inkl. bestätigt falschem uv-Eintrag),
+Alt-Chats nach Konvention umbenennen, `manifest/` und die zwei Stub-Dateien löschen (Hand) ·
+**16-Rest** — erste Blender-Renderings, wenn Material fürs Firmengespräch ansteht · **11** —
+Claude Code (nach P-01) · **22** — Zotero (wenn der Lernpfad läuft) · **23** — KiCad (nach
+der Architekturentscheidung) · **27** — Grafana+InfluxDB (nach der Firmware). **21** entfällt
+(Git ersetzt FreeFileSync). **I-25** bleibt (hängt am hiesigen Repo/Spiegel); die Ideen- und
+Problemregister im Übrigen sind Vorhabens-Inhalt und bleiben unverändert hier.
+
+Damit ist dieses Audit **abgeschlossen**: Alles aus Cowork heraus Umsetzbare ist umgesetzt
+(Erledigt-Stand oben), der Rest ist Handarbeit (6, 26b) oder bewusst terminiert (Spalte 2).
+Künftige Audits und die Weiterentwicklung der Methoden laufen über das Projekt
+`claude-optimierung` (Skill `workflow-audit`); die Briefkasten-Konvention dieser Übergabe
+ist als kontoweiter Skill `briefkasten` formalisiert.

@@ -1,6 +1,6 @@
 # Projektübersicht: Vollautomatisierte Gewächshäuser
 
-*Index der Projektablage · Struktur zuletzt geordnet: 21.08.2026*
+*Index der Projektablage · Struktur zuletzt geordnet: 23.08.2026*
 
 Bootstrapped Gründungsvorhaben für automatisierte Premium-Anbausysteme (Mikrogrüns,
 Spezialkräuter) für die Gastronomie, mit dem langfristigen Ziel vollautomatisierter Gewächshäuser.
@@ -38,6 +38,7 @@ Modulschnittstelle, nicht das Gehäuse.
 | Wie werden Chats benannt und beendet? | `werkzeuge/chat-konvention.md` |
 | Welches Werkzeug, welches Modell, welcher Aufwand? | `werkzeuge/arbeitsteilung.md` |
 | Welche Instanz erreicht was — und wie reden sie miteinander? | `werkzeuge/instanzen-und-zugriffe.md` |
+| Hat mir eine andere Instanz etwas hinterlassen? | `werkzeuge/postfach/an-<name>.md` — zu Sessionbeginn prüfen (Skill `briefkasten`) |
 | Wie voll ist das Kontingent gerade? | `werkzeuge/kontingent.md` (Momentaufnahme — Zeitstempel beachten) |
 
 **Für einen neuen Chat genügen als Kontext:** `projekt/01-status.md` und `projekt/02-rahmen-und-netzwerk.md`.
@@ -107,7 +108,8 @@ Alles Weitere nur, wenn das Thema es verlangt.
 | `git-einrichtung.md` | Versionierung des Arbeitsordners: erledigte Vorbereitung und die drei Schritte am Rechner |
 | `auto-sicherung.md` | automatische Git-Sicherung des Arbeitsordners (Aufgabenplanung, Skript, Bedienung) |
 | `kontingent.md` | Momentaufnahme des Konto-Kontingents mit Verfallsregeln — wird überschrieben, nicht gepflegt |
-| `instanzen-und-zugriffe.md` | Zugriffs-Matrix aller Instanzen, Kommunikationskanäle, Sammeldatei-Regeln |
+| `instanzen-und-zugriffe.md` | Zugriffs-Matrix aller Instanzen, Instanzen-Verzeichnis, Kommunikationskanäle, Sammeldatei-Regeln |
+| `postfach/` | **Briefkasten:** gerichtete Nachrichten zwischen Instanzen, eine Datei je Empfänger (`an-<name>.md`) — Regeln in `instanzen-und-zugriffe.md`, Abschnitt 3; Vollform als kontoweiter Skill `briefkasten` |
 
 ---
 
