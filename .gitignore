@@ -1,15 +1,24 @@
 # .gitignore — Arbeitsordner mikrogruen
 # Angelegt 22.08.2026 (Audit-Vorschläge 4 + 20); Erläuterung in werkzeuge/git-einrichtung.md
+# Ergänzt 23.08.2026: Papierkorb und Office-Sperrdateien
 
 # FreeCAD-Sicherungskopien — nie versionieren (P-32)
 *.FCBak
 *.FCStd1
+
+# Papierkorb: wartet auf Williams Löschbestätigung. Muss VOR dem ersten Verschieben
+# hier stehen — sonst pusht die Auto-Sicherung binnen 20 Minuten, was gerade
+# aussortiert wurde (darunter der private Konto-Export).
+_papierkorb/
 
 # Überholte Vorversionen — Verfallsdatum: erster Git-Commit
 _alt_2026-08-19/
 
 # Konto-Export mit privaten Daten aller Projekte — gehört ganz gelöscht (Audit-Vorschlag 26)
 manifest/
+
+# Sperrdateien geöffneter Office-Dokumente (entstehen, solange die Arbeitsmappe offen ist)
+~$*
 
 # Betriebssystem-Reste
 Thumbs.db

@@ -1,9 +1,13 @@
 # Mikrogrün-Rack — Arbeitsordner
 
-*Synchronisiert am 21.08.2026 aus dem Claude-Projekt „Technologie und Agrar Unternehmen".*
+*Zuletzt geordnet: 23.08.2026 · Kopie des Projektstands aus dem Claude-Projekt
+„Technologie und Agrar Unternehmen".*
 
-Dieser Ordner ist eine **Kopie** des Projektstands zum Mitnehmen und Ausdrucken. Die führende
-Fassung liegt im Claude-Projekt; wenn beide auseinanderlaufen, gewinnt das Projekt.
+Dieser Ordner ist eine **Kopie** zum Mitnehmen und Ausdrucken. Die führende Fassung liegt im
+Claude-Projekt; wenn beide auseinanderlaufen, gewinnt das Projekt. Seit dem 23.08. sichert
+sich der Ordner selbst: alle 20 Minuten Commit und Push ins private GitHub-Repository, sobald
+sich etwas geändert hat (`werkzeuge/auto-sicherung.md`). Was hier hineingelegt wird, liegt
+also binnen 20 Minuten online — Vertrauliches vorher in die `.gitignore`.
 
 ## Was wo liegt
 
@@ -14,11 +18,13 @@ Fassung liegt im Claude-Projekt; wenn beide auseinanderlaufen, gewinnt das Proje
 | `technik/` | Bauplan, Zeitplan, 3D-Briefing, CAD-Modellstand, Prinzipskizze |
 | `anbau/` | Katalog, Methodik der Stresssteuerung, `sorten/` mit einer Datei je Sorte, Lernpfad |
 | `wirtschaft/` | Fahrplan, Produktkatalog, IP und Verhandlung, Finanzierung und Wettbewerbe |
-| `werkzeuge/` | FreeCAD-MCP-Einrichtung |
+| `werkzeuge/` | Arbeitsumgebung: Chat-Konvention, Arbeitsteilung, Instanzen und Zugriffe, `postfach/`, Git und Auto-Sicherung, FreeCAD-MCP |
+| `berichte/` | Audit- und Auswertungsberichte |
+| `uebergabe/` | Übergabepaket der CAD-Session vom 22.08. |
 | `cad/` | FreeCAD-Dateien — neuer Speicherort, nicht mehr im FreeCAD-Benutzerverzeichnis |
 | `3d-export/` | OBJ/GLB-Export zum Anschauen ohne FreeCAD |
 | `MikrogruenRack_Ansichten/` | gerenderte Ansichten |
-| `_alt_2026-08-19/` | überholte Vorversionen — nichts davon ist noch gültig |
+| `_papierkorb/` | aussortiert, wartet auf Löschung von Hand — Inhalt und Regeln in `_papierkorb/00-LIESMICH.md` |
 | `mikrogruen-rack-modell.xlsx` | **die einzige Quelle für konkrete Zahlen** |
 
 ## Wie das Rack im CAD umgestellt wird

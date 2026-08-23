@@ -1,6 +1,7 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
-*Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`) ·
+*Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`;
+abends: Sessionname der Werkstatt = `[WERK] Werkstatt`) ·
 angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
@@ -92,7 +93,7 @@ Sammeldatei" (Abschnitt 4, Regel 3) wird überhaupt adressierbar.
 | Name | Art | Lane / Aufgabe | Postfach | Stand |
 |---|---|---|---|---|
 | **William** | Mensch, Entscheider | alles — insbesondere die Nur-von-Hand-Punkte (Chats, Projektgedächtnis, Einstellungen, Bestellungen) | — (direkter Zuruf) | — |
-| **Werkstatt** | Cowork-Session (Mikrogrün) | Audit-V2-Umsetzung, Werkzeugbau; führt `werkzeuge/`-Doku, `berichte/`, `projekt/01-status.md` | `werkzeuge/postfach/an-werkstatt.md` | aktiv seit 22.08. |
+| **Werkstatt** | Cowork-Session „[WERK] Werkstatt" (Mikrogrün; so umbenannt 23.08., vorher „[DOKU] Workflow-Audit") | Umsetzung und Werkzeugbau; führt `werkzeuge/`-Doku, `berichte/`, `projekt/01-status.md` | `werkzeuge/postfach/an-werkstatt.md` | aktiv seit 22.08. |
 | **Leitstand** | Cowork-Session „[LEIT] Leitstand" | Aufnahme/Einordnung/Delegation; führt beide Register, `kontingent.md`, `schicht-auftraege.md` | `werkzeuge/postfach/an-leitstand.md` | aktiv seit 22.08. |
 | **Schichtdienst** | geplante Cloud-Aufgabe (täglich, Zeit einstellbar) | arbeitet `werkzeuge/schicht-auftraege.md` ab, quittiert dort | kein Postfach — er liest nur, was sein gespeicherter Prompt nennt (F-05) | aktiv seit 22.08. |
 | **Fristen-Wiedervorlage** | geplante Cloud-Aufgabe (Monatserster) | Fristenabgleich gegen die Ablage | kein Postfach (F-05) | aktiv seit 22.08. |
