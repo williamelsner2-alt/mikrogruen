@@ -1,7 +1,7 @@
 # Arbeitsteilung — Werkzeug, Modell, Aufwand
 
 *Stand: 22.08.2026 · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (Anlass: Sitzung vom 22.08.)*
-*Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
+*Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `werkzeuge/instanzen-und-zugriffe.md` (wer erreicht was) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
 
 Zwei Entscheidungen fallen vor jedem Arbeitsschritt: **welches Werkzeug** und **welche Stufe**
 (Modell × Aufwand). Beide fallen hier einmal — nicht jedes Mal neu. Leitsatz: **Gespart wird am
@@ -19,7 +19,7 @@ die, die wiederholt werden muss.
 | Recherche, Denk- und Textarbeit | **normaler Chat im Projekt** | gleiche Qualität, deutlich sparsamer als Cowork |
 | Arbeit auf konkreten Webseiten (Shops, Portale, Formulare) | Claude in Chrome | Seitenkontext statt Kopieren |
 | Unterwegs erfassen (Ideen, Probleme, Kurzfragen) | iOS-App im Projekt | Pflegeregel 7 mobil |
-| Rechner-Wartung (Logs, Configs, Shell) | Desktop Commander / Computernutzung, beaufsichtigt | Cowork-Fernsteuerung darf das nicht |
+| Rechner-Wartung (Logs, Configs, Shell) | Desktop Commander — seit 23.08. auch aus Cowork durchgereicht — / Computernutzung, beaufsichtigt | Zugriffs-Matrix: `werkzeuge/instanzen-und-zugriffe.md` |
 | Außen-Material: Einseiter, Pitch-Folien, Produktkarten | Claude Design, punktuell | Entwurfsqualität ohne Designkenntnisse — nichts Parametrisches, Artefakte veralten still (Audit 24) |
 | Präsentations-Renderings aus `3d-export/` | Blender-MCP am Desktop, beaufsichtigt | fotorealistisch fürs Firmengespräch; hängt nicht an der Parameterkette (Audit 16) |
 | Firmware (später, nach P-01) | Claude Code | agentisch + Git |
@@ -105,7 +105,7 @@ Zeitfenstern. Konsequenzen:
 2. **Interaktive Fenster für Interaktives.** Tagsüber die Stufen-Spannen aus Abschnitt 2
    fahren; Spitzenmodelle bewusst und selten (Zeile „Grundsatzentscheidungen").
 3. **Vor großen Sitzungen: Fenster prüfen.** Eine Fable-max-Sitzung nicht am Ende eines fast
-   verbrauchten Fensters beginnen.
+   verbrauchten Fensters beginnen. Falls frisch (Zeitstempel!): `werkzeuge/kontingent.md`.
 4. **Abbruch ist kein Verlust, wenn übergeben wurde.** Das Übergabe-Ritual (`chat-uebergabe`)
    macht jede Unterbrechung folgenlos — deshalb gilt: lieber bei 90 % sauber übergeben als bei
    100 % abreißen.

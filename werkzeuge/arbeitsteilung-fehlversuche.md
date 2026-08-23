@@ -17,6 +17,8 @@ kein offener Punkt (dafür sind `projekt/03-probleme.md` und `projekt/04-ideen.m
 | F-01 | 22.08.2026 | Normaler Chat konnte Audit-Vorschläge nicht weiterbearbeiten | Ergebnisdokument war nur lokal abgelegt, nicht in der Ablage |
 | F-02 | 23.08.2026 | Desktop Commander ist installiert — trotzdem kein Shell-Zugriff auf den Rechner | Installiert ist nicht gleich verfügbar: entscheidend ist, **wo** der MCP-Server läuft |
 | F-03 | 23.08.2026 | Auto-Sicherung meldete einen Fehler, obwohl der Push erfolgreich war | Erfolgsmeldungen auf stderr plus `ErrorActionPreference = "Stop"` |
+| F-04 | 23.08.2026 | Parallele Instanzen überschrieben sich gegenseitig Status, Ideenregister und dieses Log; I-30 doppelt vergeben | Ganzdatei-Schreiben aus veralteten Kopien — ohne frisches Lesen unmittelbar vor dem Schreiben |
+| F-05 | 22.08.2026 | Sofort-Start-Zusatzanweisung konnte das Auftragslimit des Schichtdiensts nicht aufheben *(rekonstruiert)* | Eine geplante Aufgabe folgt ihrem gespeicherten Prompt, nicht dem Startzuruf |
 
 ---
 
@@ -138,3 +140,66 @@ Benutzerkontext und war sofort erfolgreich — Administratorrechte waren gar nic
 3. **Erst den rechtearmen Weg versuchen.** Erhöhte Rechte sind kein Fortschritt, sondern eine
    Nebenwirkung. Wo ein Weg im normalen Benutzerkontext funktioniert, bleibt er die bessere
    Lösung — auch wenn Administratorrechte angeboten werden.
+
+---
+
+## F-04 · Parallele Instanzen überschreiben sich gegenseitig
+
+**Datum:** 23.08.2026 — der bisher teuerste Fehlversuch, und der lehrreichste.
+
+**Symptom:** Drei Kollisionen am selben Vormittag, alle am selben Mechanismus:
+
+1. Dieser Chat schrieb `projekt/01-status.md` zweimal aus seiner lokalen Arbeitskopie zurück —
+   und löschte damit die frisch geschriebenen Schichtdienst-Befunde 4af–4ai samt deren
+   Protokollzeilen (die Kopie stammte von vor den Schichtläufen).
+2. Eine andere Instanz schrieb `projekt/04-ideen.md` aus ihrer Kopie zurück — und löschte damit
+   den I-25-Nachtrag vom 23.08. dieses Chats (Repository online, Voraussetzung erfüllt).
+3. Dieses Log selbst verlor den Eintrag zum Mengensteuerungs-Fall (jetzt als F-05
+   rekonstruiert), auf den der Kopf von `werkzeuge/schicht-auftraege.md` verweist.
+
+Dazu eine **ID-Doppelvergabe:** Der Schichtdienst registrierte I-30 (Eigenvermehrung, Befund
+4ai) in der Ablage; der Leitstand vergab parallel „I-30" für seine Kontingent-Verbrauchsidee —
+auf Basis eines veralteten Registerstands — und verwies in `werkzeuge/kontingent.md` darauf.
+
+**Ursache:** Nicht böser Wille und kein Werkzeugfehler, sondern das Schreibmuster: **Ganzdatei
+ersetzen auf Basis einer Kopie, die zum Schreibzeitpunkt nicht mehr aktuell war.** Die
+Projektablage hat kein Sperren und kein Zusammenführen — der letzte Schreiber gewinnt,
+kommentarlos. Solange nur eine Instanz schrieb, war das unsichtbar; seit Schichtdienst,
+Leitstand und interaktive Sessions gleichzeitig arbeiten, ist es der Normalfall.
+
+**Korrektur (23.08.):** Befunde 4af–4ai im Status aus Registern und Erledigt-Liste
+rekonstruiert und als Rekonstruktion gekennzeichnet (verloren bleiben die Quellen-Linklisten
+der Originale); F-05 rekonstruiert. **Beim Leitstand angefragt** (er führt die betroffenen
+Dateien gerade aktiv): (a) Kontingent-Verbrauchsidee als **I-32** neu registrieren und den
+I-30-Verweis in `werkzeuge/kontingent.md` korrigieren; (b) in `projekt/04-ideen.md` bei I-25
+den verlorenen Nachtrag wiederherstellen — Wortlaut: *„Nachtrag 23.08.: Voraussetzung erfüllt —
+das private GitHub-Repository liegt online und der Erst-Push ist verifiziert (Audit-Vorschlag
+20 ✓). Für I-25 fehlt jetzt nur noch die sichere Zugangsdaten-Frage für unbeaufsichtigte
+Cloud-Läufe; Reife bleibt zu prüfen."*
+
+**Was daraus folgt — die Sammeldatei-Regeln** (ausformuliert in
+`werkzeuge/instanzen-und-zugriffe.md`, Abschnitt 4; Kurzform als Pflegeregel 9 der Übersicht):
+
+1. **Frisch lesen, sofort schreiben.** Sammeldateien (Status, Register, Warteschlange, Index)
+   unmittelbar vor jedem Schreiben neu aus der Ablage lesen und nur auf dieser Fassung ändern —
+   nie auf einer Arbeitskopie von früher am Tag.
+2. **Register-IDs nur aus der frisch gelesenen Ablage-Fassung vergeben** — nie aus dem
+   Gedächtnis oder einer Referenz in einem anderen Dokument.
+3. **Während Parallelphasen hat jede Sammeldatei genau einen Schreiber** (Kickoff legt fest,
+   wer); alle anderen melden Änderungswünsche dorthin statt selbst zu schreiben.
+4. **Momentaufnahmen statt Pflege, wo Werte schnell altern** — nach dem Muster von
+   `werkzeuge/kontingent.md`: Zeitstempel, Verfallsregel, Überschreiben erlaubt.
+5. **Verluste sind meldepflichtig, nicht peinlich:** Wer eine Kollision entdeckt, rekonstruiert
+   aus den abgeleiteten Dokumenten (Register halten die Kerndaten redundant — genau das hat
+   diese Reparatur möglich gemacht) und kennzeichnet die Rekonstruktion.
+
+## F-05 · Startzuruf ersetzt den gespeicherten Auftrag nicht *(rekonstruiert 23.08.)*
+
+**Datum:** 22.08.2026 · Original-Eintrag ging in der F-04-Kollision verloren; Kern rekonstruiert
+aus dem Hinweis im Kopf von `werkzeuge/schicht-auftraege.md`.
+
+**Symptom/Kern:** Eine beim Sofort-Start des Schichtdiensts mitgegebene Zusatzanweisung sollte
+das Limit „ein großer / zwei kleine Aufträge je Lauf" aufheben — die Schicht folgte trotzdem
+ihrem gespeicherten Aufgaben-Prompt. **Regel:** Geplante Aufgaben gehorchen ihrem gespeicherten
+Auftrag; ein Startzuruf ergänzt Kontext, ersetzt aber keine Regeln. Wer mehr will, startet
+mehrmals nacheinander oder ändert den gespeicherten Prompt dauerhaft.

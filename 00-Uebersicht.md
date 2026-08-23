@@ -37,6 +37,8 @@ Modulschnittstelle, nicht das Gehäuse.
 | Wie bleibt das Vorhaben in eigener Hand? | `wirtschaft/ip-und-verhandlung.md` |
 | Wie werden Chats benannt und beendet? | `werkzeuge/chat-konvention.md` |
 | Welches Werkzeug, welches Modell, welcher Aufwand? | `werkzeuge/arbeitsteilung.md` |
+| Welche Instanz erreicht was — und wie reden sie miteinander? | `werkzeuge/instanzen-und-zugriffe.md` |
+| Wie voll ist das Kontingent gerade? | `werkzeuge/kontingent.md` (Momentaufnahme — Zeitstempel beachten) |
 
 **Für einen neuen Chat genügen als Kontext:** `projekt/01-status.md` und `projekt/02-rahmen-und-netzwerk.md`.
 Alles Weitere nur, wenn das Thema es verlangt.
@@ -104,6 +106,8 @@ Alles Weitere nur, wenn das Thema es verlangt.
 | `projekt-instructions.md` | Referenzkopie der Projekt-Instructions — wird von Hand in die Projekteinstellungen eingefügt |
 | `git-einrichtung.md` | Versionierung des Arbeitsordners: erledigte Vorbereitung und die drei Schritte am Rechner |
 | `auto-sicherung.md` | automatische Git-Sicherung des Arbeitsordners (Aufgabenplanung, Skript, Bedienung) |
+| `kontingent.md` | Momentaufnahme des Konto-Kontingents mit Verfallsregeln — wird überschrieben, nicht gepflegt |
+| `instanzen-und-zugriffe.md` | Zugriffs-Matrix aller Instanzen, Kommunikationskanäle, Sammeldatei-Regeln |
 
 ---
 
@@ -181,6 +185,9 @@ Verweis statt einer Kopie.
 7. **Problem oder Idee → sofort ins Register.** Ein Problem, das nur im Chat steht, ist kein
    Problem, sondern eine Erinnerung, die verfällt. Jeder Eintrag bekommt eine ID (P-xx / I-xx),
    auf die man sich später berufen kann.
-8. **Vertrauliches kennzeichnen.** `projekt/02-rahmen-und-netzwerk.md` und alles mit Rezeptur- oder
+8. **Sammeldateien frisch lesen, bevor geschrieben wird** — und während Parallelarbeit hat
+   jede Sammeldatei genau einen Schreiber. Die vollständigen Regeln (samt Beleg F-04) stehen
+   in `werkzeuge/instanzen-und-zugriffe.md`, Abschnitt 4.
+9. **Vertrauliches kennzeichnen.** `projekt/02-rahmen-und-netzwerk.md` und alles mit Rezeptur- oder
    Kundendaten trägt den Vermerk in der Kopfzeile — das ist Voraussetzung für den
    Geschäftsgeheimnisschutz, siehe `wirtschaft/ip-und-verhandlung.md`.

@@ -1,4 +1,4 @@
-# Status — Stand 22.08.2026
+# Status — Stand 23.08.2026
 
 *Diese Datei zuerst aktualisieren, wenn sich etwas ändert. Alle anderen Dokumente beschreiben
 Regeln und Pläne; nur diese beschreibt die Wirklichkeit.*
@@ -832,6 +832,86 @@ Zwei Dinge, die dabei aufgefallen sind und im Register stehen:
 
 CAD und Arbeitsmappe stimmen auf 1,9 % überein, alle 50 Parameter in beiden Dateien identisch.
 
+> **Hinweis zu den Befunden 4af–4ai:** Die Originale wurden am 23.08. durch eine
+> Überschreib-Kollision zwischen parallel arbeitenden Instanzen zerstört und sind hier aus den
+> Registereinträgen (P-21, P-12/13, P-06, P-38–P-42, I-28–I-31) und der
+> Erledigt-Liste in `werkzeuge/schicht-auftraege.md` **rekonstruiert** — Hergang und Regeln
+> dagegen: `werkzeuge/arbeitsteilung-fehlversuche.md`, F-04. Die Kerndaten sind vollständig
+> erhalten; verloren sind die ausformulierten Quellenlisten (Links) der Original-Befunde.
+
+### af) Laufrollen: Herstellernachweis erbracht *(Schichtdienst A-01, 22.08. · rekonstruiert 23.08.)*
+
+Die Marktrecherche zu P-21 (Ø 25, ~90 N je Rolle, Feucht-/Lebensmittelumgebung) liefert zwei
+tragfähige Kandidatenfamilien und einen begründeten Ausschluss:
+
+| Kandidat | Kernwerte | Preis |
+|---|---|---|
+| **Ganter GN 753.1-25** | POM-Lauffläche, Kugellager, **600 N radial = 6,7× Anforderung** | 3,45 €/St (Bohrungsvariante), lagernd |
+| **KIPP K2371 / norelem 95056/57** | POM auf Edelstahl-Kugellager, Edelstahl-Bolzen, bis 105 °C — **Feuchtraum-Favorit** | ab 9,47 €/St |
+| igus xiros | vollpolymer | **verworfen: 84 N < 90 N** |
+
+Rollenkosten Startaufbau (24 St): **≈ 83–297 €** je nach Familie — **in die Arbeitsmappe
+nachzuziehen** (skaliert je Etage). Offen: Die Traglasttabelle der KIPP/norelem-Größen war
+fernab nicht zugänglich (dynamische Shopseiten) — braucht eine Browser-Session oder den
+Katalog. Fortschreibung und nächste Schritte: `projekt/03-probleme.md`, P-21.
+
+### ag) Pumpen: die 3-m-Annahme ist am Markt bequem erfüllbar *(Schichtdienst A-02, 22.08. · rekonstruiert 23.08.)*
+
+Drei Kandidaten mit belegten Kennlinien: **Sicce Syncra Silent 3.5** (3,7 m Förderhöhe, sehr
+leise, 129,95 €), **EHEIM compactON 5000** (3,6 m, Leistungsdiagramm beim Hersteller),
+**SHURflo Aqua King II 3.0** (Membranpumpe, 12 V, 2,0 bar Abschaltdruck, Zahlen-Kennlinie,
+Trinkwasser-Materialien, ~126 €).
+
+**Der eigentliche Befund:** Nicht die Förderhöhe entscheidet, sondern die **Betriebsart** —
+getakteter Sprühzyklus verlangt Druckreserve an den Düsen (nur die Membranpumpe hat sie),
+Dauerumwälzung spricht für die leisen Kreiselpumpen. Kennlinienpunkte ausdrücklich **in Blatt
+12 der Arbeitsmappe nachzuziehen**; erst dann ist der Gleichzeitigkeitsfaktor (P-13)
+modellierbar. Fortschreibung: P-12, P-13.
+
+### ah) Bodengefälle: es gibt keinen Abrisswinkel — der Hebel ist die Ebenheit *(Schichtdienst A-03, 23.08. · rekonstruiert 23.08.)*
+
+Die Rechen- und Literaturprüfung zu P-06 hat die Ausgangsannahme **widerlegt** statt bestätigt:
+
+- **Einen „Abrisswinkel" gibt es nicht.** Resttropfen unter einer Mindestgröße haften wegen der
+  Kontaktwinkelhysterese bei **jeder** Neigung — gemessen bis 90° Kippung. Was sie entfernt, ist
+  Verdunstung (daraus: I-28 Lüfternachlauf).
+- **Die tatsächliche Fallinie beträgt 2,24°**, nicht 2° (Resultierende aus 2° längs / 1° quer).
+- **Die 3°-Empfehlung ist in keinem Regelwerk belegbar** — EHEDG Doc 8 fordert Gefälle ohne
+  Winkel, die USDA nennt 1,19° für Wege bis 1,8 m. **Einziger Wert unter Norm-Minimum ist die
+  Querneigung 1,0°.**
+- **Der stärkere Hebel ist die Fertigungs- und Aufstellgenauigkeit:** nötig wären ≤ 0,5–0,62 mm
+  auf 100 mm; DIN EN ISO 13920 erlaubt ohne besondere Angabe 2–5,5 mm (daraus: P-38).
+
+**Empfehlung:** 2° längs halten, **quer 1,0° → 1,5°** (+3,9 mm Eckhöhe statt +11,5 mm bei 3°;
+mehr Neigung erst mit I-23-Wannenform). Alle Neigungs- und Prüfgrößen **in die Arbeitsmappe
+nachzuziehen**, nichts geändert. Entscheidender nächster Schritt: **Abflussversuch am
+Blechrest** (200 ml bei 2°/1,5° und 3°/1,5°, zehn Minuten). Folge-IDs: P-38, I-28, I-29;
+fortgeschrieben: P-06, P-09, P-22, P-33, I-23.
+
+### ai) Saatgut: Einkaufskorb steht — drei Funde berühren den Sortenplan *(Schichtdienst A-04, 23.08. · rekonstruiert 23.08.)*
+
+Der Korb für alle fünf Sorten liegt bei **27–60 € Ware plus 12–24 € Versand** über drei bis
+vier Shops — unkritisch fürs Budget (Schritt 5 < 100 €), aber versandgetrieben: **in einem
+Rutsch mit dem Substrat bestellen.** Drei Funde mit Folgen:
+
+1. **„Rucola" sind zwei Arten:** *Eruca sativa* (400 Korn/g) gegen *Diplotaxis tenuifolia*
+   (3.200 Korn/g) — rund zwanzigfacher Preis je Tray, deutlich andere Schärfe. Die Sortenwahl
+   muss die Art benennen.
+2. **Hobbyportionen sind die falsche Gebindegröße:** Bronzefenchel als 50-Korn-Portion ergäbe
+   **80–115 € Saatgut je Tray** gegen 0,54–0,80 € bei Bulk-Ware; Bronzefenchel und Micro-Shiso
+   sind als Bio-Bulk praktisch nicht erhältlich (daraus: P-40, blockierend für die Bestellung).
+3. **Micro-Shiso braucht laut Anbietern 19–27 statt 12–16 Tage** — die langsamste Sorte
+   bestimmt den Chargenstart (daraus: P-41).
+
+Rechtlich geklärt: Der **PA-Sperrpunkt Borretsch ist aufgelöst** — ein eigener Höchstgehalt für
+Borretschblätter existiert (VO (EU) 2020/2040, heute VO (EU) 2023/915; Zahlenwert bewusst nicht
+in den Dokumenten, vor Verwendung in geltender Fassung nachschlagen), offen bleibt der Nachweis
+an der eigenen Ware (P-42, P-G14). Und: **Microgreens im Substrat sind rechtlich keine
+Sprossen** (ESSA-Leitlinie) — kein Sprossenrecht, aber Pflicht zu ungebeiztem Saatgut.
+Mengen- und Preisgrößen **in die Arbeitsmappe nachzuziehen** (P-39: Aussaatstärken streuen um
+Faktor 2–3). Neue IDs aus diesem Lauf: P-39–P-42, I-30, I-31. Entscheidungen für William:
+Rucola-Art, Bronzefenchel gegen grünen Fenchel, Borretsch anbauen oder streichen.
+
 ---
 
 ## 5. Nächste Schritte
@@ -897,7 +977,11 @@ alle diese Wettbewerbe laufen jährlich. Die einzigen Punkte ohne Aufschub sind 
       Controller je Modul. Entscheidung erst nach der Bestandsaufnahme des Elektronikvorrats
 - [x] **Speicherort des FreeCAD-Modells** (erledigt 21.08.) — liegt jetzt neben den Dokumenten
       unter `Desktop\Claude\mikrogruen\cad\`
-- [ ] Sortenliste für die erste Charge — Voraussetzung für die Saatgutbestellung
+- [ ] Sortenliste für die erste Charge — Voraussetzung für die Saatgutbestellung.
+      **Konkretisiert 23.08. (Befund 4ai):** drei kleine Entscheidungen — Rucola-Art,
+      Bronzefenchel gegen grünen Fenchel, Borretsch anbauen oder streichen (P-40, P-42)
+- [ ] **Querneigung 1,0° → 1,5°** (Befund 4ah) — per Abflussversuch am Blechrest entscheiden,
+      danach in der Arbeitsmappe nachziehen (P-06, P-38)
 - [ ] Substrat auswählen — bestimmt das Lochbild der Trayperforation
 - [ ] **Hydraulikschrank neu dimensionieren** — er war aus dem Reservoirbedarf abgeleitet, der jetzt
       draußen sitzt. Er kann kleiner werden (Befund 4y)
@@ -923,6 +1007,8 @@ alle diese Wettbewerbe laufen jährlich. Die einzigen Punkte ohne Aufschub sind 
 
 | Datum | Was |
 |---|---|
+| 23.08.2026 | **F-04: Überschreib-Kollision repariert.** Parallel arbeitende Instanzen haben sich gegenseitig Sammeldateien überschrieben — dieser Chat löschte damit ungewollt die Schichtdienst-Befunde 4af–4ai aus dem Status (rekonstruiert, s. Kasten in Abschnitt 4), eine andere Instanz den I-25-Nachtrag vom 23.08. aus dem Ideenregister (Wiederherstellung beim Leitstand angefragt). Hergang, Ursache und die neuen Sammeldatei-Regeln: `werkzeuge/arbeitsteilung-fehlversuche.md` F-04; die Regeln selbst: `werkzeuge/instanzen-und-zugriffe.md` (neu). Zusätzlich bekannt: I-30 wurde doppelt vergeben (Register: Eigenvermehrung · Leitstand-intern: Kontingent-Verbrauchsmessung) — Auflösung beim Leitstand: eigene Idee als I-32 registrieren, Verweis in `werkzeuge/kontingent.md` anpassen. |
+| 23.08.2026 | *(rekonstruiert)* **Schichtdienst-Läufe A-03 und A-04**: Bodengefälle-Prüfung (Befund 4ah — kein Abrisswinkel, Querneigung und Ebenheit sind die Hebel; P-38, I-28, I-29 neu) und Saatgut-Recherche (Befund 4ai — Korb 27–60 €, Rucola-Artenfrage, Gebindegrößen-Problem, Shiso-Kulturdauer; P-39–P-42, I-30, I-31, P-G14 neu). Der A-03-Lauf trug außerdem die von A-01/A-02 versäumten Statusbefunde 4af/4ag nach — Regel dazu jetzt im Kopf von `werkzeuge/schicht-auftraege.md`. |
 | 23.08.2026 | **Shell-Zugang und Auto-Sicherung stehen**: Über FreeCADs Python-Konsole Node.js 24.19.0 und eigenständiges Python 3.12.10 per winget installiert, damit Desktop Commander in Claude Desktop eingerichtet (steht neben `freecad`, Konfiguration vorher gesichert) — er wird auch in Cowork-Sessions durchgereicht, der Shell-Zugang ist also nicht mehr an FreeCAD gebunden. Geplante Aufgabe „Claude Auto-Sicherung mikrogruen" registriert (alle 20 Minuten, `schtasks`, ohne Administratorrechte) und in zwei Läufen verifiziert. Zwei Fehlversuche protokolliert (F-02 Plugin-Ort, F-03 stderr-Fehlalarm). |
 | 23.08.2026 | **Automatische Git-Sicherung eingerichtet** (`werkzeuge/auto-sicherung.md` + Skript `werkzeuge\git-autosicherung.ps1` im Arbeitsordner): eine Aufgabe der Windows-Aufgabenplanung committet und pusht alle 20 Minuten und bei Anmeldung, aber nur wenn Änderungen vorliegen — greift für jeden Schreiber (Cowork, Claude Desktop, FreeCAD, Hand), weil sie außerhalb von Claude läuft. Kein Auto-Pull (bewusst, sichere Reihenfolge für I-25). Registrierung des geplanten Tasks steht noch aus — von Hand oder per Shell-Zugang. |
 | 23.08.2026 | **Vorschlag 20 erledigt — Git läuft**: Spiegelordner ist Git-Repository (Branch main), privates GitHub-Repository `williamelsner2-alt/mikrogruen` als Off-Site-Sicherung, Erst-Push verifiziert (origin/main = lokaler Commit, 111 Dateien, Ausschlüsse manifest/_alt_/FCBak greifen). Vier Fehlversuche auf dem Weg (Platzhalter-URL, fehlende Git-Identität, Branchname, private-Repo-Anmeldung) sind als Diagnoseblöcke in `werkzeuge/git-einrichtung.md` dokumentiert. P-32-Rest (alte FCBak löschen) und `_alt_`-Löschung sind damit freigegeben. |
