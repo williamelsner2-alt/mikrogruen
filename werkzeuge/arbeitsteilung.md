@@ -1,7 +1,8 @@
 # Arbeitsteilung — Werkzeug, Modell, Aufwand
 
-*Stand: 22.08.2026 · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (Anlass: Sitzung vom 22.08.)*
-*Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `werkzeuge/instanzen-und-zugriffe.md` (wer erreicht was) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
+*Stand: 23.08.2026 · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (22.08.) sowie
+Kontingent-Stand und Sparregel 9 (23.08., Zulieferung des Leitstands per Postfach)*
+*Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `werkzeuge/instanzen-und-zugriffe.md` (wer erreicht was) · `werkzeuge/kontingent.md` (Momentaufnahme) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
 
 Zwei Entscheidungen fallen vor jedem Arbeitsschritt: **welches Werkzeug** und **welche Stufe**
 (Modell × Aufwand). Beide fallen hier einmal — nicht jedes Mal neu. Leitsatz: **Gespart wird am
@@ -81,15 +82,27 @@ gilt sie weiter direkt.
    Aufgabe auf zu hoher Stufe mitlaufen zu lassen, ist fast immer billiger als für sie extra
    herunter- und wieder hochzuschalten. Ausführlicher, noch zu prüfender Gedanke dazu: I-27
    im Ideenregister.
+9. **Unbeaufsichtigtes braucht Zwischenstände, keine Deckel.** Ein Lauf, der nach jedem
+   Teilergebnis sichert, darf beliebig lang laufen — ein Abbruch kostet dann nur das
+   angefangene Stück. Ein Lauf ohne Zwischensicherung braucht ein hartes Limit. Der
+   Schichtdienst ist seit 23.08. der erste Fall (kein Auftragslimit mehr, Sicherung nach jedem
+   Auftrag). *(Präzisiert Regel 4; Wortlaut vom Leitstand, 23.08.)*
 
 ## 4. Kontingent-Bewirtschaftung
 
-**Was Claude sehen kann und was nicht:** Den Stand des Konto-Kontingents (Max-Fenster) kann
-Claude aus einer Session heraus **nicht** auslesen — die Prozentanzeige lebt in der Oberfläche.
-Was geht: die Verteilung der Tokens *innerhalb* einer Session erklären lassen
-(Stichwort „explain usage"), und **Schwellen von Hand melden** — eine kurze Nachricht wie
-„Achtung 90 %" genügt, Claude schaltet dann auf Sicherungsmodus (Ergebnisse sichern, Übergabe,
-kompakte Schritte). Diese Meldung gehört zum Arbeitsablauf wie das Umbenennen der Chats.
+**Was Claude sehen kann und was nicht:** Den Live-Stand des Konto-Kontingents (Max-Fenster)
+kann Claude aus einer Session heraus **nicht** auslesen — die Prozentanzeige lebt in der
+Oberfläche. Seit 23.08. gibt es als Behelf `werkzeuge/kontingent.md`: eine **Momentaufnahme**
+mit Zeitstempel und Verfallsregeln, die von Meldern beschrieben und vor größeren Arbeiten
+gelesen wird — kein Wert oder zu alt heißt „kein Wert vorhanden", nie raten. Zwei Fakten, die
+sonst nirgends stehen: Die **lokalen Verbrauchswerkzeuge** (`/usage`, `ccusage`) sehen
+ausschließlich Sitzungen, die auf dem Rechner selbst liefen — **Cloud-Läufe (Schichtdienst)
+und claude.ai-Chats tauchen dort nie auf**; wer nur damit plant, unterschätzt den Verbrauch
+systematisch. Und neben dem Füllstand wird künftig der **Verbrauch je Lauf** erfasst
+(Selbstauskunft des Schichtdiensts, Idee I-32 — Weiterentwicklung beim Projekt
+claude-optimierung). Unverändert gilt: **Schwellen von Hand melden** („Achtung 90 %" →
+Sicherungsmodus) bleibt der verlässliche Weg; die Verteilung *innerhalb* einer Session erklärt
+„explain usage".
 
 **Die Fenster ausnutzen statt an ihnen zu scheitern:** Das Kontingent regeneriert in
 Zeitfenstern. Konsequenzen:
@@ -98,10 +111,13 @@ Zeitfenstern. Konsequenzen:
    (Recherche, Rechnung, Dokumentation) laufen als geplante Aufgabe **„Schichtdienst
    Mikrogrün"** über die Warteschlange `werkzeuge/schicht-auftraege.md`. Standardzeit ~03:00,
    aber **frei einstellbar** (Aufgaben-Verwaltung oder Zuruf an Claude) und jederzeit **auf
-   Abruf** startbar — die Schicht gehört in die Stunden, in denen William das Kontingent nicht
-   selbst braucht, nicht zwingend in die Nacht. Ausbaustufen dazu im Ideenregister: I-25
-   (Git-Brücke, damit auch Cloud-Läufe den Spiegel erreichen) und I-26 (kontingentgesteuerte
-   Betriebsmodi).
+   Abruf** startbar. **Mengensteuerung seit 23.08. geändert:** kein Auftragslimit je Lauf
+   mehr — die Schicht arbeitet die Warteschlange leer, unter der Bedingung der Sicherung nach
+   jedem Auftrag (Sparregel 9); dazu eine schlafende Kontingent-Bremse und eine
+   Verbrauchs-Selbstauskunft je Lauf (beides: `werkzeuge/kontingent.md`, Abschnitt „Wer
+   schreibt, wer liest", und der gespeicherte Aufgaben-Prompt). Ausbaustufen im Ideenregister:
+   I-25 (Git-Brücke, damit Cloud-Läufe den Spiegel erreichen — bleibt hier) und I-26
+   (kontingentgesteuerte Betriebsmodi — Weiterentwicklung bei claude-optimierung).
 2. **Interaktive Fenster für Interaktives.** Tagsüber die Stufen-Spannen aus Abschnitt 2
    fahren; Spitzenmodelle bewusst und selten (Zeile „Grundsatzentscheidungen").
 3. **Vor großen Sitzungen: Fenster prüfen.** Eine Fable-max-Sitzung nicht am Ende eines fast

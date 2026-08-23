@@ -19,6 +19,7 @@ kein offener Punkt (dafür sind `projekt/03-probleme.md` und `projekt/04-ideen.m
 | F-03 | 23.08.2026 | Auto-Sicherung meldete einen Fehler, obwohl der Push erfolgreich war | Erfolgsmeldungen auf stderr plus `ErrorActionPreference = "Stop"` |
 | F-04 | 23.08.2026 | Parallele Instanzen überschrieben sich gegenseitig Status, Ideenregister und dieses Log; I-30 doppelt vergeben | Ganzdatei-Schreiben aus veralteten Kopien — ohne frisches Lesen unmittelbar vor dem Schreiben |
 | F-05 | 22.08.2026 | Sofort-Start-Zusatzanweisung konnte das Auftragslimit des Schichtdiensts nicht aufheben *(rekonstruiert)* | Eine geplante Aufgabe folgt ihrem gespeicherten Prompt, nicht dem Startzuruf |
+| F-06 | 23.08.2026 | Laufender Schichtdienst ließ sich von keiner Session aus stoppen — und die eigene Wiedervorlage hätte kurz darauf das Gegenteil getan | Eine Automatik trägt die Absicht ihres Setz-Moments; ein Richtungswechsel räumt offene Automatiken nicht von selbst ab |
 
 ---
 
@@ -177,6 +178,15 @@ das private GitHub-Repository liegt online und der Erst-Push ist verifiziert (Au
 20 ✓). Für I-25 fehlt jetzt nur noch die sichere Zugangsdaten-Frage für unbeaufsichtigte
 Cloud-Läufe; Reife bleibt zu prüfen."*
 
+**Nachtrag 23.08. abends (aus der Leitstand-Quittung per Postfach):** Alle vier Anfragen sind
+erledigt — und die Verlustliste oben war unvollständig. Ebenfalls zerstört waren der
+**ausführliche I-24-Nachtrag des Leitstands** (Williams abgeholte Ansätze, Recherche-Tabelle
+der drei technischen Wege, Reife-Hochstufung — vom Leitstand aus dem Sitzungsgedächtnis
+rekonstruiert und gekennzeichnet) und der **Leitstand-Fehlversuch zum Automatik-Griff** — der
+kam per Postfach zurück und steht jetzt als **F-06**. Der erste volle Briefkasten-Umlauf
+(Werkstatt → Leitstand → Werkstatt) hat damit genau das geleistet, wofür Regel 5 ihn braucht:
+Verluste melden, rekonstruieren, gegenzeichnen.
+
 **Was daraus folgt — die Sammeldatei-Regeln** (ausformuliert in
 `werkzeuge/instanzen-und-zugriffe.md`, Abschnitt 4; Kurzform als Pflegeregel 9 der Übersicht):
 
@@ -203,3 +213,30 @@ das Limit „ein großer / zwei kleine Aufträge je Lauf" aufheben — die Schic
 ihrem gespeicherten Aufgaben-Prompt. **Regel:** Geplante Aufgaben gehorchen ihrem gespeicherten
 Auftrag; ein Startzuruf ergänzt Kontext, ersetzt aber keine Regeln. Wer mehr will, startet
 mehrmals nacheinander oder ändert den gespeicherten Prompt dauerhaft.
+
+## F-06 · Automatik überlebt die Absicht — und ein laufender Cloud-Lauf hat keinen Griff
+
+**Datum:** 23.08.2026 · *Wortlaut vom Leitstand per Postfach angeliefert (23.08.); sein
+Original-Eintrag war in der F-04-Kollision verloren gegangen. Ergänzt F-05 um die Gegenrichtung:
+dort konnte ein Zuruf eine laufende Automatik nicht ändern, hier konnte niemand sie stoppen.*
+
+**Symptom, zweiteilig:** (a) William bat, den laufenden Schichtdienst „beim nächsten
+Checkpoint" zu stoppen, weil er Kontingent verbraucht. Der Leitstand konnte das **nicht** —
+es gibt keinen Weg, einen bereits laufenden Cloud-Lauf von einer anderen Session aus
+anzuhalten; die Aufgaben-Verwaltung in der Oberfläche ist der einzige Ort. (b) Schlimmer:
+Der Leitstand hatte sich zwei Stunden zuvor selbst eine Wiedervorlage gesetzt, die genau das
+Gegenteil getan hätte — sie war beauftragt, bei „A-04 fertig, A-05 offen" **einen weiteren
+Lauf zu starten**. Sie wurde 30 Minuten vor ihrem Feuern gelöscht.
+
+**Ursache:** beides dieselbe Sache aus zwei Richtungen. Eine Automatik trägt die Absicht des
+Moments, in dem sie gesetzt wurde, und führt sie später aus, ohne zu wissen, dass die Absicht
+sich geändert hat.
+
+**Was es entschärft hat, ungeplant:** Der laufende Lauf war durch seinen eigenen alten Prompt
+begrenzt und hörte nach einem Auftrag von selbst auf; die Sicherung nach jedem Auftrag sorgte
+dafür, dass sein Ergebnis (A-04, Befund 4ai) vollständig in der Ablage stand.
+
+**Lehre:** Wer eine Automatik setzt, plant ihr Abräumen mit — bei jeder Richtungsänderung
+zuerst die eigenen offenen Wiedervorlagen durchsehen. Ein Start, den man vielleicht
+zurücknehmen will, sollte nicht als Sofortstart laufen, sondern mit Vorlauf. Und: „Ich stoppe
+das" ist eine Zusage, die von hier aus niemand halten kann.
