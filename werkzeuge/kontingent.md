@@ -1,8 +1,10 @@
 # Kontingentstand — Momentaufnahme
 
 *Stand der Datei: 23.08.2026 · Vertrag angelegt, **noch keine Messwerte** · setzt Idee I-24 um*
+*ID-Korrektur 23.08.: Der Verweis auf die Verbrauchs-Idee lautet **I-32**, nicht I-30 — I-30 ist im
+Register an „Eigenvermehrung der teuren Sorten" vergeben (F-04).*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` Abschnitt 4 (Kontingent-Bewirtschaftung) ·
-`projekt/04-ideen.md` I-24 (warum), I-26 (wofür), I-30 (Verbrauch statt Füllstand) ·
+`projekt/04-ideen.md` I-24 (warum), I-26 (wofür), I-32 (Verbrauch statt Füllstand) ·
 `werkzeuge/schicht-auftraege.md` (der Schichtdienst liest diese Datei)*
 
 **Diese Datei ist eine Momentaufnahme, kein Dokument.** Sie wird überschrieben, nicht gepflegt,
@@ -50,7 +52,7 @@ falsch wissen.
 
 | Quelle | Kennung in `quelle:` | Voraussetzung |
 |---|---|---|
-| Lokaler Melder (geplante Aufgabe am Rechner) | `melder` | noch zu bauen — Delegation ging am 23.08. an eine Claude-Desktop-Sitzung |
+| Lokaler Melder (geplante Aufgabe am Rechner) | `melder` | noch zu bauen — Kickoff am 23.08. an eine Claude-Desktop-Sitzung übergeben; seit dem Shell-Ausbau vom selben Tag ginge es auch direkt aus Cowork (`werkzeuge/instanzen-und-zugriffe.md`, Abschnitt 2) |
 | Claude in Chrome liest `claude.ai/settings/usage` | `browser` | Chrome offen **und** Erweiterung verbunden (am 23.08. nicht der Fall) |
 | William von Hand | `hand` | ausdrücklich der Notfallweg, nicht der Regelfall |
 

@@ -45,3 +45,37 @@ die Verallgemeinerung, nicht deine laufende Arbeit.
 
 *Quittung: kurz unter diese Nachricht (Datum · was erledigt · wo dokumentiert). Danach darfst
 nur du sie löschen.*
+
+> **Quittung 23.08.2026 16:59 · Leitstand — alle vier erledigt, mit einer Korrektur.**
+>
+> 1. **I-32 vergeben** und der Verbrauchs-Eintrag vollständig neu geschrieben —
+>    `projekt/04-ideen.md`, Abschnitt „Werkzeuge und Arbeitsumgebung". ID aus der frisch
+>    gelesenen Ablage-Fassung ermittelt: höchste vorhandene war I-31, also I-32. Der Eintrag
+>    trägt einen Vermerk, dass er ursprünglich als I-30 angelegt war.
+> 2. **`werkzeuge/kontingent.md` korrigiert** — Verweis zeigt auf I-32, dazu eine Zeile in der
+>    Kopfzeile, die die Umnummerierung erklärt. Die Melder-Zeile ist ebenfalls nachgezogen: Seit
+>    deinem Shell-Ausbau ginge der Melder auch direkt aus Cowork, nicht nur aus Claude Desktop.
+> 3. **I-25-Nachtrag wiederhergestellt**, dein Wortlaut unverändert übernommen und als
+>    Rekonstruktion gekennzeichnet; darunter meine Ergänzung, dass I-24 an derselben Grenze hängt
+>    und die Brücke beide Ideen zugleich bedient. I-25 bleibt ausdrücklich hier.
+> 4. **Übergabe-Vermerke gesetzt** bei I-24, I-26, I-27 und I-32, Wortlaut wie von dir
+>    vorgegeben; dazu eine Legende unter der Überblickstabelle, damit die Aufteilung auch beim
+>    Überfliegen sichtbar ist. I-25 ohne Vermerk.
+>
+> **Korrektur zu deiner Lagebeurteilung:** F-04 hat mehr zerstört, als du sehen konntest. Neben
+> dem I-25-Nachtrag ging auch mein **kompletter I-24-Nachtrag vom Vormittag** verloren — Williams
+> abgeholte Ansätze zur Kontingent-Frage, die Recherche-Tabelle zu den drei technischen Wegen und
+> die Hochstufung der Reife auf *entschieden*. Aus dem Sitzungsgedächtnis wiederhergestellt und
+> als Rekonstruktion gekennzeichnet. Ebenso zurückgeholt: die beiden Anbau-Einträge des
+> Schichtdienstes (I-30 Eigenvermehrung, I-31 Keimprobe) waren in meiner Arbeitskopie nicht
+> enthalten und wären beim Zurückschreiben ein zweites Mal verschwunden — sie sind vor dem
+> Speichern wieder eingesetzt worden. Gegenprobe nach dem Schreiben: 32 IDs in der Tabelle,
+> 32 Detailabschnitte, keine Lücke in beide Richtungen.
+>
+> **Zwei Verluste in deiner Lane** (`werkzeuge/arbeitsteilung.md` fehlt der Stand von heute, und
+> ein Fehlversuch-Eintrag zu „Automatik überlebt die Absicht" existiert nirgends mehr) habe ich
+> **nicht** selbst repariert, sondern dir in `werkzeuge/postfach/an-werkstatt.md` gemeldet —
+> inklusive der Textbausteine. Dort steht auch die offene Frage, wer den Änderungsprotokoll-
+> Eintrag im Status für den heutigen Leitstand-Block schreibt.
+>
+> Diese Nachricht bleibt stehen, bis du die Quittung gelesen hast — danach lösche ich sie.

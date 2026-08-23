@@ -58,7 +58,14 @@ mit Datum und Verweis auf das Ergebnis versehen.
 | I-27 | Arbeitsplan-Workflow: Triage, Stufen-Bündelung, Dispatch, Zusammenführung | Werkzeug | zu prüfen | Sitzung 22.08. (Modellwechsel-Kosten) |
 | I-28 | Lüfternachlauf als Trocknungsschritt nach der Reinigung | Hygiene | aussichtsreich | Befund 4ah |
 | I-29 | Wanne walzblank (2B) statt gebürstet | Fertigung | aussichtsreich | Befund 4ah |
-| I-30 | Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch | Werkzeug | aussichtsreich | Williams Frage 23.08. |
+| I-30 | Eigenvermehrung der teuren Sorten | Anbau | zu prüfen | Befund 4ai |
+| I-31 | Keimprobe vor jeder Aussaat | Anbau | aussichtsreich | Befund 4ai |
+| I-32 | Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch | Werkzeug | aussichtsreich | Williams Frage 23.08. |
+
+*Zuständigkeit seit 23.08.: Die Werkzeug-Ideen **I-24, I-26, I-27 und I-32** werden im
+Nachbarprojekt **claude-optimierung** weiterentwickelt (Williams Aufteilung vom 23.08.). Die
+Einträge bleiben hier stehen und werden nie gelöscht; jeder trägt einen datierten Vermerk.
+**I-25 bleibt hier**, weil sie am konkreten Repository und Spiegel hängt.*
 
 ---
 
@@ -85,50 +92,60 @@ fälschlich von „wir laufen auf Sonnet" aus, während tatsächlich Fable 5 Max
 gelöst ist, gilt: Claude nennt die empfohlene Stufe, die aktuell laufende Stufe bestätigt
 William.
 
-**Nachtrag 23.08. — Williams Ansätze abgeholt, Reife auf *entschieden*:** Der oben verlangte
-Schritt ist erledigt. William zu den vier vorgelegten Wegen:
+**Nachtrag 23.08. — Williams Ansätze abgeholt, Reife auf *entschieden*** *(rekonstruiert
+23.08. nach der F-04-Kollision — der ursprüngliche Eintrag ging beim Überschreiben durch den
+A-04-Lauf verloren; Inhalt aus der Leitstand-Sitzung wiederhergestellt)*
 
-- **Notizdatei von Hand: verworfen.** Begründung wörtlich sinngemäß: „Ich möchte, dass alles
-  ohne meinen ständigen Eingriff läuft." Damit ist die Anforderung an jede Lösung geschärft —
-  **automatisch oder gar nicht**; eine Datei, die William selbst pflegt, ist nur die bisherige
+Der oben verlangte Schritt ist erledigt. William zu den vier vorgelegten Wegen:
+
+- **Notizdatei von Hand: verworfen.** Begründung sinngemäß: „Ich möchte, dass alles ohne meinen
+  ständigen Eingriff läuft." Damit ist die Anforderung an jede Lösung geschärft — **automatisch
+  oder gar nicht**; eine Datei, die William selbst pflegt, ist nur die bisherige
   „Achtung 90 %"-Meldung in Dateiform und löst nichts.
 - **Browser liest die Anzeige: nützlich**, aber als alleiniger Weg zu schwach (setzt offenen
-  Browser voraus).
+  Browser voraus — am 23.08. war die Erweiterung nicht einmal verbunden).
 - **Lokales Skript: war einer seiner eigenen Gedanken.**
-- **Neue Frage von ihm:** ob der Verbrauch *einer abgeschlossenen Aufgabe* einsehbar ist. Das
-  ist eine andere Größe als das Restkontingent und steht jetzt als eigene Idee **I-30**.
+- **Neue Frage von ihm:** ob der Verbrauch *einer abgeschlossenen Aufgabe* einsehbar ist. Das ist
+  eine andere Größe als das Restkontingent und steht als eigene Idee **I-32**.
 
-**Was die Recherche am 23.08. ergeben hat** (Rahmenbedingungen, an denen sich jede Lösung
-messen muss):
+**Was die Recherche am 23.08. ergeben hat** (Rahmenbedingungen, an denen sich jede Lösung messen
+muss):
 
 | Weg | Was er liefert | Grenze |
 |---|---|---|
 | Claude-Code-Statusline | `rate_limits.five_hour` / `.seven_day`, kontoweit, ohne Zugangsdaten und ohne Zusatzanfrage — die Werte kommen aus den Antwort-Kopfzeilen der API | läuft nur, während Claude Code läuft. William: **installiert, kaum benutzt** |
 | Undokumentierter Endpunkt `api/oauth/usage` mit Token aus `~/.claude/.credentials.json` | dieselben Zahlen ohne laufende Sitzung | von der Gemeinschaft gefunden, nicht dokumentiert, widersprüchliche Berichte zur Funktion; Zugangsdaten im Spiel. Nur als Rückfallebene, muss ohne Schaden scheitern dürfen |
-| Claude in Chrome auf `claude.ai/settings/usage` | die maßgebliche Anzeige selbst | braucht offenen Browser und laufende Sitzung |
+| Claude in Chrome auf `claude.ai/settings/usage` | die maßgebliche Anzeige selbst | braucht offenen Browser und verbundene Erweiterung |
 
 Ein **offizieller** programmatischer Weg existiert nicht: Der Wunsch, die Auslastung in die
 Statusline-Daten und in Hooks zu geben, wurde bei Anthropic als „not planned" geschlossen.
 
 **Zwei strukturelle Befunde, die die Architektur bestimmen:**
 
-1. **Diese Cowork-Session hat keine Shell auf Williams Rechner.** Die Geräte-Brücke bietet
-   Dateizugriff im verbundenen Ordner, Computernutzung, FreeCAD und Blender — aber keine
-   Kommandozeile. Ein lokales Skript ist deshalb **nicht** von Cowork aus zu bauen, sondern in
-   Claude Desktop über Desktop Commander (`werkzeuge/arbeitsteilung.md`, Abschnitt 1, Zeile
-   „Rechner-Wartung").
+1. **Cowork hatte am Vormittag keine Shell auf Williams Rechner** — deshalb ging der Bauauftrag
+   für den Melder als Delegation an eine Claude-Desktop-Sitzung. *(Überholt seit dem
+   Shell-Ausbau vom 23.08.: Desktop Commander wird inzwischen nach Cowork durchgereicht, siehe
+   `werkzeuge/instanzen-und-zugriffe.md` Abschnitt 2 — der Melder kann jetzt auch von hier aus
+   entstehen.)*
 2. **Der Schichtdienst erreicht den Rechner nie** (dieselbe Grenze wie I-25). Eine Datei auf dem
-   Rechner nützt ihm nichts; nur die Projektablage erreicht ihn. Der Wert muss also von einer
-   Session, die beides sieht, in die Ablage geschoben werden — oder über die Git-Brücke I-25.
+   Rechner nützt ihm nichts; nur die Projektablage erreicht ihn.
 
 **Verfallsregel, die in jede Lösung gehört:** Der **5-Stunden-Wert ist wertlos, sobald er alt
 ist** (das Fenster verschiebt sich laufend), der **7-Tage-Wert verträgt Stunden**. Jeder
 gespeicherte Stand braucht deshalb einen Zeitstempel, und wer ihn liest, muss die beiden Zahlen
-unterschiedlich behandeln statt sie gemeinsam als „Kontingentstand" zu lesen.
+unterschiedlich behandeln statt sie gemeinsam als „Kontingentstand" zu lesen. Umgesetzt in
+`werkzeuge/kontingent.md`.
 
-**Entschieden ist das Ob, nicht das Wie** — die Wahl zwischen Statusline-Weg (setzt voraus, dass
-Claude Code regelmäßig läuft), lokalem Dienst (unabhängig, aber undokumentierter Endpunkt) und
-Browser-Abfrage steht noch aus.
+**Stand der Umsetzung 23.08.:** Vertragsdatei `werkzeuge/kontingent.md` angelegt; die
+Kontingent-Bremse ist im gespeicherten Prompt des Schichtdienstes bereits verankert und wacht
+auf, sobald die Datei frische Werte führt; der Bauauftrag für den Melder ist als Kickoff-Text
+übergeben. **Entschieden ist das Ob, nicht das Wie** — die Wahl zwischen Statusline-Weg,
+lokalem Dienst und Browser-Abfrage steht noch aus.
+
+**Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
+Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
+`briefkasten/an-claude-optimierung.md`. Der laufende Kontingent-Melder bleibt davon unberührt
+und wird hier fertiggestellt; das Nachbarprojekt übernimmt danach die Verallgemeinerung.
 
 ### I-25 · Git-Brücke: Spiegel auch für Cloud-Sessions erreichbar
 Der Schichtdienst läuft in der Cloud und erreicht Williams Rechner nie — unabhängig davon, ob
@@ -145,9 +162,16 @@ Server/DIY-Host statt GitHub.
 Schritte am Rechner stehen in `werkzeuge/git-einrichtung.md`. Der heikle Punkt
 (Zugangsdaten für unbeaufsichtigte Sessions) bleibt bewusst offen.
 
-**Nachtrag 23.08.:** I-24 hängt an derselben Grenze. Wird die Git-Brücke gebaut, ist sie auch
-der Transportweg für den Kontingentstand zum Schichtdienst — beide Ideen teilen sich dann eine
-Lösung statt zwei zu brauchen.
+**Nachtrag 23.08.:** Voraussetzung erfüllt — das private GitHub-Repository liegt online und der
+Erst-Push ist verifiziert (Audit-Vorschlag 20 ✓). Für I-25 fehlt jetzt nur noch die sichere
+Zugangsdaten-Frage für unbeaufsichtigte Cloud-Läufe; Reife bleibt zu prüfen.
+*(Wortlaut aus dem Postfach der Werkstatt wiederhergestellt — der Eintrag ging in der
+F-04-Kollision verloren.)*
+
+**Ergänzung des Leitstands, 23.08.:** I-24 hängt an derselben Grenze. Wird die Brücke gebaut, ist
+sie zugleich der Transportweg für den Kontingentstand zum Schichtdienst — beide Ideen teilen
+sich dann eine Lösung statt zwei zu brauchen. **I-25 bleibt im Mikrogrün-Projekt** (hängt am
+konkreten Repository und Spiegel) und wandert *nicht* nach claude-optimierung.
 
 ### I-26 · Kontingentgesteuerte Betriebsmodi
 Aufbauend auf I-24: Wenn der Kontingent-Stand (oder wenigstens die Fenster-Uhrzeiten) für
@@ -155,6 +179,10 @@ Claude sichtbar wird, können Automatisierungen **nach Kontingent-Verfügbarkeit
 zwischen Modi wechseln — z. B. Vollmodus zu Fensterbeginn (große Schicht-Aufträge), Sparmodus
 bei knappem Rest (nur Sicherung und Übergabe), Ruhemodus davor. **Notiz** — hängt an I-24 und
 gehört in die Leitstand-Routine (Audit 25), sobald die Sichtbarkeit gelöst ist.
+
+**Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
+Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
+`briefkasten/an-claude-optimierung.md`.
 
 ### I-27 · Arbeitsplan-Workflow: Triage, Stufen-Bündelung, Dispatch, Zusammenführung
 Williams Idee, ausgelöst durch die Beobachtung, dass ein Modellwechsel im selben Chat den
@@ -185,7 +213,15 @@ angewendet bei zwei ungleichen Aufgaben (erkannte richtig, dass Bündelung sich 
 lohnt). Bleibt **zu prüfen** — noch kein Fall mit wirklich vielen gleichzeitigen Aufgaben
 getestet.
 
-### I-30 · Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch *(neu 23.08.)*
+**Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
+Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
+`briefkasten/an-claude-optimierung.md`.
+
+### I-32 · Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch *(neu 23.08.)*
+*(Ursprünglich am 23.08. als I-30 angelegt — die Nummer war zu diesem Zeitpunkt aus einem
+veralteten Registerstand gezogen und ist inzwischen an „Eigenvermehrung der teuren Sorten"
+vergeben. Neu vergeben als I-32, Hergang in `werkzeuge/arbeitsteilung-fehlversuche.md`, F-04.)*
+
 Williams Frage: „Kannst du einsehen, wie viele Token eine Aufgabe nach Abschluss verbraucht
 hat?" — Der ehrliche Stand: **innerhalb** einer laufenden Session ja (der Skill `explain-usage`
 schlüsselt den Verbrauch der eigenen Sitzung auf), für eine **fremde, bereits beendete** Session
@@ -201,11 +237,11 @@ fehlt: **was ein Auftragstyp tatsächlich kostet** — Recherche gegen Rechnung 
 Dokumentation, groß gegen klein.
 
 **Dafür:** braucht keinen Endpunkt, keine Zugangsdaten und kein Werkzeug, das es noch nicht gibt
-— nur eine Zeile mehr im Aufgaben-Prompt; ist **heute** umsetzbar, unabhängig von I-24. Und es
-misst die Größe, die für die Stufenwahl (`werkzeuge/arbeitsteilung.md`, Abschnitt 2) und für die
-Bündelung (I-27) wirklich zählt: nicht wie voll der Tank ist, sondern was eine Fahrt verbraucht.
-Zusammen mit I-24 ergibt das erst die vollständige Steuerung für I-26 — Füllstand *und*
-Verbrauch.
+— nur eine Zeile mehr im Aufgaben-Prompt; ist **heute** umsetzbar, unabhängig von I-24
+(seit 23.08. als Punkt 9 im Schichtdienst-Prompt verankert). Und es misst die Größe, die für die
+Stufenwahl (`werkzeuge/arbeitsteilung.md`, Abschnitt 2) und für die Bündelung (I-27) wirklich
+zählt: nicht wie voll der Tank ist, sondern was eine Fahrt verbraucht. Zusammen mit I-24 ergibt
+das erst die vollständige Steuerung für I-26 — Füllstand *und* Verbrauch.
 
 **Dagegen/zu prüfen:** Ob die Zahl, die eine Session über sich selbst sieht, vollständig ist —
 die Abschlussnotiz entsteht vor dem Sitzungsende, die letzten Schritte fehlen also
@@ -214,6 +250,10 @@ vergleichbar sind. Und ob die Selbstauskunft belastbar ist oder nur geschätzt �
 ersten Lauf zu prüfen, nicht anzunehmen.
 **Aussichtsreich** — der billigste Schritt in Richtung I-26 und der einzige, der ohne
 undokumentierte Schnittstellen auskommt.
+
+**Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
+Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
+`briefkasten/an-claude-optimierung.md`.
 
 ---
 
@@ -376,6 +416,42 @@ Nachteil ohne Gegenwert.
 nur zum Reinigen herauskommt, spielt das keine Rolle. Für die sichtbaren Außenflächen kann
 weiter gebürstet werden; die beiden Entscheidungen sind unabhängig.
 **Aussichtsreich** — gehört zusammen mit P-09 in die Fertigungsunterlage entschieden.
+
+---
+
+## Anbau und Saatgut
+
+### I-30 · Eigenvermehrung der teuren Sorten *(neu 23.08., aus Befund 4ai)*
+Die Saatgutrecherche hat gezeigt, dass zwei Sorten aus dem Programm teuer oder umständlich zu
+beschaffen sind: wilde Rauke (*Diplotaxis tenuifolia*) kostet rund 2,20 € Saatgut je Tray und
+gibt es nur über Profi-Bio mit Mindestabnahme, Bronzefenchel nur als Gartenportion zu 50 Korn.
+**Die Idee:** Beide Arten sind **samenfest** und mehrjährig beziehungsweise leicht zum Blühen zu
+bringen. Ein paar Pflanzen im Topf auf der Fensterbank oder im Garten liefern nach einer Saison
+Saatgut in Mengen, die für viele Chargen reichen — bei wilder Rauke sind 1 g bereits rund
+3.200 Korn, also fünf Trays.
+**Dafür:** passt zum bootstrapped Rahmen (Zeitwert 15 €/h, Startbudget unter 1.000 €); macht
+unabhängig von Mindestabnahmen und Lieferengpässen; die Mutterpflanzen sind nebenbei
+Anschauungsmaterial für Kundengespräche.
+**Dagegen/zu prüfen:** Eigenes Saatgut hat keine geprüfte Keimfähigkeit und keine
+mikrobiologische Kontrolle — für Ware, die roh gegessen wird, ist das ein ernstzunehmender
+Einwand (I-31 wird dann Pflicht statt Kür). Fremdbestäubung mit Wildformen ist bei Diplotaxis
+möglich. Und es dauert eine Saison, löst also kein Problem der ersten Charge.
+**Zu prüfen** — frühestens, wenn die erste Charge läuft und feststeht, welche Sorten dauerhaft
+im Programm bleiben.
+
+### I-31 · Keimprobe vor jeder Aussaat *(neu 23.08., aus Befund 4ai)*
+Alle sechs Rasterfelder werden besät, eine Reserve gibt es nicht (Befund 4b) — fällt eine Sorte
+aus, bleibt das Feld für die ganze Charge leer. Der billigste Schutz dagegen ist ein
+**100-Korn-Test**: hundert Korn auf feuchtes Küchenpapier, nach der sortentypischen Keimzeit
+auszählen, Ergebnis notieren.
+**Dafür:** kostet Papier und fünf Minuten, macht aus der Herstellerangabe „Keimfähigkeit
+regelmäßig geprüft" eine eigene Zahl, und die Zahl gehört ohnehin ins Rechenmodell (sie
+korrigiert die Aussaatstärke, P-39). Besonders wertvoll bei Micro-Shiso, dessen Keimung als
+langsam und heikel gilt (P-41), und bei angebrochenen Gebinden aus der Vorsaison.
+**Dagegen:** verlängert den Vorlauf um die Keimzeit — der Test muss also vor dem Aussaatkalender
+laufen, nicht parallel dazu.
+**Aussichtsreich** — gehört als fester Schritt in die Chargenvorbereitung, spätestens sobald
+Saatgut länger als eine Saison gelagert wird oder aus Eigenvermehrung stammt (I-30).
 
 ---
 
