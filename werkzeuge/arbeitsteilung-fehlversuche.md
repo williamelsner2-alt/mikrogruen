@@ -16,6 +16,7 @@ kein offener Punkt (dafür sind `projekt/03-probleme.md` und `projekt/04-ideen.m
 |---|---|---|---|
 | F-01 | 22.08.2026 | Normaler Chat konnte Audit-Vorschläge nicht weiterbearbeiten | Ergebnisdokument war nur lokal abgelegt, nicht in der Ablage |
 | F-02 | 23.08.2026 | Desktop Commander ist installiert — trotzdem kein Shell-Zugriff auf den Rechner | Installiert ist nicht gleich verfügbar: entscheidend ist, **wo** der MCP-Server läuft |
+| F-03 | 23.08.2026 | Auto-Sicherung meldete einen Fehler, obwohl der Push erfolgreich war | Erfolgsmeldungen auf stderr plus `ErrorActionPreference = "Stop"` |
 
 ---
 
@@ -98,3 +99,42 @@ wird voraussichtlich auch in neue Cowork-Sessions durchgereicht.
 3. **Die Auflösung des Widerspruchs gehört in die Antwort.** Wenn Nutzer und Claude scheinbar
    Gegensätzliches behaupten, hat meist keiner unrecht — es fehlt eine Unterscheidung, und die
    zu benennen ist die eigentliche Antwort.
+
+---
+
+## F-03 · Geglückter Vorgang als Fehler protokolliert
+
+**Datum:** 23.08.2026
+
+**Symptom:** Der erste Probelauf der Auto-Sicherung schrieb ins Protokoll
+`FEHLER: To https://github.com/williamelsner2-alt/mikrogruen.git`. Der Commit war da, aber es
+sah nach einem fehlgeschlagenen Push aus. Die Gegenprobe zeigte das Gegenteil:
+`git status --short --branch` meldete `## main...origin/main`, also lokaler Stand und
+Fernstand gleichauf — **der Push war erfolgreich.**
+
+**Ursache:** `git push` schreibt seine Fortschrittsmeldungen (`To https://…`, `main -> main`)
+auch im Erfolgsfall nach **stderr**, nicht nach stdout. Das Skript hatte
+`$ErrorActionPreference = "Stop"` gesetzt; damit verwandelt PowerShell jede stderr-Zeile eines
+nativen Programms in einen Abbruch. Der `catch`-Zweig protokollierte also den ersten
+Erfolgs-Fortschrittstext als Fehlermeldung.
+
+**Korrektur:** `$ErrorActionPreference = "Continue"` und ausdrückliche Prüfung von
+`$LASTEXITCODE` nach jedem git-Aufruf. Zweiter Lauf: `Push OK`.
+
+**Zweiter Fund desselben Tages (gleiche Familie):** `Register-ScheduledTask` scheiterte mit
+„Zugriff verweigert", weil es ohne Administratorrechte nicht in den Wurzelordner der
+Aufgabenplanung schreiben darf. Der klassische Weg `schtasks /Create` genügt dagegen im eigenen
+Benutzerkontext und war sofort erfolgreich — Administratorrechte waren gar nicht nötig.
+
+**Was das für den Leitstand bedeutet:**
+
+1. **Ein Exit-Code ist der Wahrheitsträger, nicht der Textkanal.** Programme schreiben
+   Fortschritt und Diagnose regelmäßig nach stderr; wer stderr mit Fehlschlag gleichsetzt, baut
+   Fehlalarme ein. Bei Automatisierungen immer den Rückgabewert prüfen.
+2. **Jede Automatik muss gegengeprüft werden, nicht nur ausgeführt.** Hätte der Probelauf nur
+   „lief durch" gemeldet, wäre der Fehlalarm unentdeckt geblieben — und beim ersten echten
+   Push-Problem hätte niemand mehr hingesehen. Der Vergleich Protokoll gegen tatsächlichen
+   Zustand (`git status`) war es, der die Wahrheit zeigte.
+3. **Erst den rechtearmen Weg versuchen.** Erhöhte Rechte sind kein Fortschritt, sondern eine
+   Nebenwirkung. Wo ein Weg im normalen Benutzerkontext funktioniert, bleibt er die bessere
+   Lösung — auch wenn Administratorrechte angeboten werden.
