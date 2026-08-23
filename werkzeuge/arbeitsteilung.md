@@ -1,7 +1,7 @@
 # Arbeitsteilung — Werkzeug, Modell, Aufwand
 
-*Stand: 23.08.2026 · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (Anlass: Sitzung vom 22.08.) und um die Kontingentdatei (23.08., Idee I-24)*
-*Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `werkzeuge/kontingent.md` (Momentaufnahme des Kontingentstands) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
+*Stand: 22.08.2026 · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (Anlass: Sitzung vom 22.08.)*
+*Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
 
 Zwei Entscheidungen fallen vor jedem Arbeitsschritt: **welches Werkzeug** und **welche Stufe**
 (Modell × Aufwand). Beide fallen hier einmal — nicht jedes Mal neu. Leitsatz: **Gespart wird am
@@ -19,9 +19,9 @@ die, die wiederholt werden muss.
 | Recherche, Denk- und Textarbeit | **normaler Chat im Projekt** | gleiche Qualität, deutlich sparsamer als Cowork |
 | Arbeit auf konkreten Webseiten (Shops, Portale, Formulare) | Claude in Chrome | Seitenkontext statt Kopieren |
 | Unterwegs erfassen (Ideen, Probleme, Kurzfragen) | iOS-App im Projekt | Pflegeregel 7 mobil |
-| Rechner-Wartung (Logs, Configs, Shell, geplante Aufgaben am Rechner) | Desktop Commander / Computernutzung, beaufsichtigt | Cowork-Fernsteuerung darf das nicht — **und kann es nicht:** die Geräte-Brücke bietet Dateien, Computernutzung, FreeCAD und Blender, aber keine Kommandozeile (festgestellt 23.08.) |
-| Außen-Material (Einseiter, Folien, Mockups) | Claude Design | Darstellung ja, Parametrik nein |
-| Präsentations-Renderings aus den 3D-Exporten | Blender-MCP | schon verbunden, nutzt die vorhandene Exportkette |
+| Rechner-Wartung (Logs, Configs, Shell) | Desktop Commander / Computernutzung, beaufsichtigt | Cowork-Fernsteuerung darf das nicht |
+| Außen-Material: Einseiter, Pitch-Folien, Produktkarten | Claude Design, punktuell | Entwurfsqualität ohne Designkenntnisse — nichts Parametrisches, Artefakte veralten still (Audit 24) |
+| Präsentations-Renderings aus `3d-export/` | Blender-MCP am Desktop, beaufsichtigt | fotorealistisch fürs Firmengespräch; hängt nicht an der Parameterkette (Audit 16) |
 | Firmware (später, nach P-01) | Claude Code | agentisch + Git |
 
 **Cowork nur, wenn Datei- oder Werkzeugzugriff gebraucht wird.** Reine Recherche oder Denkarbeit
@@ -40,7 +40,6 @@ Sonnet (mittel) · Opus (groß) · Fable (Spitze); Aufwandsregler nutzen, wo das
 | Register-/Doku-Pflege mit Skill, Umformatieren, Ablage-Routine | Sonnet niedrig – Sonnet hoch | Skill trägt die Regeln, das Modell führt aus |
 | Unterwegs-Erfassung, Kurzfragen | Sonnet niedrig – Sonnet mittel | kurz halten, abends prüfen |
 | Recherche (Fördermittel, Lieferanten, Datenblätter) | Sonnet mittel – Opus niedrig | Breite zählt mehr als Tiefe |
-| Skripte und Rechner-Einrichtung (Melder, Makros, geplante Aufgaben) | Sonnet hoch – Opus mittel | läuft später unbeaufsichtigt; ein Skript, das still Falsches schreibt, ist schlimmer als keins |
 | Rechen-/Modellarbeit (Arbeitsmappe, Maßketten, Statik) | Sonnet hoch – Opus mittel | Rechenfehler sind die teuersten Fehler |
 | CAD-Sitzungen (viele Werkzeugaufrufe) | Sonnet hoch – Opus mittel | Fable nur für Architekturfragen, nicht fürs Modellieren |
 | Strategie, IP, Verhandlung, Texte nach außen | Opus mittel – Fable mittel | Urteilskraft zählt |
@@ -68,7 +67,9 @@ gilt sie weiter direkt.
 5. **Erst denken lassen, dann bauen lassen.** Entwurf/Plan auf kleiner Stufe prüfen, Umsetzung
    auf der nötigen Stufe fahren — statt teurer Vollläufe ins Blaue.
 6. **Wiederholungen automatisieren:** Was zum dritten Mal gleich abläuft, wird Skill, Makro
-   oder geplante Aufgabe.
+   oder geplante Aufgabe. Beispiel seit 23.08.: Das Sichern des Arbeitsordners läuft von selbst
+   (`werkzeuge/auto-sicherung.md`) — solche Handgriffe gehören auf den Rechner, nicht in die
+   Erinnerung.
 7. **Die Untergrenze ist eine Grenze.** Bei Rechen-, Maßketten- und Rechtsfragen nie unter die
    Spanne gehen — Befund 4k–4s zeigt, was unentdeckte Fehler kosten.
 8. **Modellwechsel bündeln, nicht pendeln.** Ein Wechsel der Modellstufe *innerhalb* eines
@@ -80,37 +81,15 @@ gilt sie weiter direkt.
    Aufgabe auf zu hoher Stufe mitlaufen zu lassen, ist fast immer billiger als für sie extra
    herunter- und wieder hochzuschalten. Ausführlicher, noch zu prüfender Gedanke dazu: I-27
    im Ideenregister.
-9. **Unbeaufsichtigtes braucht Zwischenstände, keine Deckel.** Ein Lauf, der nach jedem
-   Teilergebnis sichert, darf beliebig lang laufen — ein Abbruch kostet dann nur das angefangene
-   Stück. Ein Lauf ohne Zwischensicherung braucht ein hartes Limit. Der Schichtdienst ist seit
-   23.08. der erste Fall: Auftragslimit gestrichen, Sicherung nach jedem Auftrag zur Bedingung
-   gemacht (Abschnitt 4, Punkt 1).
 
 ## 4. Kontingent-Bewirtschaftung
 
-**Was Claude sehen kann und was nicht** *(Stand 23.08., Recherche zu I-24)*:
-
-- **Den kontoweiten Kontingentstand kann Claude aus einer Session heraus nicht abfragen.** Es
-  gibt dafür keine offizielle Schnittstelle; der Wunsch, die Auslastung an Statusline und Hooks
-  durchzureichen, wurde bei Anthropic ausdrücklich abgelehnt. Was es gibt, sind Umwege, und die
-  stehen samt Grenzen in `projekt/04-ideen.md` unter I-24.
-- **Auch das eigene laufende Modell** ist von innen nicht sicher erkennbar (Nachtrag zu I-24).
-  Claude nennt die empfohlene Stufe, die laufende bestätigt William.
-- **Der eigene Sessionverbrauch** ist dagegen aufschlüsselbar („explain usage"). Für *fremde*,
-  bereits beendete Sessions — etwa einen Schichtdienst-Lauf — gibt es keine Zahl; deshalb
-  berichtet seit 23.08. jeder Lauf seinen Verbrauch selbst (Idee I-30).
-- **Die lokalen Werkzeuge** (`/usage`, `ccusage`) sehen ausschließlich Sitzungen, die auf dem
-  Rechner gelaufen sind. Cloud-Läufe und claude.ai-Chats tauchen dort **nie** auf — wer damit
-  plant, unterschätzt den Verbrauch systematisch.
-
-**Die Kontingentdatei.** `werkzeuge/kontingent.md` ist der vereinbarte Ort für den jeweils
-letzten gemessenen Stand. Sie trägt immer einen Zeitstempel, und die beiden Zahlen altern
-verschieden schnell: der **5-Stunden-Wert ist nach 15 Minuten unbrauchbar**, der
-**7-Tage-Wert hält Stunden**. Keine Datei, keine Zahlen oder ein zu alter Zeitstempel heißen
-„kein Wert" — dann wird normal gearbeitet und die Lücke offen benannt, statt einen alten Wert
-als aktuellen auszugeben. Bis ein automatischer Melder steht, bleibt die **Schwellen-Meldung von
-Hand** („Achtung 90 %") der verlässliche Weg; sie gehört zum Arbeitsablauf wie das Umbenennen
-der Chats.
+**Was Claude sehen kann und was nicht:** Den Stand des Konto-Kontingents (Max-Fenster) kann
+Claude aus einer Session heraus **nicht** auslesen — die Prozentanzeige lebt in der Oberfläche.
+Was geht: die Verteilung der Tokens *innerhalb* einer Session erklären lassen
+(Stichwort „explain usage"), und **Schwellen von Hand melden** — eine kurze Nachricht wie
+„Achtung 90 %" genügt, Claude schaltet dann auf Sicherungsmodus (Ergebnisse sichern, Übergabe,
+kompakte Schritte). Diese Meldung gehört zum Arbeitsablauf wie das Umbenennen der Chats.
 
 **Die Fenster ausnutzen statt an ihnen zu scheitern:** Das Kontingent regeneriert in
 Zeitfenstern. Konsequenzen:
@@ -119,12 +98,10 @@ Zeitfenstern. Konsequenzen:
    (Recherche, Rechnung, Dokumentation) laufen als geplante Aufgabe **„Schichtdienst
    Mikrogrün"** über die Warteschlange `werkzeuge/schicht-auftraege.md`. Standardzeit ~03:00,
    aber **frei einstellbar** (Aufgaben-Verwaltung oder Zuruf an Claude) und jederzeit **auf
-   Abruf** startbar. Seit 23.08. arbeitet ein Lauf die **Warteschlange leer** statt nur einen
-   Auftrag — tragfähig nur, weil er nach jedem Auftrag sichert (Sparregel 9). Eine
-   Kontingent-Bremse ist im Aufgaben-Prompt bereits angelegt und greift, sobald
-   `werkzeuge/kontingent.md` frische Werte führt. Ausbaustufen im Ideenregister: I-24
-   (Sichtbarkeit), I-25 (Git-Brücke, damit auch Cloud-Läufe den Spiegel erreichen), I-26
-   (kontingentgesteuerte Betriebsmodi), I-30 (Verbrauchsmessung je Lauf).
+   Abruf** startbar — die Schicht gehört in die Stunden, in denen William das Kontingent nicht
+   selbst braucht, nicht zwingend in die Nacht. Ausbaustufen dazu im Ideenregister: I-25
+   (Git-Brücke, damit auch Cloud-Läufe den Spiegel erreichen) und I-26 (kontingentgesteuerte
+   Betriebsmodi).
 2. **Interaktive Fenster für Interaktives.** Tagsüber die Stufen-Spannen aus Abschnitt 2
    fahren; Spitzenmodelle bewusst und selten (Zeile „Grundsatzentscheidungen").
 3. **Vor großen Sitzungen: Fenster prüfen.** Eine Fable-max-Sitzung nicht am Ende eines fast
@@ -132,7 +109,3 @@ Zeitfenstern. Konsequenzen:
 4. **Abbruch ist kein Verlust, wenn übergeben wurde.** Das Übergabe-Ritual (`chat-uebergabe`)
    macht jede Unterbrechung folgenlos — deshalb gilt: lieber bei 90 % sauber übergeben als bei
    100 % abreißen.
-5. **Was einmal läuft, läuft weiter.** Eine geplante Aufgabe oder Wiedervorlage verbraucht
-   Kontingent nach ihrem eigenen Takt, auch wenn die Absicht sich geändert hat — und ein
-   laufender Cloud-Lauf ist von einer anderen Session aus **nicht abbrechbar** (F-03 in
-   `werkzeuge/arbeitsteilung-fehlversuche.md`). Wer etwas plant, plant auch das Abräumen mit.

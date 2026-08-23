@@ -103,6 +103,7 @@ Alles Weitere nur, wenn das Thema es verlangt.
 | `leitstand.md` | Rollen, Grenzen und Kickoff-Text des Leitstands (Aufnahme, Einordnung, Delegation) |
 | `projekt-instructions.md` | Referenzkopie der Projekt-Instructions — wird von Hand in die Projekteinstellungen eingefügt |
 | `git-einrichtung.md` | Versionierung des Arbeitsordners: erledigte Vorbereitung und die drei Schritte am Rechner |
+| `auto-sicherung.md` | automatische Git-Sicherung des Arbeitsordners (Aufgabenplanung, Skript, Bedienung) |
 
 ---
 

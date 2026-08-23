@@ -1,6 +1,6 @@
 # Git-Einrichtung für den Arbeitsordner
 
-*Stand: 23.08.2026 · **eingerichtet und erst-gepusht am 22./23.08.2026 ✓** (Audit-Vorschlag 20; FCBak-Teil von Vorschlag 4 ebenfalls erledigt) · Ausbaustufe: I-25 (Git-Brücke für Cloud-Sessions) · ab jetzt genügt nach jedem Arbeitsstand: `git add . && git commit -m "…" && git push`*
+*Stand: 23.08.2026 · **eingerichtet und erst-gepusht am 22./23.08.2026 ✓** (Audit-Vorschlag 20; FCBak-Teil von Vorschlag 4 ebenfalls erledigt) · Ausbaustufe: I-25 (Git-Brücke für Cloud-Sessions) · das Sichern nach jedem Arbeitsstand übernimmt seit 23.08. die Automatik aus `werkzeuge/auto-sicherung.md` — von Hand nur noch für benannte Meilensteine*
 *Nachbardokumente: `projekt/03-probleme.md` P-32 · `projekt/04-ideen.md` I-25 · `berichte/workflow-audit-v2-2026-08-22.md` (Vorschläge 4, 20, 21)*
 
 **Was schon erledigt ist (22.08., aus Cowork):** Eine `.gitignore` liegt im Ordner
@@ -92,7 +92,9 @@ GitHub-Seite kopieren und `git remote set-url origin …` setzen.
 **Reihenfolge der Fehler ist selbst eine Information:** Kommt die Meldung vom Netzwerk (URL,
 Anmeldung), ist der lokale Teil — Commit und Branch — bereits in Ordnung.
 
-Ab dann genügt nach jedem Commit ein `git push`. Das ist das Fundament für I-25: Sobald das
+Ab dann genügt nach jedem Commit ein `git push` — und seit dem 23.08. übernimmt das die
+automatische Sicherung (`werkzeuge/auto-sicherung.md`), sodass Commit und Push von selbst
+passieren. Das ist zugleich das Fundament für I-25: Sobald das
 Repository online liegt, kann später auch eine Cloud-Session (Schichtdienst) den Stand ziehen —
 die sichere Ablage der Zugangsdaten für unbeaufsichtigte Läufe ist dort der noch offene Punkt
 und wird **nicht** jetzt eingerichtet.
