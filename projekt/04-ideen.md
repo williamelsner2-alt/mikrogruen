@@ -1,6 +1,6 @@
 # Ideenregister
 
-*Stand: 22.08.2026 · lebendes Dokument*
+*Stand: 23.08.2026 · lebendes Dokument*
 *Nachbardokumente: was nicht stimmt in `projekt/03-probleme.md`, Stand in `projekt/01-status.md`,
 Regeln in `technik/konstruktionskriterien.md`*
 
@@ -52,10 +52,13 @@ mit Datum und Verweis auf das Ergebnis versehen.
 | I-21 | Trockenlaufschutz und Füllstandsgeber | Sicherheit | aussichtsreich | eigene Überlegung |
 | I-22 | Modulkennung im Steckverbinder | Steuerung | zu prüfen | eigene Überlegung |
 | I-23 | Wanne mit waagerechtem Rand, trapezförmige Wände | Konstruktion | aussichtsreich | P-33 |
-| I-24 | Kontingent-Sichtbarkeit für Claude | Werkzeug | zu prüfen | Sitzung 22.08. |
+| I-24 | Kontingent-Sichtbarkeit für Claude | Werkzeug | **entschieden** | Sitzung 22.08. |
 | I-25 | Git-Brücke: Spiegel auch für Cloud-Sessions erreichbar | Werkzeug | zu prüfen | Schichtdienst-Grenze |
 | I-26 | Kontingentgesteuerte Betriebsmodi | Werkzeug | Notiz | Sitzung 22.08. |
 | I-27 | Arbeitsplan-Workflow: Triage, Stufen-Bündelung, Dispatch, Zusammenführung | Werkzeug | zu prüfen | Sitzung 22.08. (Modellwechsel-Kosten) |
+| I-28 | Lüfternachlauf als Trocknungsschritt nach der Reinigung | Hygiene | aussichtsreich | Befund 4ah |
+| I-29 | Wanne walzblank (2B) statt gebürstet | Fertigung | aussichtsreich | Befund 4ah |
+| I-30 | Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch | Werkzeug | aussichtsreich | Williams Frage 23.08. |
 
 ---
 
@@ -82,6 +85,51 @@ fälschlich von „wir laufen auf Sonnet" aus, während tatsächlich Fable 5 Max
 gelöst ist, gilt: Claude nennt die empfohlene Stufe, die aktuell laufende Stufe bestätigt
 William.
 
+**Nachtrag 23.08. — Williams Ansätze abgeholt, Reife auf *entschieden*:** Der oben verlangte
+Schritt ist erledigt. William zu den vier vorgelegten Wegen:
+
+- **Notizdatei von Hand: verworfen.** Begründung wörtlich sinngemäß: „Ich möchte, dass alles
+  ohne meinen ständigen Eingriff läuft." Damit ist die Anforderung an jede Lösung geschärft —
+  **automatisch oder gar nicht**; eine Datei, die William selbst pflegt, ist nur die bisherige
+  „Achtung 90 %"-Meldung in Dateiform und löst nichts.
+- **Browser liest die Anzeige: nützlich**, aber als alleiniger Weg zu schwach (setzt offenen
+  Browser voraus).
+- **Lokales Skript: war einer seiner eigenen Gedanken.**
+- **Neue Frage von ihm:** ob der Verbrauch *einer abgeschlossenen Aufgabe* einsehbar ist. Das
+  ist eine andere Größe als das Restkontingent und steht jetzt als eigene Idee **I-30**.
+
+**Was die Recherche am 23.08. ergeben hat** (Rahmenbedingungen, an denen sich jede Lösung
+messen muss):
+
+| Weg | Was er liefert | Grenze |
+|---|---|---|
+| Claude-Code-Statusline | `rate_limits.five_hour` / `.seven_day`, kontoweit, ohne Zugangsdaten und ohne Zusatzanfrage — die Werte kommen aus den Antwort-Kopfzeilen der API | läuft nur, während Claude Code läuft. William: **installiert, kaum benutzt** |
+| Undokumentierter Endpunkt `api/oauth/usage` mit Token aus `~/.claude/.credentials.json` | dieselben Zahlen ohne laufende Sitzung | von der Gemeinschaft gefunden, nicht dokumentiert, widersprüchliche Berichte zur Funktion; Zugangsdaten im Spiel. Nur als Rückfallebene, muss ohne Schaden scheitern dürfen |
+| Claude in Chrome auf `claude.ai/settings/usage` | die maßgebliche Anzeige selbst | braucht offenen Browser und laufende Sitzung |
+
+Ein **offizieller** programmatischer Weg existiert nicht: Der Wunsch, die Auslastung in die
+Statusline-Daten und in Hooks zu geben, wurde bei Anthropic als „not planned" geschlossen.
+
+**Zwei strukturelle Befunde, die die Architektur bestimmen:**
+
+1. **Diese Cowork-Session hat keine Shell auf Williams Rechner.** Die Geräte-Brücke bietet
+   Dateizugriff im verbundenen Ordner, Computernutzung, FreeCAD und Blender — aber keine
+   Kommandozeile. Ein lokales Skript ist deshalb **nicht** von Cowork aus zu bauen, sondern in
+   Claude Desktop über Desktop Commander (`werkzeuge/arbeitsteilung.md`, Abschnitt 1, Zeile
+   „Rechner-Wartung").
+2. **Der Schichtdienst erreicht den Rechner nie** (dieselbe Grenze wie I-25). Eine Datei auf dem
+   Rechner nützt ihm nichts; nur die Projektablage erreicht ihn. Der Wert muss also von einer
+   Session, die beides sieht, in die Ablage geschoben werden — oder über die Git-Brücke I-25.
+
+**Verfallsregel, die in jede Lösung gehört:** Der **5-Stunden-Wert ist wertlos, sobald er alt
+ist** (das Fenster verschiebt sich laufend), der **7-Tage-Wert verträgt Stunden**. Jeder
+gespeicherte Stand braucht deshalb einen Zeitstempel, und wer ihn liest, muss die beiden Zahlen
+unterschiedlich behandeln statt sie gemeinsam als „Kontingentstand" zu lesen.
+
+**Entschieden ist das Ob, nicht das Wie** — die Wahl zwischen Statusline-Weg (setzt voraus, dass
+Claude Code regelmäßig läuft), lokalem Dienst (unabhängig, aber undokumentierter Endpunkt) und
+Browser-Abfrage steht noch aus.
+
 ### I-25 · Git-Brücke: Spiegel auch für Cloud-Sessions erreichbar
 Der Schichtdienst läuft in der Cloud und erreicht Williams Rechner nie — unabhängig davon, ob
 er an, aus oder im Standby ist (die Aufgabe hat bewusst keine Gerätebindung, sonst liefe sie
@@ -96,6 +144,10 @@ Server/DIY-Host statt GitHub.
 **Nachtrag 22.08.:** Vorbereitung erledigt — `.gitignore` liegt im Arbeitsordner, die drei
 Schritte am Rechner stehen in `werkzeuge/git-einrichtung.md`. Der heikle Punkt
 (Zugangsdaten für unbeaufsichtigte Sessions) bleibt bewusst offen.
+
+**Nachtrag 23.08.:** I-24 hängt an derselben Grenze. Wird die Git-Brücke gebaut, ist sie auch
+der Transportweg für den Kontingentstand zum Schichtdienst — beide Ideen teilen sich dann eine
+Lösung statt zwei zu brauchen.
 
 ### I-26 · Kontingentgesteuerte Betriebsmodi
 Aufbauend auf I-24: Wenn der Kontingent-Stand (oder wenigstens die Fenster-Uhrzeiten) für
@@ -133,6 +185,36 @@ angewendet bei zwei ungleichen Aufgaben (erkannte richtig, dass Bündelung sich 
 lohnt). Bleibt **zu prüfen** — noch kein Fall mit wirklich vielen gleichzeitigen Aufgaben
 getestet.
 
+### I-30 · Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch *(neu 23.08.)*
+Williams Frage: „Kannst du einsehen, wie viele Token eine Aufgabe nach Abschluss verbraucht
+hat?" — Der ehrliche Stand: **innerhalb** einer laufenden Session ja (der Skill `explain-usage`
+schlüsselt den Verbrauch der eigenen Sitzung auf), für eine **fremde, bereits beendete** Session
+nein. Die Aufgaben-Verwaltung liefert zu einem Schichtdienst-Lauf nur Status und Zeitstempel,
+keine Tokenzahlen; und die lokalen Verbrauchswerkzeuge (`/usage`, `ccusage`) sehen ausschließlich
+Sitzungen, die **auf dem Rechner** gelaufen sind — Cloud-Läufe und claude.ai-Chats tauchen dort
+grundsätzlich nicht auf.
+
+**Die Idee:** Was von außen nicht abfragbar ist, kann jeder Lauf von innen selbst berichten. Der
+Schichtdienst (und jede andere unbeaufsichtigte Aufgabe) ergänzt seine Abschlussnotiz um eine
+Zeile Verbrauch und schreibt sie in die Ablage. Nach ein paar Wochen entsteht daraus, was heute
+fehlt: **was ein Auftragstyp tatsächlich kostet** — Recherche gegen Rechnung gegen
+Dokumentation, groß gegen klein.
+
+**Dafür:** braucht keinen Endpunkt, keine Zugangsdaten und kein Werkzeug, das es noch nicht gibt
+— nur eine Zeile mehr im Aufgaben-Prompt; ist **heute** umsetzbar, unabhängig von I-24. Und es
+misst die Größe, die für die Stufenwahl (`werkzeuge/arbeitsteilung.md`, Abschnitt 2) und für die
+Bündelung (I-27) wirklich zählt: nicht wie voll der Tank ist, sondern was eine Fahrt verbraucht.
+Zusammen mit I-24 ergibt das erst die vollständige Steuerung für I-26 — Füllstand *und*
+Verbrauch.
+
+**Dagegen/zu prüfen:** Ob die Zahl, die eine Session über sich selbst sieht, vollständig ist —
+die Abschlussnotiz entsteht vor dem Sitzungsende, die letzten Schritte fehlen also
+zwangsläufig. Ob die Werte zwischen Oberflächen (Cowork-Cloud, Chat, Desktop) überhaupt
+vergleichbar sind. Und ob die Selbstauskunft belastbar ist oder nur geschätzt — das ist am
+ersten Lauf zu prüfen, nicht anzunehmen.
+**Aussichtsreich** — der billigste Schritt in Richtung I-26 und der einzige, der ohne
+undokumentierte Schnittstellen auskommt.
+
 ---
 
 ## Mechanik und Aufbau
@@ -164,6 +246,14 @@ ohne die Trays zu berühren, und die Wanne fasst auch verschüttetes Substrat.
 **Dagegen:** vier verschieden hohe Wände, also vier verschiedene Zuschnitte statt zweier Paare —
 etwas mehr Aufwand beim Schachteln.
 **Aussichtsreich**, sobald die Modulgeometrie sonst steht.
+
+**Nachtrag 23.08. (Befund 4ah):** Die Idee hat ein zweites, stärkeres Argument bekommen. Solange
+die Wanne als Ganzes gekippt ist, schlägt **jede** Neigungserhöhung voll auf die
+Eckhöhendifferenz durch (2°/1° → 23 mm, 2°/1,5° → 26,9 mm, 3°/1,5° → 34,5 mm) und frisst die
+Trayfreiheit. Mit waagerechtem Rand kostet mehr Neigung nur Wannentiefe an der tiefen Ecke.
+**I-23 ist damit die Voraussetzung für jede größere Neigungserhöhung** — nicht nur eine
+Verbesserung der Aufkantung. Für die empfohlene kleine Korrektur (quer 1° → 1,5°, +3,9 mm) ist
+sie nicht zwingend, aber vorher zu prüfen, ob die 3,9 mm im CAD frei sind.
 
 ### I-20 · Rack als Vorlage für ein Wandregal
 Ein einetagiges Modul an der Wand, ohne Ständerwerk — als kleinstes verkaufbares Produkt für
@@ -248,6 +338,44 @@ Ein Schwimmerschalter kostet wenige Euro.
 Bei Steuerungsausfall muss man von Hand gießen können, ohne das Rack zu zerlegen. Ein
 Absperrhahn und ein Schnellkupplungspunkt am Vorlauf genügen.
 **Aussichtsreich**, kostet fast nichts, rettet im Zweifel eine Charge.
+
+### I-28 · Lüfternachlauf als Trocknungsschritt nach der Reinigung *(neu 23.08., aus Befund 4ah)*
+Die Neigungsrechnung zu P-06 hat gezeigt, dass keine Neigung die festgehaltenen Resttropfen
+entfernt — sie verschwinden nur durch Verdunstung. Bei 22 °C und der hohen Feuchte im Modul
+braucht eine rund 1 ml große Pfütze **etwa 17 Stunden in ruhender Luft**, mit bewegter Luft
+(1 m/s) noch **rund 10 Stunden**, bei 60 % relativer Feuchte und Lüfter etwa 5 Stunden. Ein
+dünner Restfilm dagegen ist in 10–35 Minuten weg.
+**Die Idee:** Der ohnehin vorhandene Lüfter bekommt ein Nachlaufprogramm — nach jeder Reinigung
+(und optional nach dem letzten Sprühzyklus vor der Dunkelphase) läuft er eine feste Zeit auf
+voller Drehzahl, bis die Wanne trocken ist. Das ist reine Software, kostet kein Bauteil.
+**Dafür:** billigster denkbarer Hebel gegen Biofilm im Spritzbereich; wirkt auf genau den Rest,
+den die Geometrie nicht wegbekommt; die Trocknungszeit ist über den Lüfter direkt steuerbar.
+**Dagegen/zu prüfen:** Der Lüfter muss die Wannenfläche überstreichen, nicht nur den Bestand —
+das berührt P-22 (Luftführung noch nicht konstruiert). Außerdem trocknet mitlaufende Luft auch
+die Kultur; der Nachlauf gehört deshalb in Reinigungs- und Dunkelphasen, nicht in den
+Wachstumsbetrieb. Die Trocknungszeit ist an der ersten Charge zu messen, nicht zu schätzen.
+**Aussichtsreich** — gehört in die Steuerung V1, sobald P-01 geklärt ist.
+
+### I-29 · Wanne walzblank (2B) statt gebürstet *(neu 23.08., aus Befund 4ah)*
+Die Aufgabenstellung zu P-06 ging selbstverständlich von „gebürstetem V2A" aus. Das ist keine
+notwendige Festlegung, und für die Wanne ist es die schlechtere.
+
+| Ausführung | typ. Ra | Eigenschaft |
+|---|---|---|
+| **2B walzblank (Lieferzustand)** | **0,30–0,50 µm** | richtungsfrei, kostet nichts extra |
+| Schliff Korn 240 | 0,38 µm | gerichtete Rillen, quer gemessen deutlich rauer |
+| Schliff Korn 180 | 0,76 µm | knapp unter der 0,8-µm-Grenze |
+
+Alle drei erfüllen die Normgrenze Ra ≤ 0,8 µm; im Bereich 0,1–2 µm war in der
+Reinigbarkeitsuntersuchung der Informationsstelle Edelstahl Rostfrei kein signifikanter
+Unterschied messbar. Der Unterschied liegt in der **Richtung**: Schliffrillen lassen Wasser
+längs gut laufen und halten es quer fest — an einer Wanne mit diagonaler Fallinie ist das ein
+Nachteil ohne Gegenwert.
+**Dafür:** 2B ist der Lieferzustand, also kostenlos, glatter und richtungsfrei.
+**Dagegen:** optisch weniger ansprechend — für ein Bauteil, das im geschlossenen Modul liegt und
+nur zum Reinigen herauskommt, spielt das keine Rolle. Für die sichtbaren Außenflächen kann
+weiter gebürstet werden; die beiden Entscheidungen sind unabhängig.
+**Aussichtsreich** — gehört zusammen mit P-09 in die Fertigungsunterlage entschieden.
 
 ---
 

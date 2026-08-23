@@ -1,6 +1,6 @@
 # Git-Einrichtung für den Arbeitsordner
 
-*Stand: 22.08.2026 · bereitet Audit-Vorschlag 20 vor (und den FCBak-Teil von Vorschlag 4); Ausbaustufe: I-25 (Git-Brücke für Cloud-Sessions)*
+*Stand: 23.08.2026 · **eingerichtet und erst-gepusht am 22./23.08.2026 ✓** (Audit-Vorschlag 20; FCBak-Teil von Vorschlag 4 ebenfalls erledigt) · Ausbaustufe: I-25 (Git-Brücke für Cloud-Sessions) · ab jetzt genügt nach jedem Arbeitsstand: `git add . && git commit -m "…" && git push`*
 *Nachbardokumente: `projekt/03-probleme.md` P-32 · `projekt/04-ideen.md` I-25 · `berichte/workflow-audit-v2-2026-08-22.md` (Vorschläge 4, 20, 21)*
 
 **Was schon erledigt ist (22.08., aus Cowork):** Eine `.gitignore` liegt im Ordner
@@ -48,22 +48,49 @@ das war im Audit als Grenze benannt und ist in Ordnung.
 ## 3. Privates GitHub-Repository als Off-Site-Sicherung (empfohlen, optional)
 
 Auf github.com ein **privates** Repository `mikrogruen` anlegen (**ohne** README — sonst hat
-das Repository schon einen Commit und der erste Push wird abgelehnt), dann — `DEIN-GITHUB-NAME`
-durch den echten GitHub-Benutzernamen ersetzen, nicht wörtlich übernehmen:
+das Repository schon einen Commit und der erste Push wird abgelehnt).
+
+> **Achtung, häufigster Stolperstein:** GitHub zeigt nach dem Anlegen die fertige URL des
+> Repositories an (`https://github.com/…/mikrogruen.git`). **Diese anzeigte URL kopieren** und
+> im Befehl unten einsetzen — nie einen Platzhalter aus einer Anleitung wörtlich übernehmen.
+> Genau das ist am 22.08. passiert: `<benutzername>` landete unverändert in der Remote-URL,
+> der Push scheiterte mit „error: 400".
 
 ```
-git remote add origin https://github.com/DEIN-GITHUB-NAME/mikrogruen.git
+git remote add origin <hier die von GitHub angezeigte URL einsetzen>
+git remote -v
 git push -u origin main
 ```
+
+Das `git remote -v` dazwischen ist die Kontrolle: Dort muss die echte URL stehen, ohne spitze
+Klammern. Beim ersten erfolgreichen Push öffnet sich in der Regel ein Anmeldefenster
+(Git Credential Manager → „Sign in with your browser"); nach einmaliger GitHub-Anmeldung merkt
+Windows die Zugangsdaten.
 
 **Wenn der Push scheitert:** „src refspec main does not match any" heißt: **es gibt noch
 keinen Commit** — meist, weil `git commit` mangels gesetzter Identität scheiterte (Abhilfe:
 `git config` wie in Schritt 1, dann `git add .` und `git commit` wiederholen; `git status` mit
 „No commits yet" bestätigt den Fall — am 22.08. genau so passiert). `git branch` zeigt, ob der
 Branch wirklich `main` heißt (sonst: `git branch -M main`); `git remote -v` zeigt, ob die URL
-stimmt (sonst: `git remote set-url origin <richtige URL>`); steht in der Meldung „Updates were
-rejected", wurde das Repository doch mit README angelegt — dann
-`git pull origin main --allow-unrelated-histories` und erneut pushen.
+stimmt (sonst: `git remote set-url origin <richtige URL>`) — **„The requested URL returned error: 400"
+bedeutet fast immer eine unsinnige URL, typischerweise ein wörtlich übernommener Platzhalter**;
+steht in der Meldung „Updates were rejected", wurde das Repository doch mit README angelegt —
+dann `git pull origin main --allow-unrelated-histories` und erneut pushen.
+
+**„remote: Repository not found" bei einem privaten Repository** heißt fast nie „gelöscht",
+sondern **nicht angemeldet oder falsches Konto**: GitHub verbirgt private Repositories vor
+Unbefugten und meldet sie als nicht vorhanden statt „kein Zugriff". Prüfung in dieser
+Reihenfolge: (1) die URL im Browser öffnen — lädt die Seite, während man bei GitHub angemeldet
+ist, stimmt sie und es ist ein Anmeldeproblem; (2) Windows-Anmeldeinformationsverwaltung öffnen
+(`control /name Microsoft.CredentialManager` → Windows-Anmeldeinformationen), Eintrag
+`git:https://github.com` entfernen, erneut pushen — dann erscheint das Anmeldefenster neu
+(existiert der Eintrag gar nicht, gab es schlicht noch nie eine erfolgreiche Anmeldung: einfach
+erneut pushen, das Anmeldefenster öffnet sich von selbst — genau so am 23.08. gelöst);
+(3) lädt die Seite nicht, stimmt Benutzername oder Repository-Name nicht — echte URL von der
+GitHub-Seite kopieren und `git remote set-url origin …` setzen.
+
+**Reihenfolge der Fehler ist selbst eine Information:** Kommt die Meldung vom Netzwerk (URL,
+Anmeldung), ist der lokale Teil — Commit und Branch — bereits in Ordnung.
 
 Ab dann genügt nach jedem Commit ein `git push`. Das ist das Fundament für I-25: Sobald das
 Repository online liegt, kann später auch eine Cloud-Session (Schichtdienst) den Stand ziehen —

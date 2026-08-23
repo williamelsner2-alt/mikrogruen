@@ -182,7 +182,7 @@ Freier Markdown-Editor direkt auf `Desktop\Claude\mikrogruen\`: Volltextsuche ü
 **Vorteile:** Kostenlos (auch kommerziell); keine Formatänderung, keine Migration; Überblick ohne Claude-Kontingent.
 **Nachteile:** Verführt zum lokalen Editieren (Disziplinfrage); Handy-Sync kostet ~4–5 €/Monat oder unterbleibt.
 
-### 20 · Git + GitHub (privates Repository) für den Arbeitsordner ◐ *(vorbereitet 22.08. — `.gitignore` liegt im Ordner, drei Schritte am Rechner in `werkzeuge/git-einrichtung.md`; Grundlage für I-25)*
+### 20 · Git + GitHub (privates Repository) für den Arbeitsordner ✓ *(eingerichtet 22./23.08. — Repository `williamelsner2-alt/mikrogruen` privat auf GitHub; Erst-Push verifiziert: origin/main = lokaler Commit, 111 Dateien versioniert, alle `.gitignore`-Ausschlüsse greifen. Die vier Fehlversuche auf dem Weg sind als Diagnoseblöcke in `werkzeuge/git-einrichtung.md` konserviert)*
 
 Versionskontrolle über den gesamten Ordner inklusive CAD, Makros und Arbeitsmappe: Jeder Arbeitsstand ein benannter Schnappschuss, jeder frühere Stand wiederherstellbar, privates GitHub-Repository als kostenloses Off-Site-Backup. Ersetzt strukturell, was `_alt_`-Ordner und FCBak-Dateien improvisieren.
 **Vorteile:** Kostenlos; löst P-32 an der Wurzel mit; Schutz gegen Rechnerdefekt und Fehlbearbeitung; Kernkompetenz, die spätestens mit der Firmware (11) gebraucht wird.
@@ -253,6 +253,6 @@ Eine tägliche geplante Aufgabe (~03:00, Cloud, Push-Meldung morgens) arbeitet d
 
 ## Wenn du wenig Zeit hast
 
-Was jetzt noch offen ist: **26-Rest** (Chats löschen/umbenennen, Gedächtnis korrigieren — inkl. des bestätigt falschen uv-Eintrags —, `manifest/` und Stubs weg), **20** (git init nach `werkzeuge/git-einrichtung.md`, 10 min), **6** (Cowork-Projekt anlegen). Bewusst später: 8 (nur mit M365), 11, 15, 19, 22, 23, 27. *(Erledigt: 1, 2, 3, 4, 5, 7, 9, 10, 12, 13, 14, 17, 18, 24, 25, 28, 29 — vorbereitet: 16, 20, 26.)*
+Was jetzt noch offen ist: **26-Rest** (Chats löschen/umbenennen, Gedächtnis korrigieren — inkl. des bestätigt falschen uv-Eintrags —, `manifest/` und Stubs weg; `manifest/` fliegt dank `.gitignore` nie ins Repository) und **6** (Cowork-Projekt anlegen). Bewusst später: 8 (nur mit M365), 11, 15, 19, 22, 23, 27. *(Erledigt: 1, 2, 3, 4, 5, 7, 9, 10, 12, 13, 14, 17, 18, 20, 24, 25, 28, 29 — vorbereitet: 16, 26.)*
 
 *Rückmeldung weiter einfach per Nummer — für die gewählten Punkte gibt es je nach Wunsch eine Anleitung, oder ich richte sie direkt ein, soweit das aus Cowork heraus geht. Die CAD-Session ist über den Ordner `uebergabe/` inzwischen vollständig gegengelesen (Befund B9).*
