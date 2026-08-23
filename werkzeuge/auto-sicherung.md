@@ -36,6 +36,15 @@ schreibt, ist es unnötig; sobald eine zweite Quelle dazukommt (I-25, Cloud-Läu
 Push abgelehnt statt still zusammengeführt — das ist die sichere Reihenfolge und der Moment,
 diesen Punkt neu zu entscheiden.
 
+**Was die Automatik nicht mitnimmt, regelt die `.gitignore`** — sie gehört zum Aufbau, nicht
+zum Beiwerk: Sicherungskopien (`*.FCBak`), der Papierkorb (`_papierkorb/`, siehe
+`00-Uebersicht.md`), der private Konto-Export, und seit dem 23.08. auch **Sperrdateien
+geöffneter Office-Dokumente** (`~$*`). Letztere fielen auf, weil ein Lauf
+`~$mikrogruen-rack-modell.xlsx` mitcommittet hatte, während die Arbeitsmappe offen war; die
+Datei wurde mit `git rm --cached` aus dem Index genommen und bleibt auf der Platte liegen.
+**Merksatz:** Eine Ignorier-Regel muss stehen, *bevor* zum ersten Mal etwas Passendes im Ordner
+liegt — nachträglich entfernt sie nichts aus der Historie.
+
 ## Einrichtung — einmalig, zwei Minuten
 
 **Schritt 1:** Sicherstellen, dass `werkzeuge\git-autosicherung.ps1` im Arbeitsordner liegt.
@@ -51,6 +60,15 @@ schtasks /Create /TN "Claude Auto-Sicherung mikrogruen" ^
   /TR "\"C:\Users\Arbeit\Desktop\Claude\mikrogruen\werkzeuge\autosicherung.cmd\"" ^
   /SC MINUTE /MO 20 /F
 ```
+
+> **Achtung, dieser Block ist für `cmd.exe` geschrieben** — erkennbar am `^` als
+> Zeilenfortsetzung und an den escapeten `\"`. **Aus PowerShell kopiert scheitert er** mit
+> „Ungültige(s) Option/Argument"; dort gilt die einfache Form in *einer* Zeile:
+> `schtasks /Create /TN "Claude Auto-Sicherung mikrogruen" /TR "C:\Users\Arbeit\Desktop\Claude\mikrogruen\werkzeuge\autosicherung.cmd" /SC MINUTE /MO 20 /F`.
+> Die innere Verschachtelung braucht man ohnehin nur bei Leerzeichen im Pfad. Gemeldet vom
+> Nachbarprojekt claude-optimierung am 23.08., als es diese Anleitung nachbaute. **Merksatz
+> (dort als Beleg an E-16):** Befehlszeilen tragen unsichtbar ihre Ziel-Shell mit sich — eine
+> Anleitung muss sie nennen.
 
 Die Aufgabe läuft damit im Modus „nur interaktiv", also solange du angemeldet bist — genau dann,
 wenn sich Dateien ändern können. Administratorrechte sind **nicht** nötig; sie wären nur

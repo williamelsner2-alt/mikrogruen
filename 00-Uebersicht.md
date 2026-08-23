@@ -123,10 +123,9 @@ Neben dieser Projektablage gibt es eine gespiegelte Kopie unter
 | `cad/` | FreeCAD-Dateien und das Rastermakro — seit 21.08. der Speicherort des Modells |
 | `3d-export/` | STEP, OBJ, STL zum Anschauen und Weitergeben ohne FreeCAD |
 | `MikrogruenRack_Ansichten/` | gerenderte Ansichten je Rasterform |
-| `_alt_2026-08-19/` | überholte Vorversionen, nichts davon ist gültig — Verfallsdatum: erster Git-Commit (`werkzeuge/git-einrichtung.md`) |
 | `berichte/` | Audit- und Auswertungsberichte — seit 22.08. auch in der Projektablage gespiegelt |
 | `uebergabe/` | vollständiges Übergabepaket der CAD-Session vom 22.08. (Rohverlauf, Bilder, LIESMICH) |
-| `manifest/` | Konto-Datenexport — **enthält private Chats aller Projekte, sollte gelöscht werden** (Audit-Vorschlag 26) |
+| `_papierkorb/` | **aussortiert, wartet auf Löschung von Hand** (seit 23.08.) — Claude kann auf dem Rechner verschieben, aber nicht löschen. Inhalt, Herkunft und Regeln: `_papierkorb/00-LIESMICH.md`. Steht in der `.gitignore` und wird nie gepusht; dort liegen jetzt auch `manifest/` und `_alt_2026-08-19/` |
 
 **Die Projektablage führt.** Läuft der Ordner auseinander, wird er aus dem Projekt neu
 befüllt, nicht umgekehrt.
