@@ -1,7 +1,7 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
 *Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`;
-abends: Sessionname der Werkstatt = `[WERK] Werkstatt`) ·
+abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal) ·
 angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
@@ -67,6 +67,7 @@ aber ohne Echtzeit.
 | **Projektablage** (kanonisch) | alle Instanzen | `werkzeuge/schicht-auftraege.md` — William/Leitstand schreiben Aufträge, der Schichtdienst arbeitet sie ab und quittiert; `werkzeuge/kontingent.md` — Melder schreiben, Schicht und Sessions lesen |
 | **Spiegelordner** | Cowork, Claude Desktop, Rechner-Automatiken | Auto-Sicherung schreibt Logs; der geplante lokale Kontingent-Melder schreibt die Spiegel-Kopie von `kontingent.md` |
 | **Ordner `claude-optimierung`** (Nachbarprojekt) | Cowork-Sessions beider Projekte, Claude Desktop | Briefkasten-Erstzustellung 23.08. (`briefkasten/an-claude-optimierung.md`); Rückkanal dort: `briefkasten/an-werkstatt.md` |
+| **Poststelle** (projektübergreifend, neu 23.08.) | jede Instanz mit **einzeln von William bestätigter** Freigabe für `Claude\poststelle` — Cloud-Läufe nie | `poststelle/01-adressbuch.md` sagt, wer existiert und wie er heißt; unser Eingang ist `poststelle/postfach/an-mg-werkstatt.md`. Erste Nutzung 23.08.: Anfrage von `opt/leitstand` zur Schichtarbeit, beantwortet |
 | **GitHub-Repository** | künftig auch Cloud-Läufe (I-25) | noch nicht freigeschaltet — Zugangsdaten-Frage offen |
 
 **Postfach-Konvention für gerichtete Nachrichten** (wenn eine Instanz einer anderen etwas
@@ -98,6 +99,17 @@ Sammeldatei" (Abschnitt 4, Regel 3) wird überhaupt adressierbar.
 | **Schichtdienst** | geplante Cloud-Aufgabe (täglich, Zeit einstellbar) | arbeitet `werkzeuge/schicht-auftraege.md` ab, quittiert dort | kein Postfach — er liest nur, was sein gespeicherter Prompt nennt (F-05) | aktiv seit 22.08. |
 | **Fristen-Wiedervorlage** | geplante Cloud-Aufgabe (Monatserster) | Fristenabgleich gegen die Ablage | kein Postfach (F-05) | aktiv seit 22.08. |
 | **Büro** | Cowork-Session des Nachbarprojekts „Claude Umgebungs- und Projektoptimierung" (`[OPT]`) | Meta-Projekt Umgebungsoptimierung; führt dessen Sammeldateien; hat die allgemeinen Audit-Restpunkte übernommen und mit eigenen IDs registriert (quittiert 23.08.) | `claude-optimierung\briefkasten\an-claude-optimierung.md` (eigener Ordner) | aktiv seit 23.08. |
+
+**Zwei Ebenen, nicht eine:** Dieses Verzeichnis führt die Instanzen, die **an Mikrogrün**
+arbeiten. Wer über die Projektgrenze schreibt, braucht zusätzlich eine Adresse in der
+projektübergreifenden Poststelle (`C:\Users\Arbeit\Desktop\Claude\poststelle\`,
+Regeln in deren `00-poststelle.md`) — dort heißen alle Instanzen projektqualifiziert, weil es
+„Leitstand" und „Werkstatt" mehrfach gibt. Unsere Adressen dort: **`mg/werkstatt`** (Freigabe
+seit 23.08.) und **`mg/leitstand`** (Freigabe offen — bis dahin eingetragen, aber nicht
+erreichbar). Der Mikrogrün-Schichtdienst und die Fristen-Wiedervorlage stehen dort unter
+„bekannt, aber nicht erreichbar": Cloud-Läufe erreichen keinen lokalen Ordner. **Faustregel:**
+Post innerhalb von Mikrogrün bleibt in `werkzeuge/postfach/`; Post an ein anderes Projekt geht
+über die Poststelle.
 
 Neue Instanz oder geänderter Name: Steckbrief per Postfach an die Werkstatt; der Eintrag hier
 folgt (Pflegeregel: Abschnitt 5).
