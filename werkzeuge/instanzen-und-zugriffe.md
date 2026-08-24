@@ -1,7 +1,7 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
 *Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`;
-abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal) ·
+abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten) ·
 angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
@@ -67,7 +67,7 @@ aber ohne Echtzeit.
 | **Projektablage** (kanonisch) | alle Instanzen | `werkzeuge/schicht-auftraege.md` — William/Leitstand schreiben Aufträge, der Schichtdienst arbeitet sie ab und quittiert; `werkzeuge/kontingent.md` — Melder schreiben, Schicht und Sessions lesen |
 | **Spiegelordner** | Cowork, Claude Desktop, Rechner-Automatiken | Auto-Sicherung schreibt Logs; der geplante lokale Kontingent-Melder schreibt die Spiegel-Kopie von `kontingent.md` |
 | **Ordner `claude-optimierung`** (Nachbarprojekt) | Cowork-Sessions beider Projekte, Claude Desktop | Briefkasten-Erstzustellung 23.08. (`briefkasten/an-claude-optimierung.md`); Rückkanal dort: `briefkasten/an-werkstatt.md` |
-| **Poststelle** (projektübergreifend, neu 23.08.) | jede Instanz mit **einzeln von William bestätigter** Freigabe für `Claude\poststelle` — Cloud-Läufe nie | `poststelle/01-adressbuch.md` sagt, wer existiert und wie er heißt; unser Eingang ist `poststelle/postfach/an-mg-werkstatt.md`. Erste Nutzung 23.08.: Anfrage von `opt/leitstand` zur Schichtarbeit, beantwortet |
+| **Poststelle** (projektübergreifend, seit 24.08. über den Postboten) | alle eingetragenen Instanzen — **kein Direktzugriff mehr nötig**: Der Postbote (lokale Windows-Aufgabe des Nachbarprojekts, alle 30 Minuten) holt ab und liefert aus | **Ausgang:** `werkzeuge/postfach/an-poststelle.md` (Kopf mit Zieladresse `von mg/<name> an <projekt>/<name>`) · **Eingang:** unverändert `werkzeuge/postfach/an-<name>.md` · Adressbuch: `poststelle/01-adressbuch.md` |
 | **GitHub-Repository** | künftig auch Cloud-Läufe (I-25) | noch nicht freigeschaltet — Zugangsdaten-Frage offen |
 
 **Postfach-Konvention für gerichtete Nachrichten** (wenn eine Instanz einer anderen etwas
@@ -104,9 +104,10 @@ Sammeldatei" (Abschnitt 4, Regel 3) wird überhaupt adressierbar.
 arbeiten. Wer über die Projektgrenze schreibt, braucht zusätzlich eine Adresse in der
 projektübergreifenden Poststelle (`C:\Users\Arbeit\Desktop\Claude\poststelle\`,
 Regeln in deren `00-poststelle.md`) — dort heißen alle Instanzen projektqualifiziert, weil es
-„Leitstand" und „Werkstatt" mehrfach gibt. Unsere Adressen dort: **`mg/werkstatt`** (Freigabe
-seit 23.08.) und **`mg/leitstand`** (Freigabe offen — bis dahin eingetragen, aber nicht
-erreichbar). Der Mikrogrün-Schichtdienst und die Fristen-Wiedervorlage stehen dort unter
+„Leitstand" und „Werkstatt" mehrfach gibt. Unsere Adressen dort: **`mg/werkstatt`** und **`mg/leitstand`**. **Seit dem Umbau vom 24.08. braucht keine Instanz mehr eine
+Ordner-Freigabe für die Poststelle** — geschrieben wird in den eigenen Postausgang, der
+Postbote trägt weiter; dafür liegen zwischen Absenden und Ankommen bis zu 30 Minuten, und
+nur, solange Williams Rechner läuft. Der Mikrogrün-Schichtdienst und die Fristen-Wiedervorlage stehen dort unter
 „bekannt, aber nicht erreichbar": Cloud-Läufe erreichen keinen lokalen Ordner. **Faustregel:**
 Post innerhalb von Mikrogrün bleibt in `werkzeuge/postfach/`; Post an ein anderes Projekt geht
 über die Poststelle.
