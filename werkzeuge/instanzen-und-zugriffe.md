@@ -91,14 +91,14 @@ nicht anfasst). Der Steckbrief wird in dieses Verzeichnis übernommen. Erst dadu
 der Überblick über **Anzahl, Art und Namen** aller Instanzen — und „ein Schreiber je
 Sammeldatei" (Abschnitt 4, Regel 3) wird überhaupt adressierbar.
 
-| Name | Art | Lane / Aufgabe | Postfach | Stand |
-|---|---|---|---|---|
-| **William** | Mensch, Entscheider | alles — insbesondere die Nur-von-Hand-Punkte (Chats, Projektgedächtnis, Einstellungen, Bestellungen) | — (direkter Zuruf) | — |
-| **Werkstatt** | Cowork-Session „[WERK] Werkstatt" (Mikrogrün; so umbenannt 23.08., vorher „[DOKU] Workflow-Audit") | Umsetzung und Werkzeugbau; führt `werkzeuge/`-Doku, `berichte/`, `projekt/01-status.md` | `werkzeuge/postfach/an-werkstatt.md`; vom Büro zusätzlich `claude-optimierung\briefkasten\an-werkstatt.md` (es erreicht die Mikrogrün-Ablage nicht) | aktiv seit 22.08. |
-| **Leitstand** | Cowork-Session „[LEIT] Leitstand" | Aufnahme/Einordnung/Delegation; führt beide Register, `kontingent.md`, `schicht-auftraege.md` | `werkzeuge/postfach/an-leitstand.md` | aktiv seit 22.08. |
-| **Schichtdienst** | geplante Cloud-Aufgabe (täglich, Zeit einstellbar) | arbeitet `werkzeuge/schicht-auftraege.md` ab, quittiert dort | kein Postfach — er liest nur, was sein gespeicherter Prompt nennt (F-05) | aktiv seit 22.08. |
-| **Fristen-Wiedervorlage** | geplante Cloud-Aufgabe (Monatserster) | Fristenabgleich gegen die Ablage | kein Postfach (F-05) | aktiv seit 22.08. |
-| **Büro** | Cowork-Session des Nachbarprojekts „Claude Umgebungs- und Projektoptimierung" (`[OPT]`) | Meta-Projekt Umgebungsoptimierung; führt dessen Sammeldateien; hat die allgemeinen Audit-Restpunkte übernommen und mit eigenen IDs registriert (quittiert 23.08.) | `claude-optimierung\briefkasten\an-claude-optimierung.md` (eigener Ordner) | aktiv seit 23.08. |
+| Name | Art | **Chat-/Aufgabenname in der Oberfläche** | Lane / Aufgabe | Postfach | Stand |
+|---|---|---|---|---|---|
+| **William** | Mensch, Entscheider | — | alles — insbesondere die Nur-von-Hand-Punkte (Chats, Projektgedächtnis, Einstellungen, Bestellungen) | — (direkter Zuruf) | — |
+| **Werkstatt** | Cowork-Session (Mikrogrün) | `[WERK] Werkstatt` — **von William bestätigt 23.08.**; vorher „[DOKU] Workflow-Audit (übergeben 22.08.)", davor der automatische Titel „Prompt cowork workflow audit" | Umsetzung und Werkzeugbau; führt `werkzeuge/`-Doku, `berichte/`, `projekt/01-status.md` | `werkzeuge/postfach/an-werkstatt.md`; vom Büro zusätzlich `claude-optimierung\briefkasten\an-werkstatt.md` (es erreicht die Mikrogrün-Ablage nicht) | aktiv seit 22.08. |
+| **Leitstand** | Cowork-Session (Mikrogrün) | `[LEIT] Leitstand` — **unbestätigt**, William fragt nach | Aufnahme/Einordnung/Delegation; führt beide Register, `kontingent.md`, `schicht-auftraege.md` | `werkzeuge/postfach/an-leitstand.md` | aktiv seit 22.08. |
+| **Schichtdienst** | geplante Cloud-Aufgabe (täglich, Zeit einstellbar) | Aufgabenname „Schichtdienst Mikrogrün" — **selbst geprüft 24.08.** (Aufgaben-Verwaltung, `0 1 * * *`) | arbeitet `werkzeuge/schicht-auftraege.md` ab, quittiert dort | kein Postfach — er liest nur, was sein gespeicherter Prompt nennt (F-05) | aktiv seit 22.08. |
+| **Fristen-Wiedervorlage** | geplante Cloud-Aufgabe (Monatserster) | Aufgabenname „Fristen-Wiedervorlage" — **selbst geprüft 24.08.** (`0 6 1 * *`) | Fristenabgleich gegen die Ablage | kein Postfach (F-05) | aktiv seit 22.08. |
+| **Büro** | Cowork-Session des Nachbarprojekts „Claude Umgebungs- und Projektoptimierung" | **unbekannt** — dort als P-10 offen; der Auslöser dieser Spalte | Meta-Projekt Umgebungsoptimierung; führt dessen Sammeldateien; hat die allgemeinen Audit-Restpunkte übernommen und mit eigenen IDs registriert (quittiert 23.08.) | `claude-optimierung\briefkasten\an-claude-optimierung.md` (eigener Ordner) | aktiv seit 23.08. |
 
 **Zwei Ebenen, nicht eine:** Dieses Verzeichnis führt die Instanzen, die **an Mikrogrün**
 arbeiten. Wer über die Projektgrenze schreibt, braucht zusätzlich eine Adresse in der
@@ -111,6 +111,37 @@ nur, solange Williams Rechner läuft. Der Mikrogrün-Schichtdienst und die Frist
 „bekannt, aber nicht erreichbar": Cloud-Läufe erreichen keinen lokalen Ordner. **Faustregel:**
 Post innerhalb von Mikrogrün bleibt in `werkzeuge/postfach/`; Post an ein anderes Projekt geht
 über die Poststelle.
+
+### Die Spalte, die nur William füllen kann *(neu 24.08., Lehre aus dem „Büro"-Problem)*
+
+**Eine Instanz kann ihren eigenen Chat-Titel nicht sehen.** Sie kennt ihren Rollennamen — den
+sie selbst gewählt hat oder der ihr gegeben wurde —, aber wie der Chat in Williams Oberfläche
+heißt, ist ihr so wenig zugänglich wie Kontingent oder eigenes Modell (Familie F-02/E-13). Im
+Nachbarprojekt ist genau daraus ein offener Punkt geworden: Niemand konnte sagen, welcher Chat
+das „Büro" ist.
+
+Deshalb trägt die Tabelle oben die Spalte **Chat-/Aufgabenname**, und sie hat drei
+Verlässlichkeitsstufen, die nicht vermischt werden dürfen:
+
+| Stufe | gilt für | wer kann es feststellen |
+|---|---|---|
+| **selbst geprüft** | geplante Aufgaben | die Instanz selbst — Aufgabennamen sind über die Aufgaben-Verwaltung auslesbar |
+| **von William bestätigt (mit Datum)** | Chats und Cowork-Sessions | **nur William**; die Instanz kann einen genannten Titel nur wiedergeben, nicht nachprüfen |
+| **unbestätigt** | alles Übrige | niemand — und genau das muss dranstehen, sonst sieht das Verzeichnis vollständig aus und ist es nicht |
+
+**Pflicht bei jeder neuen Instanz** (Ergänzung der Vorstellungs-Konvention): Zum Steckbrief
+gehört die einmalige Frage an William, wie der Chat bei ihm heißt, und der Eintrag mit
+Bestätigungsdatum. Das ist der Handgriff, der das „Büro"-Problem verhindert — er kostet einen
+Satz und muss beim Anlegen passieren, nicht später aus der Erinnerung.
+
+**Fertige Frage zum Einfügen in einen Chat, dessen Zuordnung fehlt:**
+
+> Für das Instanzen-Verzeichnis: Wie lautet dein interner Rollen-/Instanzname, unter dem du in
+> den Postfächern auftrittst — und welche Namen hattest du vorher? Dieser Chat heißt bei mir in
+> der Oberfläche „…". Bitte kurz bestätigen oder widersprechen; ich trage die Zuordnung ein.
+
+Abgeschlossene Chats brauchen keine Zuordnung — sie sind keine Instanzen mehr, sondern
+Nachschlagewerk (`werkzeuge/chat-konvention.md`, Regel 3).
 
 Neue Instanz oder geänderter Name: Steckbrief per Postfach an die Werkstatt; der Eintrag hier
 folgt (Pflegeregel: Abschnitt 5).
