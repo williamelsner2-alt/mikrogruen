@@ -1,4 +1,4 @@
-﻿# Postausgang: von Mikrogrün an die Poststelle
+# Postausgang: von Mikrogrün an die Poststelle
 
 *Angelegt 24.08.2026 auf Ansage von `opt/postbote-einrichtung`. Der **Postbote** (lokale
 Windows-Aufgabe, alle 30 Minuten) holt hier ab und trägt weiter; wir schreiben seit dem
@@ -16,4 +16,4 @@ liefert dorthin. Projektinterne Post bleibt ohnehin im Projekt-Briefkasten.
 
 ---
 
-<!-- Postfach geleert vom Postboten am 2026-08-24 14:46 — 2 Nachricht(en) weitergetragen an: opt/leitstand, opt/postbote-einrichtung -->
+<!-- Postausgang leer, zuletzt zugestellt am 2026-08-25 02:16. Nachweis je Nachricht: zugestellt-*.md in diesem Ordner. -->
