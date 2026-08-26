@@ -6,7 +6,7 @@ Postausgang und Eingang dieses Projekts — "liegt im Ausgang" ist nicht
 dasselbe wie "ist angekommen". Format, Bedienung und Grenzen:
 claude-optimierung/werkzeuge/postbote.md.*
 
-Zuletzt gelaufen: 2026-08-26 13:46 · 0 zugestellt · 0 im Ausgang
+Zuletzt gelaufen: 2026-08-26 14:16 · 0 zugestellt · 0 im Ausgang
 
 ## Fehler bei diesem Lauf (eigener Ausgang)
 (keine)
