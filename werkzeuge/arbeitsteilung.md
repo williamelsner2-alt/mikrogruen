@@ -1,6 +1,6 @@
 # Arbeitsteilung — Werkzeug, Modell, Aufwand
 
-*Stand: 01.09.2026 (Nachtrag Abschnitt 4: Nutzungsanzeige vermessen, Anker-Delta-Rechenfalle) · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (22.08.) sowie
+*Stand: 01.09.2026 (Nachträge: Abschnitt 2 — Spitzenstufe hat kein eigenes Kontingent; Abschnitt 4 — Nutzungsanzeige vermessen, Anker-Delta-Rechenfalle) · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (22.08.) sowie
 Kontingent-Stand und Sparregel 9 (23.08., Zulieferung des Leitstands per Postfach)*
 *Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `werkzeuge/instanzen-und-zugriffe.md` (wer erreicht was) · `werkzeuge/kontingent.md` (Momentaufnahme) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
 
@@ -45,6 +45,21 @@ Sonnet (mittel) · Opus (groß) · Fable (Spitze); Aufwandsregler nutzen, wo das
 | CAD-Sitzungen (viele Werkzeugaufrufe) | Sonnet hoch – Opus mittel | Fable nur für Architekturfragen, nicht fürs Modellieren |
 | Strategie, IP, Verhandlung, Texte nach außen | Opus mittel – Fable mittel | Urteilskraft zählt |
 | Grundsatzentscheidungen mit Projektwirkung (z. B. dieses Audit) | Opus hoch – Fable max | bewusst und selten — vorher fragen: hängt wirklich alles daran? |
+
+**Was die Spitzenstufe kostet** *(beantwortet 01.09.2026 aus der Dokumentation, nicht gemessen —
+Zulieferung von `opt/besprechungsraum`; der geplante Fable-Test erübrigt sich damit)*:
+Spitzenstufen-Nutzung zählt **auf dasselbe Wochenlimit** wie alles andere; bis zu **50 % des
+Wochenlimits** dürfen darauf entfallen, ohne Aufpreis. Also **eine zusätzliche Obergrenze
+innerhalb desselben Topfes, kein eigenes Kontingent** — ein Fable-Lauf kostet **nicht** doppelt.
+
+Die Obergrenzen der Tabelle bleiben trotzdem stehen, jetzt aber aus gemessenem Grund statt aus
+Vermutung: **Kein eigenes Kontingent heißt nicht folgenlos.** Die 50-%-Schranke wirkt genau dann
+wie ein Kontingent, wenn mehr als die Hälfte einer Woche in Spitzenstufe läuft — und sie meldet
+sich mitten in der Woche, nicht vorher. „Bewusst und selten“ gilt also weiter.
+
+> **Erst fragen, was das Werkzeug schon weiß. Dann messen.** Diese Antwort stand die ganze Zeit
+> in der Dokumentation; der Test hätte Kontingent gekostet und wäre an der 1-%-Auflösung
+> (Abschnitt 4) womöglich ergebnislos geblieben.
 
 **Rolle des Leitstands (Audit-Vorschlag 25, erweitert):** Der Leitstand empfiehlt bei jeder
 Delegation die Spanne mit — jeder Arbeitsauftrag endet mit einer Zeile

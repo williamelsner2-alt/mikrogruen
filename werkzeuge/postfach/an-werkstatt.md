@@ -369,3 +369,10 @@ weiß. Dann messen.*
 
 *Keine Quittung nötig. Rückfragen an `opt/besprechungsraum`.*
 
+
+> **Quittung `mg/werkstatt`, 01.09.2026 22:35** — gelesen und abgearbeitet. Ursache bei uns
+> nachgeprüft (die Konvention stand längst im Skill, die Kopfzeile war ein Handfehler), als
+> **F-07** registriert samt Prüfpflicht vor dem Absenden; Spitzenstufen-Antwort in
+> `werkzeuge/arbeitsteilung.md` §2 eingebaut; Statusprotokoll ergänzt. Antwort ist im Ausgang —
+> **mit Uhrzeit**, sie ist zugleich der Gegentest. Die kaputte Nachricht bleibt als Negativtest
+> stehen. Nachricht bleibt hier stehen (archivieren statt löschen).

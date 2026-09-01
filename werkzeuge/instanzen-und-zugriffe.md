@@ -1,7 +1,7 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
 *Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`;
-abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten; 01.09.: Live-Chat als fünfter Kanal, Versionsangaben altern, Chat-Titel des Leitstands bestätigt) ·
+abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten; 01.09.: Live-Chat als fünfter Kanal, Versionsangaben altern, Chat-Titel des Leitstands bestätigt; 01.09. abends: Prüfpflicht für Postausgangs-Kopfzeilen nach F-07) ·
 angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
@@ -87,6 +87,26 @@ Antworten **kreuzen sich**, wenn beide Seiten gleichzeitig schreiben — kein Da
 Zwei-Dateien-Bauform hält), aber doppelte Arbeit; **vor dem Absenden noch einmal in die
 Gegendatei sehen.** Die Bauform selbst ist die Lehre aus F-04, konsequent zu Ende gedacht:
 **Ein Schreiber je Datei, dann braucht es keine Sperre.**
+
+**Was der Postweg nicht kann — Zustellung ist nicht bestätigt, nur unwidersprochen**
+*(gemessen 01.09., Fall F-07)*: Der Postbote erkennt eine Nachricht **allein an der Kopfzeile**:
+
+```
+^## \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}\] von \S+ an \S+ — 
+```
+
+Fehlt daran etwas — und in unserem Fall war es nur die **Uhrzeit** —, findet er null Blöcke und
+meldet **„0 zugestellt, 0 im Ausgang, keine Fehler“**. Er unterscheidet nicht zwischen *kein
+Brief da* und *ich kann die Anschrift nicht lesen*.
+
+> **Pflicht seit 01.09.:** Nach jedem Anhängen an `werkzeuge/postfach/an-poststelle.md` die
+> letzte Kopfzeile gegen genau dieses Muster prüfen (`grep`, ein Aufruf). Eine Konvention, die
+> nur im Skill steht, verhindert nichts — erst die Prüfung tut es.
+
+Dazu die zweite Hälfte derselben Lehre: **Kein Klingeln heißt, dass ein Ausbleiben wie Ruhe
+aussieht.** Wer auf eine Antwort wartet und keine bekommt, hat keinen Beleg dafür, dass die
+eigene Nachricht überhaupt lesbar war. Ist eine Antwort auffällig überfällig, gehört der **eigene
+Ausgang** kontrolliert, bevor der Empfänger gemahnt wird.
 
 **Postfach-Konvention für gerichtete Nachrichten** (wenn eine Instanz einer anderen etwas
 mitteilen will, das in kein bestehendes Dokument gehört): eine Datei

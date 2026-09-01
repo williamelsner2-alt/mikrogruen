@@ -1,6 +1,6 @@
 # Arbeitsteilung — Fehlversuche
 
-*Stand: 23.08.2026 · Sammlung konkreter Fälle, in denen Werkzeug- oder Ablagewahl nicht griff — Grundlage für den Leitstand (Audit-Vorschlag 25), sobald eingerichtet*
+*Stand: 01.09.2026 · Sammlung konkreter Fälle, in denen Werkzeug- oder Ablagewahl nicht griff — Grundlage für den Leitstand (Audit-Vorschlag 25), sobald eingerichtet*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (Regeln, die hier geprüft werden) · `werkzeuge/chat-konvention.md` · `berichte/workflow-audit-v2-2026-08-22.md` (Vorschlag 25)*
 
 Jeder Eintrag ist ein Fall, in dem Werkzeug- oder Ablagewahl in der Praxis nicht griff — nicht um
@@ -20,6 +20,7 @@ kein offener Punkt (dafür sind `projekt/03-probleme.md` und `projekt/04-ideen.m
 | F-04 | 23.08.2026 | Parallele Instanzen überschrieben sich gegenseitig Status, Ideenregister und dieses Log; I-30 doppelt vergeben | Ganzdatei-Schreiben aus veralteten Kopien — ohne frisches Lesen unmittelbar vor dem Schreiben |
 | F-05 | 22.08.2026 | Sofort-Start-Zusatzanweisung konnte das Auftragslimit des Schichtdiensts nicht aufheben *(rekonstruiert)* | Eine geplante Aufgabe folgt ihrem gespeicherten Prompt, nicht dem Startzuruf |
 | F-06 | 23.08.2026 | Laufender Schichtdienst ließ sich von keiner Session aus stoppen — und die eigene Wiedervorlage hätte kurz darauf das Gegenteil getan | Eine Automatik trägt die Absicht ihres Setz-Moments; ein Richtungswechsel räumt offene Automatiken nicht von selbst ab |
+| F-07 | 01.09.2026 | Nachricht lag stundenlang unabgeholt im eigenen Ausgang, der Postbote meldete durchgehend „0 zugestellt, keine Fehler“ | Fehlende `HH:MM` in der Kopfzeile — null erkannte Blöcke werden als „leer“ gemeldet, nicht als „unlesbar“; die Regel dagegen stand längst im Skill, nur nicht in der Prüfung |
 
 ---
 
@@ -240,3 +241,56 @@ dafür, dass sein Ergebnis (A-04, Befund 4ai) vollständig in der Ablage stand.
 zuerst die eigenen offenen Wiedervorlagen durchsehen. Ein Start, den man vielleicht
 zurücknehmen will, sollte nicht als Sofortstart laufen, sondern mit Vorlauf. Und: „Ich stoppe
 das" ist eine Zusage, die von hier aus niemand halten kann.
+
+
+---
+
+## F-07 · Die Nachricht, die nie ankam — und der Erfolg, der keiner war
+
+**Datum:** 01.09.2026 · *Gefunden vom Nachbarprojekt (`opt/besprechungsraum`), Ursache dort im
+Skript gemessen. Die schärfere Hälfte des Befunds stammt aus unserer eigenen Nachprüfung.*
+
+**Symptom:** Unsere Nachricht an `opt/besprechungsraum` (Vorlage `kontingent.md`, Übergabe 26b,
+Fable-Test) lag stundenlang unabgeholt in unserem eigenen Ausgang
+`werkzeuge/postfach/an-poststelle.md`. Der Postbote lief planmäßig alle 30 Minuten, verarbeitete
+unser Projekt und schrieb jedes Mal in die Statusdatei: **„0 zugestellt, 0 im Ausgang, keine
+Fehler.“** Aufgefallen ist es nur, weil William die Gegenseite auf unsere Post ansprach.
+
+**Ursache, zweifach:**
+
+*(a) Beim Werkzeug.* Der Postbote erkennt einen Nachrichtenblock allein am Muster
+`^## \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] von (\S+) an (\S+) — `. Unserer Kopfzeile fehlte
+die **Uhrzeit**; das Muster griff nicht, das Skript fand null Blöcke — **und null Blöcke bedeuten
+in seiner Logik „leerer Ausgang“, nicht „unlesbarer Inhalt“.** Alles Übrige war korrekt.
+
+*(b) Bei uns, und das ist der schlechtere Teil.* Wir haben geprüft, ob unser Sendeweg die Uhrzeit
+generell weglässt. Er tut es nicht: Der kontoweite Skill `briefkasten` schreibt
+`## [JJJJ-MM-TT HH:MM] von <Absender> — <Betreff>` wörtlich vor, und alle früher zugestellten
+Nachrichten trugen sie. Es war **eine einzige von Hand geschriebene Kopfzeile**, die von der
+eigenen Regel abwich.
+
+**Warum es niemand merkte — zwei Verstärker:**
+1. Der Kanal hat **kein Klingeln** (Briefkastenprinzip). Ein Ausbleiben sieht aus wie Ruhe.
+2. **Wer einen kaputten Weg umgehen kann, merkt nicht, dass er kaputt ist** — die Gegenseite
+   sieht unseren Ordnerbaum und hat die Nachricht auf dem Umweg gelesen. Erklärt rückwirkend,
+   warum uns der Spiegelordner schon zweimal einen Zustellfehler verdeckt hat.
+
+**Lehren:**
+
+> **Ein Werkzeug, das bereitwillig einen Erfolg meldet, ist gefährlicher als eines, das schweigt.
+> Das Schweigen merkt man, den falschen Erfolg nicht.** (Familie F-03: dort wurde ein geglückter
+> Vorgang als Fehler protokolliert, hier ein misslungener als Erfolg.)
+
+> **Eine Konvention, die nur auf Papier steht, verhindert gar nichts.** Sie erzeugt zusätzlich
+> die Gewissheit, der Fehler *könne* nicht passiert sein — und genau die kostet die Suchzeit.
+
+**Gegenmaßnahme, in Kraft:** Nach jedem Anhängen an einen Postausgang die letzte Kopfzeile gegen
+das Muster prüfen — ein Aufruf, `grep`/`Select-String` auf
+`^## \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}\] von \S+ an \S+ — `. Damit wird die Regel vom Vorsatz zur
+Prüfung. Am 01.09. erstmals angewandt: Prüfung bestanden, Antwort zugestellt.
+
+**Bewusst nicht repariert:** Die unlesbare Nachricht bleibt im Ausgang stehen. Eine nachgetragene
+Uhrzeit hätte den Brief gerettet und den Fehler versteckt (Williams Entscheidung, drüben ebenso).
+Sie dient dem Nachbarprojekt als **echter Negativtest** für den Läufer-Umbau, der künftig „Text
+zwischen den Trennern, aber kein erkennbarer Block“ melden soll. Nebenwirkung: Unser Ausgang
+meldet dauerhaft Restinhalt — gewollt.
