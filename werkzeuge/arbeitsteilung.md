@@ -1,6 +1,6 @@
 # Arbeitsteilung — Werkzeug, Modell, Aufwand
 
-*Stand: 23.08.2026 · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (22.08.) sowie
+*Stand: 01.09.2026 (Nachtrag Abschnitt 4: Nutzungsanzeige vermessen, Anker-Delta-Rechenfalle) · setzt Audit-Vorschlag 3 um, erweitert um Token-Ökonomie (22.08.) sowie
 Kontingent-Stand und Sparregel 9 (23.08., Zulieferung des Leitstands per Postfach)*
 *Nachbardokumente: `werkzeuge/chat-konvention.md` (Benennung/Abschluss) · `werkzeuge/instanzen-und-zugriffe.md` (wer erreicht was) · `werkzeuge/kontingent.md` (Momentaufnahme) · `00-Uebersicht.md` (Pflegeregeln) · `berichte/workflow-audit-v2-2026-08-22.md` (Herleitung)*
 
@@ -103,6 +103,36 @@ systematisch. Und neben dem Füllstand wird künftig der **Verbrauch je Lauf** e
 claude-optimierung). Unverändert gilt: **Schwellen von Hand melden** („Achtung 90 %" →
 Sicherungsmodus) bleibt der verlässliche Weg; die Verteilung *innerhalb* einer Session erklärt
 „explain usage".
+
+**Nachtrag 01.09.2026 — die Anzeige ist gefunden, und ihre Grenzen sind vermessen.** Auf
+`claude.ai/settings/usage` stehen **drei getrennte Zähler** (laufende Sitzung ≈ 5 h · Woche über
+alle Modelle · Woche Spitzenstufe) als **Text** in der Seite, ohne Klickerei erreichbar. Das ist
+gemessen, nicht vermutet — das Nachbarprojekt claude-optimierung hat am 01.09. nachgesehen.
+Damit ist die Sichtbarkeit **für eine Sitzung gelöst, die die Browser-Werkzeuge hat und deren
+Chrome auf demselben Rechner läuft** — für alle anderen (normaler Chat, Handy, Cloud-Lauf)
+unverändert nicht. Drei Eigenschaften begrenzen jede Nutzung:
+
+- **Nur Prozent, keine absoluten Zahlen.** Die Anzeige beantwortet „ist jetzt Platz für einen
+  langen Lauf?", nicht „reicht es für diese Sitzung?" — sie taugt als **Auslöser, nicht als
+  Takt**.
+- **Auflösungsgrenze:** Was weniger als einen Prozentpunkt kostet, ist unsichtbar. Kleine Läufe
+  lassen sich damit grundsätzlich nicht messen.
+- **Aktualisieren-Knopf:** Der angezeigte Wert kann beim Laden schon alt sein. Wer ihn abliest,
+  übernimmt das „zuletzt aktualisiert" **von der Seite** — nie die eigene Uhr. *Ein frischer
+  Zeitstempel auf einer alten Zahl ist schlimmer als gar keine Zahl:* Beim Fehlen wird normal
+  weitergearbeitet, beim falschen Zeitstempel wird gerechnet.
+
+**Die Rechenfalle, die dabei auffiel** (Live-Chat mit `opt/besprechungsraum`, 01.09.): Der
+naheliegende Gedanke „selten ablesen, laufend mitzählen" geht so **nicht** auf — der abgelesene
+Anker ist ein **Prozentsatz**, ein mitgezählter Verbrauch wären **Tokens**, und das eine lässt
+sich vom anderen nicht abziehen. Wer es dennoch tut, bekommt eine plausibel aussehende Zahl, die
+nichts bedeutet. Zwei Auswege, beide ungetestet: den Wechselkurs einmal **messen** (zwei
+Ablesungen um eine bekannte Arbeitsmenge herum — geht wegen der Auflösungsgrenze nur an großen
+Läufen), oder — besser — **nicht Tokens zählen, sondern Arbeitseinheiten**: Ein Lauf weiß immer,
+wie viele Aufträge er abgeschlossen hat; „ein mittlerer Auftrag kostet rund X %" ist einmal zu
+messen und danach einheitengleich mit dem Anker. Der Preis ist Ehrlichkeit über die Streuung —
+ein Rechercheauftrag und ein kleiner Doku-Auftrag sind nicht derselbe „Auftrag". Was daraus
+wird, entscheidet der Leitstand (I-24/I-32).
 
 **Die Fenster ausnutzen statt an ihnen zu scheitern:** Das Kontingent regeneriert in
 Zeitfenstern. Konsequenzen:

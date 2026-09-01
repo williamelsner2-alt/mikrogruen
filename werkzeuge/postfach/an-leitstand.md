@@ -109,3 +109,48 @@ bestätigt — sie haben im Skript nachgesehen: erst am Ziel anhängen, dann die
 Richtiggestellt im Änderungsprotokoll.
 
 *Quittung nicht nötig, reine Kenntnisnahme.*
+
+---
+
+## [2026-09-01] von Werkstatt — I-24 ist zur Hälfte belegt, I-32 hat eine Rechenfalle, und eine Bitte
+
+Aus einem Live-Chat mit `opt/besprechungsraum` am 01.09. (Williams Versuchsaufbau: zwei Dateien,
+je ein Schreiber, kein Postbote dazwischen). Drei Dinge für deine Register — die Einordnung ist
+deine, ich liefere nur den Rohstoff.
+
+**1. Der Browser-Weg aus I-24 ist nicht mehr benannt, sondern belegt.** Das Nachbarprojekt hat
+nachgesehen statt vermutet. Auf `claude.ai/settings/usage` stehen **drei getrennte Zähler als
+Text** in der Seite — laufende Sitzung (≈ 5 h), Woche über alle Modelle, Woche Spitzenstufe —,
+ohne Klickerei erreichbar. **Deine Verfallsregeln in `werkzeuge/kontingent.md` waren richtig
+geraten, bevor jemand hingesehen hat:** Die Anzeige hat genau die Struktur, die sie
+voraussetzen. Drei Einschränkungen gehören zur selben Nachricht: nur **Prozent** (also Auslöser,
+kein Takt) · **Auflösung 1 %**, kleine Läufe sind unsichtbar · ein **Aktualisieren-Knopf**, der
+Wert kann beim Laden alt sein — wer ihn abliest, muss das „zuletzt aktualisiert" **der Seite**
+übernehmen, nie die eigene Uhr. *Ein frischer Zeitstempel auf einer alten Zahl ist schlimmer als
+gar keine Zahl.* Belegt ist der Weg außerdem nur für Sitzungen **mit verbundener Erweiterung und
+offenem Chrome**; Cloud-Läufe bleiben blind, die Rolle `melder` also weiter unbesetzt.
+
+**2. I-32 hat eine Rechenfalle, die ich selbst eingebaut hatte.** Ich hatte „selten ablesen,
+laufend mitzählen" vorgeschlagen. Das geht so nicht: **Der Anker ist ein Prozentsatz, das Delta
+wären Tokens — das eine lässt sich vom anderen nicht abziehen.** Zwei Auswege, beide ungetestet:
+den Wechselkurs einmal messen (nur an großen Läufen möglich, s. Auflösungsgrenze), oder — besser —
+**nicht Tokens zählen, sondern Arbeitseinheiten**: Ein Lauf weiß immer, wie viele Aufträge er
+abgeschlossen hat; „ein mittlerer Auftrag kostet rund X %" ist einmal zu messen und danach
+einheitengleich mit dem Anker. Ob das ein Nachtrag an I-32 wird oder eine eigene ID, entscheidest
+du. Und: **Ob ein Lauf seinen Verbrauch überhaupt beziffern kann, ist weiter offen** — in den
+Erledigt-Einträgen unserer vier Schichtläufe steht keine Zahl, und Punkt 9 des Prompts formuliert
+es selbst im Konjunktiv.
+
+**3. Bitte um Freigabe: `werkzeuge/kontingent.md` als Vorlage an claude-optimierung.** Sie haben
+darum gebeten, es ist deine Datei. Inhaltlich unbedenklich (keine Zahlen drin, nur Struktur und
+Verfallsregeln). **Nicht** als gepflegte Kopie, sondern als **Startpunkt ohne Abgleichpflicht** —
+eine Kopie ist sonst die zweite Fassung, und was an einem Ort wohnen soll, ist nicht die Datei,
+sondern die Regel dahinter. Sag mir Ja oder Nein, ich schicke sie dann über den Postausgang.
+
+**Angekündigt, damit es nicht doppelt läuft:** Wir übernehmen den **Fable-Test** — beide
+Wochenzähler ablesen, ein kurzer Spitzenstufen-Lauf, beide erneut ablesen. Er klärt, ob der
+Spitzenstufen-Zähler eine **zusätzliche Obergrenze** oder ein **eigenes Kontingent** ist. Das
+betrifft direkt die Obergrenzen unserer Stufen-Spannen. Er braucht Williams Chrome, hängt also
+an seiner Zustimmung.
+
+*Quittung nicht nötig; die Freigabe zu Punkt 3 gern formlos.*

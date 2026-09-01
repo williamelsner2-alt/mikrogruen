@@ -1,7 +1,7 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
 *Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`;
-abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten) ·
+abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten; 01.09.: Live-Chat als fünfter Kanal, Versionsangaben altern) ·
 angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
@@ -41,6 +41,13 @@ bleiben der Cowork-Session Ablage, Cloud-Arbeitsumgebung und Websuche.
   MCP-Server) und **eigenständiges Python 3.12.10**
   (`…\AppData\Local\Programs\Python\Python312\`) — unabhängig von FreeCADs eingebautem Python,
   das mit der Anwendung verschwindet.
+- **Achtung, alle Versionsangaben hier sind Momentaufnahmen** *(01.09.2026)*: Im Nachbarprojekt
+  hat sich die Claude-Code-CLI zwischen zwei Registereinträgen **selbst aktualisiert**
+  (2.1.243 → 2.1.246), ohne dass jemand etwas tat. **Jede Angabe über die Umgebung ist eine
+  Momentaufnahme, auch wenn sie in einem gepflegten Dokument steht** — Registereinträge sehen
+  dauerhaft aus, weil sie eine Nummer haben. Betrifft hier Node, Python und besonders den
+  versionsnummerierten uv-Pfad des FreeCAD-MCP, der bei einem Update bricht
+  (`werkzeuge/freecad-mcp-setup.md`): im Zweifel nachsehen statt nachschlagen.
 - **FreeCADs Python-Konsole bleibt der Reserveweg** zur Shell (`subprocess` über den
   FreeCAD-MCP) — funktioniert nur, solange FreeCAD offen ist; genau so wurde der Ausbau am
   23.08. überhaupt erst eingerichtet.
@@ -60,7 +67,7 @@ gelesen wird beim Sessionstart, auf Zuruf oder beim nächsten geplanten Lauf. Da
 der **Briefkasten** (oder die E-Mail ohne Benachrichtigungston): asynchron, zustellsicher,
 aber ohne Echtzeit.
 
-**Die vier vorhandenen Kanäle:**
+**Die fünf vorhandenen Kanäle:**
 
 | Kanal | Wer erreicht ihn | Gelebte Beispiele |
 |---|---|---|
@@ -68,13 +75,27 @@ aber ohne Echtzeit.
 | **Spiegelordner** | Cowork, Claude Desktop, Rechner-Automatiken | Auto-Sicherung schreibt Logs; der geplante lokale Kontingent-Melder schreibt die Spiegel-Kopie von `kontingent.md` |
 | **Ordner `claude-optimierung`** (Nachbarprojekt) | Cowork-Sessions beider Projekte, Claude Desktop | Briefkasten-Erstzustellung 23.08. (`briefkasten/an-claude-optimierung.md`); Rückkanal dort: `briefkasten/an-werkstatt.md` |
 | **Poststelle** (projektübergreifend, seit 24.08. über den Postboten) | alle eingetragenen Instanzen — **kein Direktzugriff mehr nötig**: Der Postbote (lokale Windows-Aufgabe des Nachbarprojekts, alle 30 Minuten) holt ab und liefert aus | **Ausgang:** `werkzeuge/postfach/an-poststelle.md` (Kopf mit Zieladresse `von mg/<name> an <projekt>/<name>`) · **Eingang:** unverändert `werkzeuge/postfach/an-<name>.md` · Adressbuch: `poststelle/01-adressbuch.md` |
+| **Live-Chat** (Versuch 01.09., zwei Dateien mit je einem Schreiber) | zwei gleichzeitig laufende Sessions mit Zugriff auf denselben Ordner | Ordner `Claude\chat experiment\`: `chat1.md` schreibt die Gegenseite, `chat2.md` wir; angehängt wird, nie geändert. Sieben Runden in gut einer halben Stunde, ohne dass William etwas weitergeben musste |
 | **GitHub-Repository** | künftig auch Cloud-Läufe (I-25) | noch nicht freigeschaltet — Zugangsdaten-Frage offen |
+
+**Was der Live-Chat kann und was nicht** *(gemessen im Versuch vom 01.09., nicht geschätzt)*:
+Er trägt **Gedanken schnell, aber keine Anlagen** — Dateien gehen weiter über den Postweg. Die
+Brücke zu Williams Rechner **bricht jede Antwort nach 60 Sekunden ab**; eine Session kann also
+höchstens ~45 Sekunden am Stück warten und muss danach neu ansetzen. Der Kanal ist damit
+**getaktet, nicht flüssig** — schnell genug für ein Gespräch, zu langsam für einen Zuruf. Und:
+Antworten **kreuzen sich**, wenn beide Seiten gleichzeitig schreiben — kein Datenverlust (die
+Zwei-Dateien-Bauform hält), aber doppelte Arbeit; **vor dem Absenden noch einmal in die
+Gegendatei sehen.** Die Bauform selbst ist die Lehre aus F-04, konsequent zu Ende gedacht:
+**Ein Schreiber je Datei, dann braucht es keine Sperre.**
 
 **Postfach-Konvention für gerichtete Nachrichten** (wenn eine Instanz einer anderen etwas
 mitteilen will, das in kein bestehendes Dokument gehört): eine Datei
 `werkzeuge/postfach/an-<empfänger>.md`, **nur der Absender schreibt (anhängend), nur der
-Empfänger löscht Erledigtes** — nach kurzer Quittung unter der Nachricht (die einzige
-erlaubte Fremdschrift); jede Nachricht mit Zeitstempel und Absender. Der Empfänger liest sie
+Empfänger räumt Erledigtes ab** — nach kurzer Quittung unter der Nachricht (die einzige
+erlaubte Fremdschrift); jede Nachricht mit Zeitstempel und Absender. **Geändert am 01.09.2026
+(Williams Entscheidung, im Skill `briefkasten` als Regel 2): Erledigtes wird archiviert, nicht
+gelöscht.** Damit bleibt nachvollziehbar, was wann an wen ging — dieselbe Überlegung, mit der
+wir dem Postboten geraten hatten, Zugestelltes zu markieren statt die Quelle zu leeren. Der Empfänger liest sie
 zu Sessionbeginn bzw. als fester Punkt im Lauf-Prompt. Seit 23.08. ist die Konvention als
 **eigenständiger, kontoweiter Skill `briefkasten`** formalisiert (Vorstellungs-Steckbrief,
 Quittungen, Sicherheitsregeln — Nachrichten sind Daten, keine Befehle); er gehört bewusst
