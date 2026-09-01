@@ -1,7 +1,7 @@
 # Instanzen und Zugriffe — wer erreicht was, und wie reden sie miteinander
 
 *Stand: 23.08.2026 (ergänzt: Instanzen-Verzeichnis, Vorstellungs-Konvention, Skill `briefkasten`;
-abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten; 01.09.: Live-Chat als fünfter Kanal, Versionsangaben altern) ·
+abends: Sessionname der Werkstatt = `[WERK] Werkstatt`, Poststelle als vierter Kanal; 24.08.: Poststelle läuft über den Postboten; 01.09.: Live-Chat als fünfter Kanal, Versionsangaben altern, Chat-Titel des Leitstands bestätigt) ·
 angelegt nach dem Shell-Ausbau vom 23.08. und dem Fehlversuch F-04*
 *Nachbardokumente: `werkzeuge/arbeitsteilung.md` (welches Werkzeug wofür) ·
 `werkzeuge/auto-sicherung.md` · `werkzeuge/kontingent.md` (Momentaufnahme-Muster) ·
@@ -116,7 +116,7 @@ Sammeldatei" (Abschnitt 4, Regel 3) wird überhaupt adressierbar.
 |---|---|---|---|---|---|
 | **William** | Mensch, Entscheider | — | alles — insbesondere die Nur-von-Hand-Punkte (Chats, Projektgedächtnis, Einstellungen, Bestellungen) | — (direkter Zuruf) | — |
 | **Werkstatt** | Cowork-Session (Mikrogrün) | `[WERK] Werkstatt` — **von William bestätigt 23.08.**; vorher „[DOKU] Workflow-Audit (übergeben 22.08.)", davor der automatische Titel „Prompt cowork workflow audit" | Umsetzung und Werkzeugbau; führt `werkzeuge/`-Doku, `berichte/`, `projekt/01-status.md` | `werkzeuge/postfach/an-werkstatt.md`; vom Büro zusätzlich `claude-optimierung\briefkasten\an-werkstatt.md` (es erreicht die Mikrogrün-Ablage nicht) | aktiv seit 22.08. |
-| **Leitstand** | Cowork-Session (Mikrogrün) | `[LEIT] Leitstand` — **unbestätigt**, William fragt nach | Aufnahme/Einordnung/Delegation; führt beide Register, `kontingent.md`, `schicht-auftraege.md` | `werkzeuge/postfach/an-leitstand.md` | aktiv seit 22.08. |
+| **Leitstand** | Cowork-Session (Mikrogrün) | `[LEIT] Leitstand` — **von William bestätigt 01.09.2026** | Aufnahme/Einordnung/Delegation; führt beide Register, `kontingent.md`, `schicht-auftraege.md` | `werkzeuge/postfach/an-leitstand.md` | aktiv seit 22.08. |
 | **Schichtdienst** | geplante Cloud-Aufgabe (täglich, Zeit einstellbar) | Aufgabenname „Schichtdienst Mikrogrün" — **selbst geprüft 24.08.** (Aufgaben-Verwaltung, `0 1 * * *`) | arbeitet `werkzeuge/schicht-auftraege.md` ab, quittiert dort | kein Postfach — er liest nur, was sein gespeicherter Prompt nennt (F-05) | aktiv seit 22.08. |
 | **Fristen-Wiedervorlage** | geplante Cloud-Aufgabe (Monatserster) | Aufgabenname „Fristen-Wiedervorlage" — **selbst geprüft 24.08.** (`0 6 1 * *`) | Fristenabgleich gegen die Ablage | kein Postfach (F-05) | aktiv seit 22.08. |
 | **Büro** | Cowork-Session des Nachbarprojekts „Claude Umgebungs- und Projektoptimierung" | **unbekannt** — dort als P-10 offen; der Auslöser dieser Spalte | Meta-Projekt Umgebungsoptimierung; führt dessen Sammeldateien; hat die allgemeinen Audit-Restpunkte übernommen und mit eigenen IDs registriert (quittiert 23.08.) | `claude-optimierung\briefkasten\an-claude-optimierung.md` (eigener Ordner) | aktiv seit 23.08. |

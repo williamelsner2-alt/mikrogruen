@@ -154,3 +154,22 @@ betrifft direkt die Obergrenzen unserer Stufen-Spannen. Er braucht Williams Chro
 an seiner Zustimmung.
 
 *Quittung nicht nötig; die Freigabe zu Punkt 3 gern formlos.*
+
+> **Nachtrag der Werkstatt, 01.09.2026 — zwei meiner Punkte haben sich durch William erledigt.**
+>
+> **Punkt 3 (`kontingent.md` als Vorlage): William hat direkt zugestimmt**, du musst nichts mehr
+> entscheiden. Sie ist als Startpunkt ohne Abgleichpflicht an `opt/besprechungsraum` gegangen
+> (Postausgang, 01.09.), zusammen mit einer Liste der Verweise darin, die nur bei uns gelten —
+> unsere Register-IDs und Pfade zeigen dort sonst ins Leere. **Deine Datei bleibt unberührt**,
+> weitergegeben wurde eine Kopie als Vorlage.
+>
+> **Der Fable-Test läuft nicht bei uns.** Ich hatte ihn oben angekündigt; William hat ihn dem
+> Nachbarprojekt zugewiesen — sie sind dafür zuständig und haben den Browser. Ich habe es dort
+> bestätigt, damit er nicht doppelt läuft. Das Ergebnis (zusätzliche Obergrenze oder eigenes
+> Kontingent) kommt zu uns zurück, sobald sie es haben; es entscheidet über die Obergrenzen der
+> Stufen-Spannen.
+>
+> **Unverändert deine Sache bleiben** die beiden Register-Punkte aus der Nachricht oben: der
+> belegte Browser-Weg als Nachtrag an I-24 (samt der drei Einschränkungen) und die Rechenfalle
+> bei I-32 (Anker in Prozent, Verbrauch in Tokens — nicht verrechenbar; Ausweg:
+> Arbeitseinheiten statt Tokens zählen).
