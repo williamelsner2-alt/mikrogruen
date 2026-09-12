@@ -1,6 +1,6 @@
 # Ideenregister
 
-*Stand: 23.08.2026 · lebendes Dokument*
+*Stand: 12.09.2026 · lebendes Dokument*
 *Nachbardokumente: was nicht stimmt in `projekt/03-probleme.md`, Stand in `projekt/01-status.md`,
 Regeln in `technik/konstruktionskriterien.md`*
 
@@ -61,6 +61,8 @@ mit Datum und Verweis auf das Ergebnis versehen.
 | I-30 | Eigenvermehrung der teuren Sorten | Anbau | zu prüfen | Befund 4ai |
 | I-31 | Keimprobe vor jeder Aussaat | Anbau | aussichtsreich | Befund 4ai |
 | I-32 | Selbstmessung: jeder Lauf meldet seinen Tokenverbrauch | Werkzeug | aussichtsreich | Williams Frage 23.08. |
+| I-33 | Luftspalt statt Schaumglas — rechnen statt annehmen | Klima | **aussichtsreich** | Befund 4aj |
+| I-34 | Außenkontur auf Stufe 2b auslegen statt auf Stufe 2 | Konstruktion | zu prüfen | Befund 4aj |
 
 *Zuständigkeit seit 23.08.: Die Werkzeug-Ideen **I-24, I-26, I-27 und I-32** werden im
 Nachbarprojekt **claude-optimierung** weiterentwickelt (Williams Aufteilung vom 23.08.). Die
@@ -142,6 +144,42 @@ auf, sobald die Datei frische Werte führt; der Bauauftrag für den Melder ist a
 übergeben. **Entschieden ist das Ob, nicht das Wie** — die Wahl zwischen Statusline-Weg,
 lokalem Dienst und Browser-Abfrage steht noch aus.
 
+**Nachtrag 12.09. — der Browser-Weg ist nicht mehr benannt, sondern belegt** *(Rohstoff von der
+Werkstatt aus einem Live-Chat mit `opt/besprechungsraum`, 01.09.; Einordnung Leitstand)*
+
+Das Nachbarprojekt hat nachgesehen statt vermutet. Auf `claude.ai/settings/usage` stehen **drei
+getrennte Zähler als Text** in der Seite — laufende Sitzung (≈ 5 h), Woche über alle Modelle,
+Woche Spitzenstufe —, ohne Klickerei erreichbar. **Die Verfallsregeln in
+`werkzeuge/kontingent.md` waren richtig geraten, bevor jemand hingesehen hat:** Die Anzeige hat
+genau die Struktur, die sie voraussetzen.
+
+Drei Einschränkungen gehören untrennbar dazu:
+
+1. **Nur Prozent.** Damit ist der Wert ein *Auslöser*, kein Takt — er sagt „jetzt sparsam", nicht
+   „noch 40 Minuten".
+2. **Auflösung 1 %.** Kleine Läufe sind unsichtbar. Wer den Verbrauch eines einzelnen kleinen
+   Auftrags daran messen will, misst Rauschen.
+3. **Es gibt einen Aktualisieren-Knopf**, der Wert kann beim Laden also alt sein. Wer ihn abliest,
+   muss das „zuletzt aktualisiert" **der Seite** übernehmen, nie die eigene Uhr. *Ein frischer
+   Zeitstempel auf einer alten Zahl ist schlimmer als gar keine Zahl* — genau davor schützt die
+   Verfallsregel, und genau das macht ein falscher Zeitstempel zunichte.
+
+**Belegt ist der Weg nur für Sitzungen mit verbundener Erweiterung und offenem Chrome.**
+Cloud-Läufe bleiben blind; die Rolle `melder` in `werkzeuge/kontingent.md` ist damit weiter
+**unbesetzt**, und der Schichtdienst arbeitet bis dahin ohne Bremse.
+
+**Der dritte Zähler ist eine Unterquote, keine zweite Kasse** *(Fable-Frage, beantwortet 01.09.
+aus der Dokumentation, ohne Verbrauch)*: Spitzenstufen-Nutzung zählt **aufs normale Wochenlimit**,
+bis zu **50 %** davon dürfen darauf entfallen — kein eigenes Kontingent, kein doppelter Preis.
+Die Werkstatt hat es in `werkzeuge/arbeitsteilung.md` §2 eingebaut, mit der Einschränkung, dass
+die 50-%-Schranke mitten in der Woche *wie* ein Kontingent wirken kann. Für I-24 heißt das: wer
+die Seite abliest, liest drei Zahlen, aber nur zwei Töpfe.
+
+**Stand des Melders, ehrlich:** Der Bauauftrag ging am 23.08. als Kickoff-Text an William. Drei
+Wochen später ist die Rolle `melder` unbesetzt — er ist also nicht gebaut, und nichts hing
+daran. Der Kickoff-Text selbst lebte bis zum 12.09. **nur im Chatverlauf** und ist damit genau
+der Fall aus F-01; er steht jetzt wörtlich in `uebergabe/uebergabe-2026-09-12-leitstand.md`.
+
 **Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
 Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
 `briefkasten/an-claude-optimierung.md`. Der laufende Kontingent-Melder bleibt davon unberührt
@@ -173,12 +211,27 @@ sie zugleich der Transportweg für den Kontingentstand zum Schichtdienst — bei
 sich dann eine Lösung statt zwei zu brauchen. **I-25 bleibt im Mikrogrün-Projekt** (hängt am
 konkreten Repository und Spiegel) und wandert *nicht* nach claude-optimierung.
 
+**Nachtrag 12.09. — die Brücke fehlt nicht nur der Cloud, sie fehlt auch dem Backup.** Beim
+Abgleich am 12.09. zeigte sich: Die Spiegelkopie von `projekt/04-ideen.md` stammt vom
+**23.08. 17:00** — drei Wochen Register- und Statusarbeit von Schichtdienst und Werkstatt stehen
+nur in der Projektablage. Die Auto-Sicherung schiebt zuverlässig **Spiegel → Git**, aber
+**niemand schiebt Ablage → Spiegel**; das Git-Repository ist damit für genau die Dateien
+unvollständig, die sich am meisten bewegen. Das ist kein neuer Mangel, sondern dieselbe Lücke von
+der anderen Seite — und es macht I-25 dringlicher als „zu prüfen" klingt. Gemeldet an die
+Werkstatt (Shell und Auto-Sicherung sind ihre Lane); die Richtung Ablage → Spiegel gehört in die
+Brücke mit hineingedacht, nicht nachträglich.
+
 ### I-26 · Kontingentgesteuerte Betriebsmodi
 Aufbauend auf I-24: Wenn der Kontingent-Stand (oder wenigstens die Fenster-Uhrzeiten) für
 Claude sichtbar wird, können Automatisierungen **nach Kontingent-Verfügbarkeit takten** und
 zwischen Modi wechseln — z. B. Vollmodus zu Fensterbeginn (große Schicht-Aufträge), Sparmodus
 bei knappem Rest (nur Sicherung und Übergabe), Ruhemodus davor. **Notiz** — hängt an I-24 und
 gehört in die Leitstand-Routine (Audit 25), sobald die Sichtbarkeit gelöst ist.
+
+**Nachtrag 12.09.:** Der Nachtrag zu I-24 setzt hier eine Grenze, die vorher nicht sichtbar war:
+Die Anzeige liefert **nur Prozent**, keine Fenster-Uhrzeiten. Damit sind die angedachten Modi als
+*Auslöser* baubar („unter X % → Sparmodus"), ein **Takten** nach Fensterbeginn aber nicht — dafür
+fehlt die Zeitinformation vollständig. Wer I-26 angeht, sollte mit der Auslöser-Variante planen.
 
 **Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
 Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
@@ -251,6 +304,64 @@ ersten Lauf zu prüfen, nicht anzunehmen.
 **Aussichtsreich** — der billigste Schritt in Richtung I-26 und der einzige, der ohne
 undokumentierte Schnittstellen auskommt.
 
+**Nachtrag 24.08. (Schichtdienst A-05) — erster echter Messwert, und er ist brauchbar.**
+Der Lauf konnte sich selbst beziffern: Die Sitzung führt einen **Budgetzähler**, der zu Beginn
+15,0 Mio. Token auswies und gegen Ende des Auftrags rund 14,65 Mio. — **also etwa 0,35 Mio.
+Token für einen als „klein" eingestuften Rechercheauftrag.** Drei Einschränkungen, ohne die die
+Zahl irreführend wäre:
+
+1. **Es ist ein Sessionbudget, kein Abrechnungswert.** Ob und wie diese Größe das
+   Konto-Kontingent belastet, ist von innen nicht prüfbar. Sie taugt zum Vergleich zwischen
+   Läufen, nicht als Kostenangabe.
+2. **Sie zählt jedes erneute Einlesen des Verlaufs mit.** Ein Lauf, der große Sammeldateien
+   liest und schreibt, treibt sie überproportional. Hier machen die **fünf vollständigen
+   Neuschreibungen** von Status- und Registerdateien den Löwenanteil aus, nicht die Recherche.
+3. **Der Wert steht vor dem Sitzungsende fest**, die letzten Schritte fehlen also — wie oben
+   schon vermutet.
+
+**Zwei Konsequenzen:**
+
+- **Für die Idee:** Die Selbstauskunft funktioniert und sollte Pflichtzeile bleiben. Sie muss
+  aber **immer an derselben Stelle abgelesen** werden (Zählerstand zu Beginn gegen Zählerstand
+  vor der Abschlussnotiz), sonst sind zwei Läufe nicht vergleichbar. Und sie ist als
+  *Aufwandsmaß* zu benennen, nicht als Kosten.
+- **Für die Auftragsplanung, und das ist der wichtigere Punkt:** **„klein" in der Warteschlange
+  sagt nichts über den Verbrauch.** A-05 war der kleinste Auftrag der Liste — die Recherche war
+  in wenigen Suchen erledigt, aber die Sicherung hat alle vier Sammeldateien angefasst, und weil
+  es für Projektdokumente kein teilweises Ändern gibt, wird jede davon ganz neu geschrieben. Die
+  Größenangabe in `werkzeuge/schicht-auftraege.md` schätzt also den **Rechercheaufwand**, während
+  der Verbrauch an der **Zahl der berührten Sammeldateien** hängt. Wer Läufe planen will, sollte
+  das trennen.
+
+**Nachtrag 12.09. — eine Rechenfalle und eine Fundstellen-Korrektur** *(Rohstoff von der
+Werkstatt, 01.09.; Einordnung Leitstand)*
+
+**Die Falle:** Der Vorschlag „selten ablesen, laufend mitzählen" geht so nicht auf. **Der Anker
+ist ein Prozentsatz, das Delta wären Tokens — das eine lässt sich vom anderen nicht abziehen.**
+Zwei Auswege, beide ungetestet:
+
+- **Wechselkurs einmal messen.** Nur an großen Läufen möglich: bei 1 % Anzeigeauflösung
+  (Nachtrag zu I-24) verschwindet ein kleiner Lauf im Rauschen.
+- **Arbeitseinheiten statt Tokens zählen** — der bessere Weg. Ein Lauf weiß immer, wie viele
+  Aufträge er abgeschlossen hat; „ein mittlerer Auftrag kostet rund X %" ist einmal zu messen
+  und danach **einheitengleich mit dem Anker**. Kein Umrechnen, keine zweite Größe.
+
+**Das passt zum Befund vom 24.08.:** Dort hatte sich gezeigt, dass der Verbrauch nicht am
+Rechercheaufwand hängt, sondern an der **Zahl der berührten Sammeldateien** — und das ist selbst
+schon eine Arbeitseinheit. Beide Erkenntnisse zeigen in dieselbe Richtung: zählbare Handlungen
+statt geschätzter Tokens.
+
+**Fundstellen-Korrektur.** Die Werkstatt hielt für offen, ob ein Lauf seinen Verbrauch überhaupt
+beziffern kann — in den Erledigt-Einträgen der Warteschlange steht keine Zahl. Das stimmt, führt
+aber in die Irre: **Die Zahl existiert** (Nachtrag 24.08., rund 0,35 Mio. Token für A-05). Sie
+steht nur im Register statt dort, wo man Läufe vergleicht.
+
+**Daraus die konkrete Verbesserung:** Die Verbrauchszeile gehört in den **Erledigt-Eintrag in
+`werkzeuge/schicht-auftraege.md`** — eine Zeile je Lauf, an derselben Stelle abgelesen
+(Zählerstand zu Beginn gegen Zählerstand vor der Abschlussnotiz). Im Register gehört die
+Auswertung, nicht der Messwert. Solange die Zahl nur im Register steht, findet sie niemand, der
+zwei Läufe nebeneinanderlegen will — und genau dafür war die Idee gedacht.
+
 **Übergeben an Projekt claude-optimierung 23.08.2026** — Eintrag bleibt (nie löschen),
 Weiterentwicklung dort; Querverweis: Ordner `claude-optimierung`,
 `briefkasten/an-claude-optimierung.md`.
@@ -294,6 +405,29 @@ Trayfreiheit. Mit waagerechtem Rand kostet mehr Neigung nur Wannentiefe an der t
 **I-23 ist damit die Voraussetzung für jede größere Neigungserhöhung** — nicht nur eine
 Verbesserung der Aufkantung. Für die empfohlene kleine Korrektur (quer 1° → 1,5°, +3,9 mm) ist
 sie nicht zwingend, aber vorher zu prüfen, ob die 3,9 mm im CAD frei sind.
+
+### I-34 · Außenkontur auf Stufe 2b auslegen statt auf Stufe 2 *(neu 24.08., aus Befund 4aj)*
+Die Außenkontur des Moduls folgt dem **vollständig gedämmten** Endzustand (Bauplan 4.2). Deshalb
+klafft in Stufe 1 an **allen sechs Flächen** ein toter Raum von 21 mm — auch an den vier
+Seitenwänden. Beim Nachschauen zur Dämmstärke fiel auf: Für die Seitenwände wird dieser Platz
+nach heutigem Stand nie gebraucht. **Befund 4d hat die Volldämmung als Sackgasse verworfen**
+(sie entkoppelt die Etagen nicht und macht das Modul 7,7 K wärmer); gedämmt werden sollen nur
+Boden und Decke.
+
+**Die Idee:** Die Auslegungs-Dämmstärke richtungsabhängig machen — voller Wandaufbau in Z (Boden
+und Decke), nur Blechstärke in X und Y. Das Modul würde in Breite und Tiefe um je rund 40 mm
+schrumpfen, ohne einen Quadratzentimeter Anbaufläche zu verlieren.
+
+**Dafür:** kleineres Modul heißt schmaleres Rack, weniger Blech je Modul, mehr Module je
+Stellfläche — und es macht eine Reserve frei, die für eine bereits verworfene Option gehalten
+wird.
+**Dagegen/zu prüfen:** Es ist eine **Einbahnstraße**. Wer die Seitenreserve streicht, kann Stufe 2
+nie mehr nachrüsten, und die Mischbarkeit der Module (ein voll gedämmtes neben einem
+einschaligen, Bauplan 6.1) wäre dahin — genau die Eigenschaft, die die Schnittstelle beweisen
+soll. Solange die Vergleichsmessung aus I-08 nicht gelaufen ist, steht auch nicht endgültig
+fest, dass Stufe 2 nie gebraucht wird.
+**Zu prüfen** — frühestens nach der ersten Klimavergleichsmessung, und dann als bewusste
+Entscheidung gegen die Rückfallebene, nicht nebenbei.
 
 ### I-20 · Rack als Vorlage für ein Wandregal
 Ein einetagiges Modul an der Wand, ohne Ständerwerk — als kleinstes verkaufbares Produkt für
@@ -417,6 +551,14 @@ nur zum Reinigen herauskommt, spielt das keine Rolle. Für die sichtbaren Außen
 weiter gebürstet werden; die beiden Entscheidungen sind unabhängig.
 **Aussichtsreich** — gehört zusammen mit P-09 in die Fertigungsunterlage entschieden.
 
+**Nachtrag 24.08. (Befund 4aj):** Die Idee bekommt eine zweite, ganz andere Begründung. Wird
+statt Schaumglas ein Luftspalt gedämmt (I-33), hängt dessen Dämmwirkung an der **Emissivität**
+der beiden Blechflächen im Spalt — blank liegt bei rund 0,2, sandgestrahlt deutlich darüber.
+Zwischen blanken Flächen erreicht ein 20-mm-Spalt rechnerisch das Zwei- bis Dreifache der
+Dämmwirkung gegenüber gestrahlten. „Blank, weil billiger und glatter" wird damit zu „blank, weil
+es sonst nicht dämmt". Gilt für die Innenseiten des Wandaufbaus; die Wanne bleibt der
+ursprüngliche Fall.
+
 ---
 
 ## Anbau und Saatgut
@@ -455,6 +597,58 @@ Saatgut länger als eine Saison gelagert wird oder aus Eigenvermehrung stammt (I
 
 ---
 
+## Klima und Dämmung
+
+### I-33 · Luftspalt statt Schaumglas — rechnen statt annehmen *(neu 24.08., aus Befund 4aj)*
+`technik/prototyp-bauplan.md`, Abschnitt 3 nennt als Alternative zum Schaumglas „ein reiner
+Luftspalt (billiger, schlechter)". Das Wort *schlechter* ist nie nachgerechnet worden — und bei
+20 mm Schichtdicke stimmt es womöglich nicht.
+
+Nach dem Verfahren für ruhende, unbelüftete Luftschichten (ISO 6946) gilt R = 1/(h_a + h_r) mit
+h_a = max(1,95; 0,025/d) bei Wärmestrom nach oben und h_r = E · h_ro, wobei
+E = 1/(1/ε₁ + 1/ε₂ − 1) und h_ro ≈ 5,1 W/(m²K) bei 20 °C. *Gegenprobe des Verfahrens:* Mit
+ε = 0,9 liefert die Formel für 20 mm waagerecht R = 0,184 m²K/W — der veröffentlichte Normwert
+lautet 0,18. Das Rechenmodell stimmt.
+
+| 20-mm-Schicht | R [m²K/W] |
+|---|---|
+| Schaumglas T4+ (λ = 0,042) | **0,476** |
+| Luftspalt, ε = 0,9 (normale Bauflächen), Wärmestrom nach oben | 0,163 |
+| Luftspalt, **blanker Edelstahl ε ≈ 0,2**, nach oben | ≈ 0,40 |
+| Luftspalt, blanker Edelstahl ε ≈ 0,2, nach unten | ≈ 0,55 |
+
+**Dafür:** Zwischen blanken Edelstahlflächen liegt der Luftspalt in derselben Größenordnung wie
+Schaumglas, bei Wärmestrom nach unten sogar darüber — und er kostet nichts, wiegt nichts, hat
+kein Beschaffungsproblem und vor allem **kein Dickenproblem** (P-43). Die Bauweise liefert die
+Voraussetzung ohnehin mit: Der Liner wird umlaufend mit der Außenschale verschweißt (Bauplan
+6.3), der Spalt ist also dicht und unbelüftet. Und er löst die Nachrüstfrage elegant — ein
+Liner ohne Dämmstoff ist billiger, leichter und schneller eingebaut als einer mit.
+**Dagegen/zu prüfen:** Die Rechnung steht und fällt mit der **Emissivität** — sandgestrahlte
+Flächen sind deutlich schlechter als blanke (siehe Nachtrag zu I-29), und der angesetzte Wert
+0,2 ist eine Annahme, kein Messwert. Zweitens ist ein Luftspalt nur so gut wie seine Dichtheit;
+jede Undichtigkeit bringt Konvektion und macht ihn wertlos, während Schaumglas auch als
+undichtes Paket noch dämmt. Drittens: Feuchte, die beim Schweißen im Spalt eingeschlossen wird,
+kann nicht mehr heraus.
+**Aussichtsreich** — der nächste Schritt kostet fast nichts: eine vierte Spalte neben den Stufen
+1 / 2 / 2b in Blatt `06-Klima`, gerechnet mit ε = 0,2 und ε = 0,45, damit man sieht, ob die
+Oberflächenfrage die Entscheidung trägt. **Das gehört vor jede Kaufentscheidung zum Schaumglas.**
+
+### I-10 · Teildämmung 2b nachrüsten *(entschieden)*
+Nur Boden und Decke, nicht rundum (Befund 4d). 32 € je Modul, jederzeit nachrüstbar, weil die
+Außenkontur nach dem Endzustand gebaut ist (R-6.3). Entschieden wird mit Logdaten, nicht vorher.
+
+**Nachtrag 24.08. (Befund 4aj) — die 32 € sind zu prüfen.** Die Materialrecherche zum Schaumglas
+legt nahe, dass der Betrag zu niedrig steht: Allein das Liner-Blech für Boden und Decke liegt bei
+rund 0,4 m² brutto und damit etwa 35 € im Basisszenario, dazu kommen 13–26 € Dämmstoff. Verdacht:
+In den 32 € steckt das Blech ohne den Dämmstoff, und die Liner-Fläche ist mit den Innenmaßen der
+*Voll*dämmung (404 × 378) statt denen der Teildämmung (446 × 420) gerechnet. **Kein Beweis, ein
+Prüfpunkt für die Arbeitsmappe** — hier wurde nichts geändert. Falls sich der Verdacht
+bestätigt, kostet die Nachrüstung eher 55–60 € je Modul; an der Entscheidung „erst mit Logdaten"
+ändert das nichts, wohl aber am Budget dafür. Hängt zusammen mit I-33 (ein Luftspalt spart den
+Dämmstoffanteil ganz) und P-43.
+
+---
+
 ## Wirtschaft, Recht, Vertrieb
 
 ### I-07 · Raster 2 × 2 × 4 als Zielausbau
@@ -466,10 +660,6 @@ an dem das Rack von beiden Seiten zugänglich ist.
 ### I-08 · Zweites Modul für die Klimavergleichsmessung *(entschieden)*
 Zwei Module nebeneinander mit unterschiedlichen Einstellungen sind die einzige Möglichkeit, den
 Klimaeinfluss sauber zu messen (Bauplan 6.1). Kommt nach der ersten Ernte.
-
-### I-10 · Teildämmung 2b nachrüsten *(entschieden)*
-Nur Boden und Decke, nicht rundum (Befund 4d). 32 € je Modul, jederzeit nachrüstbar, weil die
-Außenkontur nach dem Endzustand gebaut ist (R-6.3). Entschieden wird mit Logdaten, nicht vorher.
 
 ### I-11 · Zuschnitte für mehrere Module zusammen *(entschieden)*
 Das zweite Modul kostet nur eine Tafel extra, das erste drei. Wer mehrere plant, lässt sie
